@@ -34,9 +34,9 @@ if not SECRET_KEY:
 # Enable/Disable DEBUG Mode
 DEBUG = str2bool(os.environ.get('DEBUG'))
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['159.89.171.24', 'localhost', '127.0.0.1']
 
 # Used by DEBUG-Toolbar 
 INTERNAL_IPS = [
@@ -44,7 +44,7 @@ INTERNAL_IPS = [
 ]
 
 # Add here your deployment HOSTS
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://localhost:5085', 'http://127.0.0.1:8000', 'http://127.0.0.1:5085', 'https://django-datta-able-enh.onrender.com'] 
+CSRF_TRUSTED_ORIGINS = ['http://159.89.171.24','http://localhost:8000', 'http://localhost:5085', 'http://127.0.0.1:8000', 'http://127.0.0.1:5085', 'https://django-datta-able-enh.onrender.com'] 
 
 # Application definition
 
