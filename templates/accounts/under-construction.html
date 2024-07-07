@@ -1,0 +1,36 @@
+{% extends 'layouts/auth_base.html' %}
+{% load static %}
+
+{% block title %} Site is Under Maintenance {% endblock title %}
+
+{% block content %}
+
+  <!-- [ Main Content ] start -->
+  <div class="maintenance-block">
+    <div class="container">
+      <div class="row">
+        <!-- [ sample-page ] start -->
+        <div class="col-sm-12">
+          <div class="card construction-card">
+            <div class="card-body">
+              <div class="construction-image-block">
+                <img class="image-animated img-fluid" src="{% static 'assets/images/pages/img-maintenance-bg.svg' %}" />
+                <img src="{% static 'assets/images/pages/img-construction-widget.svg' %}" class="img-block" />
+                <img src="{% static 'assets/images/pages/img-construction-main.svg' %}" class="img-main" />
+              </div>
+              <div class="text-center">
+                <h1 class="mt-4"><b>Under Construction</b></h1>
+                <p class="mt-4 text-muted">This site is on under construction!! Please check after <br />
+                  some time</p>
+                <button type="button" class="btn btn-primary mb-3"><i class="ti ti-home me-2"></i>Home</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- [ sample-page ] end -->
+    </div>
+  </div>
+  <!-- [ Main Content ] end -->
+
+{% endblock content %}

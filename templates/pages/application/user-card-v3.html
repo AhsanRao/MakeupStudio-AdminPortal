@@ -1,0 +1,578 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    User Cards 3
+{% endblock title %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Card 3</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0)">Users</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">Card 3</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- [ sample-page ] start -->
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center g-2">
+                                <div class="col">
+                                    <h5>Cards</h5>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-search">
+                                        <i class="ti ti-search"></i>
+                                        <input type="search" class="form-control" placeholder="Search Followers" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card profile-back-card">
+                                        <img src="{% static 'assets/images/application/profile-back-1.png' %}"
+                                             class="card-img-top"
+                                             alt="image" />
+                                        <div class="card-body p-3">
+                                            <img class="img-radius img-fluid img-userprofile mb-2"
+                                                 src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                 alt="User image" />
+                                            <h4 class="mb-2 text-truncate">Perry</h4>
+                                            <p class="mb-2">Internal Assurance Architect</p>
+                                            <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            <div class="row g-3 my-3">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="ti ti-message align-text-bottom"></i> Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card profile-back-card">
+                                        <img src="{% static 'assets/images/application/profile-back-2.png' %}"
+                                             class="card-img-top"
+                                             alt="image" />
+                                        <div class="card-body p-3">
+                                            <img class="img-radius img-fluid img-userprofile mb-2"
+                                                 src="{% static 'assets/images/user/avatar-4.jpg' %}"
+                                                 alt="User image" />
+                                            <h4 class="mb-2 text-truncate">Jennifer</h4>
+                                            <p class="mb-2">Internal Data Facilitator</p>
+                                            <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            <div class="row g-3 my-3">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="ti ti-message align-text-bottom"></i> Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card profile-back-card">
+                                        <img src="{% static 'assets/images/application/profile-back-3.png' %}"
+                                             class="card-img-top"
+                                             alt="image" />
+                                        <div class="card-body p-3">
+                                            <img class="img-radius img-fluid img-userprofile mb-2"
+                                                 src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                 alt="User image" />
+                                            <h4 class="mb-2 text-truncate">Antoinette</h4>
+                                            <p class="mb-2">National Applications Officer</p>
+                                            <span class="badge bg-light-danger rounded-pill f-14">Rejected</span>
+                                            <div class="row g-3 my-3">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="ti ti-message align-text-bottom"></i> Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card profile-back-card">
+                                        <img src="{% static 'assets/images/application/profile-back-4.png' %}"
+                                             class="card-img-top"
+                                             alt="image" />
+                                        <div class="card-body p-3">
+                                            <img class="img-radius img-fluid img-userprofile mb-2"
+                                                 src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                                                 alt="User image" />
+                                            <h4 class="mb-2 text-truncate">Meths</h4>
+                                            <p class="mb-2">Central Quality Liaison</p>
+                                            <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            <div class="row g-3 my-3">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="ti ti-message align-text-bottom"></i> Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card profile-back-card">
+                                        <img src="{% static 'assets/images/application/profile-back-5.png' %}"
+                                             class="card-img-top"
+                                             alt="image" />
+                                        <div class="card-body p-3">
+                                            <img class="img-radius img-fluid img-userprofile mb-2"
+                                                 src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                 alt="User image" />
+                                            <h4 class="mb-2 text-truncate">Margie</h4>
+                                            <p class="mb-2">Direct Implementation Developer</p>
+                                            <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            <div class="row g-3 my-3">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="ti ti-message align-text-bottom"></i> Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card profile-back-card">
+                                        <img src="{% static 'assets/images/application/profile-back-6.png' %}"
+                                             class="card-img-top"
+                                             alt="image" />
+                                        <div class="card-body p-3">
+                                            <img class="img-radius img-fluid img-userprofile mb-2"
+                                                 src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                 alt="User image" />
+                                            <h4 class="mb-2 text-truncate">Perry</h4>
+                                            <p class="mb-2">Internal Assurance Architect</p>
+                                            <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            <div class="row g-3 my-3">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="ti ti-message align-text-bottom"></i> Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card profile-back-card">
+                                        <img src="{% static 'assets/images/application/profile-back-7.png' %}"
+                                             class="card-img-top"
+                                             alt="image" />
+                                        <div class="card-body p-3">
+                                            <img class="img-radius img-fluid img-userprofile mb-2"
+                                                 src="{% static 'assets/images/user/avatar-4.jpg' %}"
+                                                 alt="User image" />
+                                            <h4 class="mb-2 text-truncate">Jennifer</h4>
+                                            <p class="mb-2">Internal Data Facilitator</p>
+                                            <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            <div class="row g-3 my-3">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="ti ti-message align-text-bottom"></i> Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card profile-back-card">
+                                        <img src="{% static 'assets/images/application/profile-back-8.png' %}"
+                                             class="card-img-top"
+                                             alt="image" />
+                                        <div class="card-body p-3">
+                                            <img class="img-radius img-fluid img-userprofile mb-2"
+                                                 src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                 alt="User image" />
+                                            <h4 class="mb-2 text-truncate">Antoinette</h4>
+                                            <p class="mb-2">National Applications Officer</p>
+                                            <span class="badge bg-light-danger rounded-pill f-14">Rejected</span>
+                                            <div class="row g-3 my-3">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="ti ti-message align-text-bottom"></i> Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card profile-back-card">
+                                        <img src="{% static 'assets/images/application/profile-back-9.png' %}"
+                                             class="card-img-top"
+                                             alt="image" />
+                                        <div class="card-body p-3">
+                                            <img class="img-radius img-fluid img-userprofile mb-2"
+                                                 src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                                                 alt="User image" />
+                                            <h4 class="mb-2 text-truncate">Meths</h4>
+                                            <p class="mb-2">Central Quality Liaison</p>
+                                            <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            <div class="row g-3 my-3">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="ti ti-message align-text-bottom"></i> Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card profile-back-card">
+                                        <img src="{% static 'assets/images/application/profile-back-10.png' %}"
+                                             class="card-img-top"
+                                             alt="image" />
+                                        <div class="card-body p-3">
+                                            <img class="img-radius img-fluid img-userprofile mb-2"
+                                                 src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                 alt="User image" />
+                                            <h4 class="mb-2 text-truncate">Margie</h4>
+                                            <p class="mb-2">Direct Implementation Developer</p>
+                                            <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            <div class="row g-3 my-3">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="ti ti-message align-text-bottom"></i> Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card profile-back-card">
+                                        <img src="{% static 'assets/images/application/profile-back-11.png' %}"
+                                             class="card-img-top"
+                                             alt="image" />
+                                        <div class="card-body p-3">
+                                            <img class="img-radius img-fluid img-userprofile mb-2"
+                                                 src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                 alt="User image" />
+                                            <h4 class="mb-2 text-truncate">Perry</h4>
+                                            <p class="mb-2">Internal Assurance Architect</p>
+                                            <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            <div class="row g-3 my-3">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="ti ti-message align-text-bottom"></i> Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card profile-back-card">
+                                        <img src="{% static 'assets/images/application/profile-back-12.png' %}"
+                                             class="card-img-top"
+                                             alt="image" />
+                                        <div class="card-body p-3">
+                                            <img class="img-radius img-fluid img-userprofile mb-2"
+                                                 src="{% static 'assets/images/user/avatar-4.jpg' %}"
+                                                 alt="User image" />
+                                            <h4 class="mb-2 text-truncate">Jennifer</h4>
+                                            <p class="mb-2">Internal Data Facilitator</p>
+                                            <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            <div class="row g-3 my-3">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="ti ti-message align-text-bottom"></i> Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ sample-page ] end -->
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+{% endblock content %}

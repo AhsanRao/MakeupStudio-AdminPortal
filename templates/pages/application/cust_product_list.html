@@ -1,0 +1,422 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    Product List
+{% endblock title %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Product List</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0)">Customer</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">Product List</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- [ sample-page ] start -->
+                <div class="col-sm-12">
+                    <div class="card table-card">
+                        <div class="card-header">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h5>Product List</h5>
+                                <button class="btn btn-primary"
+                                        data-bs-toggle="offcanvas"
+                                        data-bs-target="#offcanvas_add_product">
+                                    <i class="ti ti-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="pc-dt-simple">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </th>
+                                            <th>ID</th>
+                                            <th>Product Name</th>
+                                            <th>Category</th>
+                                            <th>Price</th>
+                                            <th>Date</th>
+                                            <th>QTY</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">#790752</h5>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">Iphone 12 Pro Max</h5>
+                                            </td>
+                                            <td>Television</td>
+                                            <td>5000$</td>
+                                            <td>12.07.2018</td>
+                                            <td>2</td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">#790785</h5>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">Samsung TV 32” LED Retina</h5>
+                                            </td>
+                                            <td>Television</td>
+                                            <td>5000$</td>
+                                            <td>12.07.2018</td>
+                                            <td>5</td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">#790752</h5>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">Iphone 12 Pro Max</h5>
+                                            </td>
+                                            <td>Television</td>
+                                            <td>5000$</td>
+                                            <td>12.07.2018</td>
+                                            <td>2</td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">#790785</h5>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">Samsung TV 32” LED Retina</h5>
+                                            </td>
+                                            <td>Television</td>
+                                            <td>5000$</td>
+                                            <td>12.07.2018</td>
+                                            <td>5</td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">#790752</h5>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">Iphone 12 Pro Max</h5>
+                                            </td>
+                                            <td>Television</td>
+                                            <td>5000$</td>
+                                            <td>12.07.2018</td>
+                                            <td>2</td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">#790785</h5>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">Samsung TV 32” LED Retina</h5>
+                                            </td>
+                                            <td>Television</td>
+                                            <td>5000$</td>
+                                            <td>12.07.2018</td>
+                                            <td>5</td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">#790752</h5>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">Iphone 12 Pro Max</h5>
+                                            </td>
+                                            <td>Television</td>
+                                            <td>5000$</td>
+                                            <td>12.07.2018</td>
+                                            <td>2</td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">#790785</h5>
+                                            </td>
+                                            <td>
+                                                <h5 class="mb-0">Samsung TV 32” LED Retina</h5>
+                                            </td>
+                                            <td>Television</td>
+                                            <td>5000$</td>
+                                            <td>12.07.2018</td>
+                                            <td>5</td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ sample-page ] end -->
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end"
+         tabindex="-1"
+         id="offcanvas_add_product"
+         aria-labelledby="offcanvas_add_productLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Add Product</h5>
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="form-group">
+                <label class="form-label">Product Name</label>
+                <input type="text" class="form-control" placeholder="Enter Product Name" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Category</label>
+                <select class="form-select">
+                    <option>Select Category</option>
+                    <option>Iphone 12 Pro Max</option>
+                    <option>Iphone 11 Pro Max</option>
+                    <option>Nokia</option>
+                    <option>Samsung</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Barcode</label>
+                <input type="text" class="form-control" placeholder="Enter Barcode" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">SKU*</label>
+                <input type="text" class="form-control" placeholder="Enter SKU" />
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="form-label">Price*</label>
+                        <input type="text" class="form-control" placeholder="Enter Price in $" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="form-label">Discount</label>
+                        <input type="text" class="form-control" placeholder="Enter Discount in %" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="form-label">Quantity</label>
+                        <input type="text" class="form-control" placeholder="Enter Quantity" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="form-label">Brand</label>
+                        <input type="text" class="form-control" placeholder="Enter Brand" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="form-label">Weight</label>
+                        <input type="text" class="form-control" placeholder="Enter Weight in kg" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="form-label">Extra Shipping Free</label>
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Enter Extra Shipping Free" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Product Images</label>
+                <input class="form-control d-none"
+                       type="file"
+                       id="formFileMultiplesproduct"
+                       multiple />
+                <label class="py-4 text-center bg-light rounded w-100"
+                       for="formFileMultiplesproduct">
+                    <i class="ti ti-cloud-upload f-18 align-text-bottom"></i> Drop file here to upload
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Tags</label>
+                <input class="form-control"
+                       id="pc_product_tag"
+                       type="text"
+                       value="preset-1,preset-2"
+                       placeholder="Enter something" />
+            </div>
+            <div class="text-end">
+                <button class="btn btn-primary me-2">Create</button>
+                <button class="btn btn-link-danger" data-bs-dismiss="offcanvas">Close</button>
+            </div>
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+{% endblock content %}
+{% block extra_js %}
+    <!-- [Page Specific JS] start -->
+    <!-- tagify -->
+    <script src="{% static 'assets/js/plugins/choices.min.js' %}"></script>
+    <!-- simple-datatables -->
+    <script src="{% static 'assets/js/plugins/simple-datatables.js' %}"></script>
+    <script>
+    const dataTable = new simpleDatatables.DataTable('#pc-dt-simple', {
+      sortable: false,
+      perPage: 5
+    });
+    var textRemove = new Choices(document.getElementById('pc_product_tag'), {
+      delimiter: ',',
+      editItems: true,
+      maxItemCount: 5,
+      removeItemButton: true
+    });
+    </script>
+    <!-- [Page Specific JS] end -->
+{% endblock extra_js %}

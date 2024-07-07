@@ -1,0 +1,486 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    Contact List
+{% endblock title %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Contact List</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0)">Contact</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">Contact List</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- [ sample-page ] start -->
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Contact List</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="form-search">
+                                        <i class="ti ti-search"></i>
+                                        <input type="search" class="form-control" placeholder="Search Followers" />
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-primary"
+                                            data-bs-toggle="offcanvas"
+                                            data-bs-target="#offcanvas_add_contact">
+                                        <i class="ti ti-circle-plus align-text-bottom"></i> Add
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-primary f-w-600">A</h4>
+                            <hr class="my-3" />
+                            <ul class="list-group list-group-flush contact_list">
+                                <li class="list-group-item px-0">
+                                    <div class="media align-items-center">
+                                        <a href="#"
+                                           data-bs-toggle="offcanvas"
+                                           data-bs-target="#offcanvas_add_contact_view">
+                                            <img class="img-radius img-fluid wid-50"
+                                                 src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                 alt="User image" />
+                                        </a>
+                                        <a href="#"
+                                           class="media-body mx-3"
+                                           data-bs-toggle="offcanvas"
+                                           data-bs-target="#offcanvas_add_contact_view">
+                                            <h4 class="mb-0">Alene</h4>
+                                            <small class="text-muted">Sr. Customer Manager</small>
+                                        </a>
+                                        <div>
+                                            <button class="btn btn-outline-primary"
+                                                    data-bs-toggle="tooltip"
+                                                    title="Message">
+                                                <i class="ti ti-message"></i>
+                                            </button>
+                                            <button class="btn btn-outline-secondary"
+                                                    data-bs-toggle="tooltip"
+                                                    title="Phone">
+                                                <i class="ti ti-phone-call"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item px-0">
+                                    <div class="media align-items-center">
+                                        <a href="#"
+                                           data-bs-toggle="offcanvas"
+                                           data-bs-target="#offcanvas_add_contact_view">
+                                            <img class="img-radius img-fluid wid-50"
+                                                 src="{% static 'assets/images/user/avatar-4.jpg' %}"
+                                                 alt="User image" />
+                                        </a>
+                                        <a href="#"
+                                           class="media-body mx-3"
+                                           data-bs-toggle="offcanvas"
+                                           data-bs-target="#offcanvas_add_contact_view">
+                                            <h4 class="mb-0">Agilulf Fuxg</h4>
+                                            <small class="text-muted">Specialist</small>
+                                        </a>
+                                        <div>
+                                            <button class="btn btn-outline-primary"
+                                                    data-bs-toggle="tooltip"
+                                                    title="Message">
+                                                <i class="ti ti-message"></i>
+                                            </button>
+                                            <button class="btn btn-outline-secondary"
+                                                    data-bs-toggle="tooltip"
+                                                    title="Phone">
+                                                <i class="ti ti-phone-call"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item px-0">
+                                    <div class="media align-items-center">
+                                        <a href="#"
+                                           data-bs-toggle="offcanvas"
+                                           data-bs-target="#offcanvas_add_contact_view">
+                                            <img class="img-radius img-fluid wid-50"
+                                                 src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                 alt="User image" />
+                                        </a>
+                                        <a href="#"
+                                           class="media-body mx-3"
+                                           data-bs-toggle="offcanvas"
+                                           data-bs-target="#offcanvas_add_contact_view">
+                                            <h4 class="mb-0">Adaline Bergfalks</h4>
+                                            <small class="text-muted">Shaper</small>
+                                        </a>
+                                        <div>
+                                            <button class="btn btn-outline-primary"
+                                                    data-bs-toggle="tooltip"
+                                                    title="Message">
+                                                <i class="ti ti-message"></i>
+                                            </button>
+                                            <button class="btn btn-outline-secondary"
+                                                    data-bs-toggle="tooltip"
+                                                    title="Phone">
+                                                <i class="ti ti-phone-call"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <hr class="my-3" />
+                            <h4 class="text-primary f-w-600">K</h4>
+                            <hr class="my-3" />
+                            <ul class="list-group list-group-flush contact_list">
+                                <li class="list-group-item px-0">
+                                    <div class="media align-items-center">
+                                        <a href="#"
+                                           data-bs-toggle="offcanvas"
+                                           data-bs-target="#offcanvas_add_contact_view">
+                                            <img class="img-radius img-fluid wid-50"
+                                                 src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                                                 alt="User image" />
+                                        </a>
+                                        <a href="#"
+                                           class="media-body mx-3"
+                                           data-bs-toggle="offcanvas"
+                                           data-bs-target="#offcanvas_add_contact_view">
+                                            <h4 class="mb-0">Keefe</h4>
+                                            <small class="text-muted">Dynamic Operations Officer</small>
+                                        </a>
+                                        <div>
+                                            <button class="btn btn-outline-primary"
+                                                    data-bs-toggle="tooltip"
+                                                    title="Message">
+                                                <i class="ti ti-message"></i>
+                                            </button>
+                                            <button class="btn btn-outline-secondary"
+                                                    data-bs-toggle="tooltip"
+                                                    title="Phone">
+                                                <i class="ti ti-phone-call"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <hr class="my-3" />
+                            <h4 class="text-primary f-w-600">L</h4>
+                            <hr class="my-3" />
+                            <ul class="list-group list-group-flush contact_list">
+                                <li class="list-group-item px-0">
+                                    <div class="media align-items-center">
+                                        <a href="#"
+                                           data-bs-toggle="offcanvas"
+                                           data-bs-target="#offcanvas_add_contact_view">
+                                            <img class="img-radius img-fluid wid-50"
+                                                 src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                 alt="User image" />
+                                        </a>
+                                        <a href="#"
+                                           class="media-body mx-3"
+                                           data-bs-toggle="offcanvas"
+                                           data-bs-target="#offcanvas_add_contact_view">
+                                            <h4 class="mb-0">Lazaro</h4>
+                                            <small class="text-muted">Resource Investigator</small>
+                                        </a>
+                                        <div>
+                                            <button class="btn btn-outline-primary"
+                                                    data-bs-toggle="tooltip"
+                                                    title="Message">
+                                                <i class="ti ti-message"></i>
+                                            </button>
+                                            <button class="btn btn-outline-secondary"
+                                                    data-bs-toggle="tooltip"
+                                                    title="Phone">
+                                                <i class="ti ti-phone-call"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ sample-page ] end -->
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end"
+         tabindex="-1"
+         id="offcanvas_add_contact"
+         aria-labelledby="offcanvas_add_contactLabel">
+        <div class="offcanvas-body">
+            <div class="media align-items-center">
+                <div class="avtar avtar-l bg-light-primary text-primary rounded-circle">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="media-body mx-3">
+                    <button class="btn btn-outline-primary btn-sm mb-1">
+                        <i class="ti ti-upload"></i> Upload
+                    </button>
+                    <span class="text-muted text-sm d-block">Image size should be 125kb Max.</span>
+                </div>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+            </div>
+            <hr class="my-3" />
+            <div class="form-group">
+                <label class="form-label">Name</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="material-icons-two-tone">account_circle</i></span>
+                    <input type="text" class="form-control" placeholder="Enter Name" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Company</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="material-icons-two-tone">business</i></span>
+                    <input type="text" class="form-control" placeholder="Enter Company" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Job Title</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="material-icons-two-tone">work</i></span>
+                    <input type="text" class="form-control" placeholder="Enter Job Title" />
+                </div>
+            </div>
+            <div class="form-group">
+                <select class="form-control"
+                        name="pc_product_tag"
+                        id="pc_product_tag"
+                        multiple>
+                    <option value="Choice 1" selected>Work</option>
+                    <option value="Choice 2">Personal</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="material-icons-two-tone">email</i></span>
+                    <input type="text" class="form-control" placeholder="Enter Email" />
+                </div>
+            </div>
+            <div class="form-group">
+                <select class="form-control"
+                        name="pc_product_tag1"
+                        id="pc_product_tag1"
+                        multiple>
+                    <option value="Choice 1" selected>Work</option>
+                    <option value="Choice 2">Personal</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="material-icons-two-tone">email</i></span>
+                    <input type="text" class="form-control" placeholder="Enter Email" />
+                </div>
+            </div>
+            <button class="btn btn-link-primary mb-4">
+                <i class="ti ti-circle-plus align-text-bottom me-2"></i> Add New Email
+            </button>
+            <div class="form-group">
+                <select class="form-control"
+                        name="pc_product_tag2"
+                        id="pc_product_tag2"
+                        multiple>
+                    <option value="Choice 1" selected>Work</option>
+                    <option value="Choice 2">Personal</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="material-icons-two-tone">call</i></span>
+                    <input type="text" class="form-control" placeholder="Enter Phone Number" />
+                </div>
+            </div>
+            <div class="form-group">
+                <select class="form-control"
+                        name="pc_product_tag3"
+                        id="pc_product_tag3"
+                        multiple>
+                    <option value="Choice 1" selected>Work</option>
+                    <option value="Choice 2">Personal</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="material-icons-two-tone">call</i></span>
+                    <input type="text" class="form-control" placeholder="Enter Phone Number" />
+                </div>
+            </div>
+            <button class="btn btn-link-primary mb-4">
+                <i class="ti ti-circle-plus align-text-bottom me-2"></i> Add New Phone
+            </button>
+            <div class="form-group">
+                <label class="form-label">Birthday</label>
+                <input type="date" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Bio data</label>
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="d-grid">
+                        <button class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="d-grid">
+                        <button class="btn btn-outline-primary" data-bs-dismiss="offcanvas">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end"
+         tabindex="-1"
+         id="offcanvas_add_contact_view"
+         aria-labelledby="offcanvas_add_contact_viewLabel">
+        <div class="offcanvas-body">
+            <div class="media align-items-center mb-3">
+                <img class="rounded-circle img-fluid avtar avtar-l"
+                     src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                     alt="User image" />
+                <div class="media-body mx-3">
+                    <h4 class="mb-0">Alene</h4>
+                    <span class="badge bg-light-primary rounded-pill f-12 align-baseline">Work</span>
+                </div>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="d-grid">
+                        <button class="btn btn-outline-primary"
+                                data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvas_add_contact">
+                            <i class="ti ti-edit me-2"></i> Edit
+                        </button>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="d-grid">
+                        <button class="btn btn-outline-secondary">
+                            <i class="ti ti-ban me-2"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" />
+            <div class="media align-items-start mb-2">
+                <i class="material-icons-two-tone f-20 opacity-75">business</i>
+                <div class="media-body ms-3">
+                    <p>ABC Pvt Ltd</p>
+                </div>
+            </div>
+            <div class="media align-items-start mb-2">
+                <i class="material-icons-two-tone f-20 opacity-75">work</i>
+                <div class="media-body ms-3">
+                    <p>Sr. Customer Manager</p>
+                </div>
+            </div>
+            <div class="media align-items-start mb-2">
+                <i class="material-icons-two-tone f-20 opacity-75">email</i>
+                <div class="media-body ms-3">
+                    <p class="mb-1">
+                        alene_work@company.com <span class="badge bg-light-primary rounded-pill align-baseline">Work</span>
+                    </p>
+                    <p>
+                        alene@company.com <span class="badge bg-light-secondary rounded-pill align-baseline">Personal</span>
+                    </p>
+                </div>
+            </div>
+            <div class="media align-items-start mb-2">
+                <i class="material-icons-two-tone f-20 opacity-75">call</i>
+                <div class="media-body ms-3">
+                    <p class="mb-1">
+                        380-293-0177 <span class="badge bg-light-primary rounded-pill align-baseline">Work</span>
+                    </p>
+                    <p>
+                        380-293-0177 <span class="badge bg-light-secondary rounded-pill align-baseline">Personal</span>
+                    </p>
+                </div>
+            </div>
+            <div class="media align-items-start mb-2">
+                <i class="material-icons-two-tone f-20 opacity-75">pin_drop</i>
+                <div class="media-body ms-3">
+                    <p>Port Narcos</p>
+                </div>
+            </div>
+            <div class="media align-items-start mb-2">
+                <i class="material-icons-two-tone f-20 opacity-75">cake</i>
+                <div class="media-body ms-3">
+                    <p>November 30, 1997</p>
+                </div>
+            </div>
+            <div class="media align-items-start mb-2">
+                <i class="material-icons-two-tone f-20 opacity-75">info</i>
+                <div class="media-body ms-3">
+                    <p>happy Birthday Alene</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+{% endblock content %}
+{% block extra_js %}
+    <!-- [Page Specific JS] start -->
+    <!-- tagify -->
+    <script src="{% static 'assets/js/plugins/choices.min.js' %}"></script>
+    <script>
+    new Choices(document.getElementById('pc_product_tag'), {
+      delimiter: ',',
+      editItems: true,
+      maxItemCount: 5,
+      removeItemButton: true
+    });
+    new Choices(document.getElementById('pc_product_tag1'), {
+      delimiter: ',',
+      editItems: true,
+      maxItemCount: 5,
+      removeItemButton: true
+    });
+    new Choices(document.getElementById('pc_product_tag2'), {
+      delimiter: ',',
+      editItems: true,
+      maxItemCount: 5,
+      removeItemButton: true
+    });
+    new Choices(document.getElementById('pc_product_tag3'), {
+      delimiter: ',',
+      editItems: true,
+      maxItemCount: 5,
+      removeItemButton: true
+    });
+    </script>
+    <!-- [Page Specific JS] end -->
+{% endblock extra_js %}

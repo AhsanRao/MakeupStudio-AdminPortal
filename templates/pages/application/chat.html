@@ -1,0 +1,464 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    Chat
+{% endblock title %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Chat</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0)">Application</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">Chat</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- [ sample-page ] start -->
+                <div class="col-sm-12">
+                    <div class="chat-wrapper">
+                        <div class="offcanvas-md offcanvas-start chat-offcanvas"
+                             tabindex="-1"
+                             id="offcanvas_User_list">
+                            <div class="offcanvas-header">
+                                <button type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="offcanvas"
+                                        data-bs-target="#offcanvas_User_list"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body p-0">
+                                <div id="chat-user_list" class="show collapse collapse-horizontal">
+                                    <div class="chat-user_list">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="media align-items-center mb-3">
+                                                    <div class="chat-avtar">
+                                                        <img class="rounded-circle img-fluid wid-40"
+                                                             src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                             alt="User image" />
+                                                        <i class="chat-badge bg-warning"></i>
+                                                    </div>
+                                                    <div class="media-body mx-3">
+                                                        <h4 class="mb-0">John Doe</h4>
+                                                    </div>
+                                                    <div class="dropdown">
+                                                        <a class="avtar avtar-xs btn-link-primary dropdown-toggle arrow-none"
+                                                           type="button"
+                                                           data-bs-toggle="dropdown"
+                                                           aria-haspopup="true"
+                                                           aria-expanded="false">
+                                                            <i class="ti ti-chevron-down f-16"></i>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item" href="#"><i class="chat-badge bg-success"></i> Available</a>
+                                                            <a class="dropdown-item" href="#"><i class="chat-badge bg-warning"></i> Edit Do not disturb</a>
+                                                            <a class="dropdown-item" href="#"><i class="chat-badge bg-danger"></i> Offline</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-search">
+                                                    <i class="ti ti-search"></i>
+                                                    <input type="search" class="form-control" placeholder="Search Followers" />
+                                                </div>
+                                            </div>
+                                            <div class="scroll-block">
+                                                <div class="card-body pt-0">
+                                                    <ul class="list-group list-group-flush">
+                                                        <a href="#" class="list-group-item list-group-item-action p-3">
+                                                            <div class="media align-items-center">
+                                                                <div class="chat-avtar">
+                                                                    <img class="rounded-circle img-fluid wid-40"
+                                                                         src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                                         alt="User image" />
+                                                                    <i class="chat-badge bg-success"></i>
+                                                                </div>
+                                                                <div class="media-body mx-2">
+                                                                    <h4 class="mb-0">
+                                                                        John Doe <span class="float-end text-sm text-muted f-w-400">2h ago</span>
+                                                                    </h4>
+                                                                    <span class="text-sm text-muted">Technical Department
+                                                                        <span class="float-end">
+                                                                            <div class="badge bg-secondary rounded-pill">2</div>
+                                                                        </span></span>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <a href="#" class="list-group-item list-group-item-action p-3">
+                                                                <div class="media align-items-center">
+                                                                    <div class="chat-avtar">
+                                                                        <img class="rounded-circle img-fluid wid-40"
+                                                                             src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                                                                             alt="User image" />
+                                                                        <i class="chat-badge bg-success"></i>
+                                                                    </div>
+                                                                    <div class="media-body mx-2">
+                                                                        <h4 class="mb-0">
+                                                                            Keefe <span class="float-end text-sm text-muted f-w-400">3h ago</span>
+                                                                        </h4>
+                                                                        <span class="text-sm text-muted">Support Executive
+                                                                            <span class="float-end">
+                                                                                <div class="badge bg-secondary rounded-pill">3</div>
+                                                                            </span></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                                <a href="#" class="list-group-item list-group-item-action p-3">
+                                                                    <div class="media align-items-center">
+                                                                        <div class="chat-avtar">
+                                                                            <img class="rounded-circle img-fluid wid-40"
+                                                                                 src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                                                 alt="User image" />
+                                                                            <i class="chat-badge bg-warning"></i>
+                                                                        </div>
+                                                                        <div class="media-body mx-2">
+                                                                            <h4 class="mb-0">
+                                                                                Lazaro
+                                                                                <span class="float-end text-sm text-muted f-w-400">Yesterday</span>
+                                                                            </h4>
+                                                                            <span class="text-sm text-muted">Teamworks
+                                                                                <span class="float-end">
+                                                                                    <div class="badge bg-secondary rounded-pill">1</div>
+                                                                                </span></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                    <a href="#" class="list-group-item list-group-item-action p-3">
+                                                                        <div class="media align-items-center">
+                                                                            <div class="chat-avtar">
+                                                                                <img class="rounded-circle img-fluid wid-40"
+                                                                                     src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                                                     alt="User image" />
+                                                                                <i class="chat-badge bg-danger"></i>
+                                                                            </div>
+                                                                            <div class="media-body mx-2">
+                                                                                <h4 class="mb-0">
+                                                                                    Adaline
+                                                                                    <span class="float-end text-sm text-muted f-w-400">4/25/2021</span>
+                                                                                </h4>
+                                                                                <span class="text-sm text-muted">Teamworks</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                    <a href="#" class="list-group-item list-group-item-action p-3">
+                                                                        <div class="media align-items-center">
+                                                                            <div class="chat-avtar">
+                                                                                <img class="rounded-circle img-fluid wid-40"
+                                                                                     src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                                                     alt="User image" />
+                                                                                <i class="chat-badge bg-success"></i>
+                                                                            </div>
+                                                                            <div class="media-body mx-2">
+                                                                                <h4 class="mb-0">
+                                                                                    John Doe
+                                                                                    <span class="float-end text-sm text-muted f-w-400">4/25/2021</span>
+                                                                                </h4>
+                                                                                <span class="text-sm text-muted">Technical Department</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                    <a href="#" class="list-group-item list-group-item-action p-3">
+                                                                        <div class="media align-items-center">
+                                                                            <div class="chat-avtar">
+                                                                                <img class="rounded-circle img-fluid wid-40"
+                                                                                     src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                                                                                     alt="User image" />
+                                                                                <i class="chat-badge bg-success"></i>
+                                                                            </div>
+                                                                            <div class="media-body mx-2">
+                                                                                <h4 class="mb-0">
+                                                                                    Keefe
+                                                                                    <span class="float-end text-sm text-muted f-w-400">4/25/2021</span>
+                                                                                </h4>
+                                                                                <span class="text-sm text-muted">Support Executive</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                    <a href="#" class="list-group-item list-group-item-action p-3">
+                                                                        <div class="media align-items-center">
+                                                                            <div class="chat-avtar">
+                                                                                <img class="rounded-circle img-fluid wid-40"
+                                                                                     src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                                                     alt="User image" />
+                                                                                <i class="chat-badge bg-warning"></i>
+                                                                            </div>
+                                                                            <div class="media-body mx-2">
+                                                                                <h4 class="mb-0">
+                                                                                    Lazaro
+                                                                                    <span class="float-end text-sm text-muted f-w-400">4/25/2021</span>
+                                                                                </h4>
+                                                                                <span class="text-sm text-muted">Teamworks</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                    <a href="#" class="list-group-item list-group-item-action p-3">
+                                                                        <div class="media align-items-center">
+                                                                            <div class="chat-avtar">
+                                                                                <img class="rounded-circle img-fluid wid-40"
+                                                                                     src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                                                     alt="User image" />
+                                                                                <i class="chat-badge bg-danger"></i>
+                                                                            </div>
+                                                                            <div class="media-body mx-2">
+                                                                                <h4 class="mb-0">
+                                                                                    Adaline
+                                                                                    <span class="float-end text-sm text-muted f-w-400">4/25/2021</span>
+                                                                                </h4>
+                                                                                <span class="text-sm text-muted">Teamworks</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="chat-content">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <div class="d-sm-flex align-items-center">
+                                                    <ul class="list-inline me-auto mb-0">
+                                                        <li class="list-inline-item align-bottom">
+                                                            <a href="#"
+                                                               class="d-md-none avtar avtar-s btn-link-secondary"
+                                                               data-bs-toggle="offcanvas"
+                                                               data-bs-target="#offcanvas_User_list">
+                                                                <i class="ti ti-menu-2 f-18"></i>
+                                                            </a>
+                                                            <a href="#"
+                                                               class="d-none d-md-inline-flex avtar avtar-s btn-link-secondary"
+                                                               data-bs-toggle="collapse"
+                                                               data-bs-target="#chat-user_list">
+                                                                <i class="ti ti-menu-2 f-18"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <div class="media align-items-center">
+                                                                <div class="chat-avtar">
+                                                                    <img class="rounded-circle img-fluid wid-40"
+                                                                         src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                                         alt="User image" />
+                                                                    <i class="chat-badge bg-warning"></i>
+                                                                </div>
+                                                                <div class="media-body mx-3">
+                                                                    <h4 class="mb-0">John Doe</h4>
+                                                                    <span class="text-sm text-muted">Last seen 2h ago</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="list-inline ms-auto mb-0">
+                                                        <li class="list-inline-item">
+                                                            <a href="#" class="avtar avtar-s btn-link-primary">
+                                                                <i class="ti ti-phone-call f-18"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#" class="avtar avtar-s btn-link-secondary">
+                                                                <i class="ti ti-video f-18"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#"
+                                                               class="d-md-none avtar avtar-s btn-link-primary"
+                                                               data-bs-toggle="offcanvas"
+                                                               data-bs-target="#offcanvas_User_info">
+                                                                <i class="ti ti-info-circle f-18"></i>
+                                                            </a>
+                                                            <a href="#"
+                                                               class="d-none d-md-inline-flex avtar avtar-s btn-link-primary"
+                                                               data-bs-toggle="collapse"
+                                                               data-bs-target="#chat-user_info">
+                                                                <i class="ti ti-info-circle f-18"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <div class="dropdown">
+                                                                <a class="avtar avtar-s btn-link-secondary dropdown-toggle arrow-none"
+                                                                   type="button"
+                                                                   data-bs-toggle="dropdown"
+                                                                   aria-haspopup="true"
+                                                                   aria-expanded="false">
+                                                                    <i class="ti ti-dots f-18"></i>
+                                                                </a>
+                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                    <a class="dropdown-item" href="#">Name</a>
+                                                                    <a class="dropdown-item" href="#">Date</a>
+                                                                    <a class="dropdown-item" href="#">Ratting</a>
+                                                                    <a class="dropdown-item" href="#">Unread</a>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="scroll-block chat-message">
+                                                    <div class="message-out">
+                                                        <div class="msg-content bg-light-primary">
+                                                            <p>Hi Good Morning!</p>
+                                                            <p class="mb-0 text-muted text-sm">11:23 AM</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="message-in">
+                                                        <div class="msg-content bg-light-secondary">
+                                                            <p>Hi Good Morning!</p>
+                                                            <p class="mb-0 text-muted text-sm">11:23 AM</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="message-out">
+                                                        <div class="msg-content bg-light-primary">
+                                                            <p>
+                                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                                                                standard dummy text ever since the 1500s,
+                                                            </p>
+                                                            <p class="mb-0 text-muted text-sm">11:23 AM</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="message-in">
+                                                        <div class="msg-content bg-light-secondary">
+                                                            <p>
+                                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                                                                standard dummy text ever since the 1500s,
+                                                            </p>
+                                                            <p class="mb-0 text-muted text-sm">11:23 AM</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="chat-input">
+                                                    <input type="text" class="form-control" placeholder="Type a Message" />
+                                                    <div class="chat-input-btn">
+                                                        <a href="#" class="avtar avtar-xs btn-link-secondary">
+                                                            <i class="ti ti-paperclip f-18"></i>
+                                                        </a>
+                                                        <a href="#" class="avtar avtar-xs btn-link-primary">
+                                                            <i class="ti ti-send f-18"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="offcanvas-md offcanvas-end chat-offcanvas"
+                                         tabindex="-1"
+                                         id="offcanvas_User_info">
+                                        <div class="offcanvas-header">
+                                            <button type="button"
+                                                    class="btn-close"
+                                                    data-bs-dismiss="offcanvas"
+                                                    data-bs-target="#offcanvas_User_info"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="offcanvas-body p-0">
+                                            <div id="chat-user_info" class="collapse collapse-horizontal">
+                                                <div class="chat-user_info">
+                                                    <div class="text-center">
+                                                        <div class="chat-avtar d-inline-flex mx-auto">
+                                                            <img class="rounded-circle img-fluid wid-100"
+                                                                 src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                                 alt="User image" />
+                                                            <i class="chat-badge bg-success"></i>
+                                                        </div>
+                                                        <h4 class="mb-0">John Doe</h4>
+                                                        <p class="text-muted text-sm mb-4">Dynamic Operations Officer</p>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="scroll-block">
+                                                            <div class="card-body">
+                                                                <h5 class="mb-3">Information</h5>
+                                                                <div class="media align-items-start">
+                                                                    <i class="material-icons-two-tone f-20 opacity-75">pin_drop</i>
+                                                                    <div class="media-body ms-2">
+                                                                        <p class="mb-2">32188 Sips Parkways, U.S</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="media align-items-start">
+                                                                    <i class="material-icons-two-tone f-20 opacity-75">call</i>
+                                                                    <div class="media-body ms-2">
+                                                                        <p class="mb-2">995-250-1803</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="media align-items-start">
+                                                                    <i class="material-icons-two-tone f-20 opacity-75">email</i>
+                                                                    <div class="media-body ms-2">
+                                                                        <p class="mb-2">O’Keefe@codedtheme.com</p>
+                                                                    </div>
+                                                                </div>
+                                                                <hr class="my-3" />
+                                                                <h5 class="mb-3">Attachment</h5>
+                                                                <div class="media align-items-center mb-2">
+                                                                    <img src="{% static 'assets/images/application/img-catalog1.png' %}"
+                                                                         alt="images"
+                                                                         class="img-fluid" />
+                                                                    <div class="media-body ms-2">
+                                                                        <h6 class="mb-0">File Name.jpg</h6>
+                                                                        <span class="text-muted text-sm">4/16/2021 07:47:03</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="media align-items-center mb-2">
+                                                                    <img src="{% static 'assets/images/application/img-catalog2.png' %}"
+                                                                         alt="images"
+                                                                         class="img-fluid" />
+                                                                    <div class="media-body ms-2">
+                                                                        <h6 class="mb-0">File Name.jpg</h6>
+                                                                        <span class="text-muted text-sm">4/16/2021 07:47:03</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="media align-items-center mb-2">
+                                                                    <img src="{% static 'assets/images/application/img-catalog3.png' %}"
+                                                                         alt="images"
+                                                                         class="img-fluid" />
+                                                                    <div class="media-body ms-2">
+                                                                        <h6 class="mb-0">File Name.jpg</h6>
+                                                                        <span class="text-muted text-sm">4/16/2021 07:47:03</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- [ sample-page ] end -->
+                        </div>
+                        <!-- [ Main Content ] end -->
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+            {% endblock content %}
+            {% block extra_js %}
+                <!-- [Page Specific JS] start -->
+                <script>
+      // scroll-block
+      var tc = document.querySelectorAll('.scroll-block');
+      for (var t = 0; t < tc.length; t++) {
+        new SimpleBar(tc[t]);
+      }
+                </script>
+                <!-- [Page Specific JS] end -->
+            {% endblock extra_js %}

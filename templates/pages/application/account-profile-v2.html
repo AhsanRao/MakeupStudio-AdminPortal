@@ -1,0 +1,402 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    Account Profile 2
+{% endblock title %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Account Profile 2</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0)">Users</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">Account Profile 2</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- [ sample-page ] start -->
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Account Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <ul class="nav flex-column nav-tabs account-tabs mb-3"
+                                        id="myTab"
+                                        role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active"
+                                               id="profile-tab-1"
+                                               data-bs-toggle="tab"
+                                               href="#profile-1"
+                                               role="tab"
+                                               aria-controls="Profile-1"
+                                               aria-selected="true">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <i class="material-icons-two-tone me-2">person_outline</i>
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-2">
+                                                        <h5 class="mb-0">User Profile</h5>
+                                                        <small class="text-muted">Profile Settings</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               id="profile-tab-2"
+                                               data-bs-toggle="tab"
+                                               href="#profile-2"
+                                               role="tab"
+                                               aria-controls="Profile-2"
+                                               aria-selected="true">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <i class="material-icons-two-tone me-2">description</i>
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-2">
+                                                        <h5 class="mb-0">Billing</h5>
+                                                        <small class="text-muted">Billing Information</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               id="profile-tab-3"
+                                               data-bs-toggle="tab"
+                                               href="#profile-3"
+                                               role="tab"
+                                               aria-controls="Profile-3"
+                                               aria-selected="true">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <i class="material-icons-two-tone me-2">credit_card</i>
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-2">
+                                                        <h5 class="mb-0">Payment</h5>
+                                                        <small class="text-muted">Add & Update Card</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               id="profile-tab-4"
+                                               data-bs-toggle="tab"
+                                               href="#profile-4"
+                                               role="tab"
+                                               aria-controls="Profile-4"
+                                               aria-selected="true">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <i class="material-icons-two-tone me-2">vpn_key</i>
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-2">
+                                                        <h5 class="mb-0">Change Password</h5>
+                                                        <small class="text-muted">Update Profile Security</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="tab-content">
+                                        <div class="tab-pane show active"
+                                             id="profile-1"
+                                             role="tabpanel"
+                                             aria-labelledby="profile-tab-1">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="flex-shrink-0">
+                                                    <img src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                         alt="user-image"
+                                                         class="img-fluid rounded-circle wid-80" />
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <small class="text-muted"><i class="material-icons-two-tone f-14">info</i> Image size Limit should be 125kb Max.</small>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">First Name</label>
+                                                        <input type="text" class="form-control" value="Schorl" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Last Name</label>
+                                                        <input type="text" class="form-control" value="Delaney" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Email Address</label>
+                                                        <input type="email" class="form-control" value="demo@company.com" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Phone Number</label>
+                                                        <input type="text" class="form-control" value="000-00-00000" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Company Name</label>
+                                                        <input type="text" class="form-control" value="company.ltd" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Site Information</label>
+                                                        <input type="text" class="form-control" value="www.company.com" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-6"></div>
+                                                <div class="col-6 text-end">
+                                                    <button class="btn btn-primary d-inline-flex align-items-center"
+                                                            onClick="change_tab('#profile-2')">Continue</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane"
+                                             id="profile-2"
+                                             role="tabpanel"
+                                             aria-labelledby="profile-tab-2">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Block No#</label>
+                                                        <input type="text" class="form-control" value="16657" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Apartment Name</label>
+                                                        <input type="text" class="form-control" value=" Dardan Ranch" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Street Line 1</label>
+                                                        <input type="text" class="form-control" value="Nathaniel Ports" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Street Line 2</label>
+                                                        <input type="text" class="form-control" value="nr. Oran Walks" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Postcode</label>
+                                                        <input type="text" class="form-control" value="395005" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Select City</label>
+                                                        <select class="form-select">
+                                                            <option>Los Angeles</option>
+                                                            <option>Chicago</option>
+                                                            <option>Phoenix</option>
+                                                            <option>San Antonio</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Select Country</label>
+                                                        <select class="form-select">
+                                                            <option>India</option>
+                                                            <option>Chicago</option>
+                                                            <option>Phoenix</option>
+                                                            <option>San Antonio</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               value=""
+                                                               id="flexCheckDefault"
+                                                               checked />
+                                                        <label class="form-check-label" for="flexCheckDefault">Same as billing address</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-6">
+                                                    <button class="btn btn-outline-secondary d-inline-flex align-items-center"
+                                                            onClick="change_tab('#profile-1')">Back</button>
+                                                </div>
+                                                <div class="col-6 text-end">
+                                                    <button class="btn btn-primary d-inline-flex align-items-center"
+                                                            onClick="change_tab('#profile-3')">Continue</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane"
+                                             id="profile-3"
+                                             role="tabpanel"
+                                             aria-labelledby="profile-tab-3">
+                                            <div class="row">
+                                                <div class="col-sm-12 mb-3">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input"
+                                                               type="radio"
+                                                               name="inlineRadioOptions"
+                                                               id="inlineRadio1"
+                                                               value="option1"
+                                                               checked />
+                                                        <label class="form-check-label" for="inlineRadio1">Visa Credit/Debit Card</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input"
+                                                               type="radio"
+                                                               name="inlineRadioOptions"
+                                                               id="inlineRadio2"
+                                                               value="option2" />
+                                                        <label class="form-check-label" for="inlineRadio2">PayPal</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Name on Card</label>
+                                                        <input type="text" class="form-control" value="Selena Litten" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Card Number</label>
+                                                        <input type="text" class="form-control" value="4012 8888 8888 1881" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Expiry Date</label>
+                                                        <input type="text" class="form-control" value="10/22" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">CCV Code</label>
+                                                        <input type="text" class="form-control" value="123" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="d-flex align-items-center mb-3">
+                                                        <div class="flex-shrink-0">
+                                                            <i class="material-icons-two-tone me-2 f-50 text-primary">lock</i>
+                                                        </div>
+                                                        <div class="flex-grow-1 ms-2">
+                                                            <h4 class="mb-0">Secure Checkout</h4>
+                                                            <span class="text-muted">Secure by Google.</span>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn btn-outline-primary">
+                                                        <i class="ti ti-credit-card text-top"></i> Add New card
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-6">
+                                                    <button class="btn btn-outline-secondary d-inline-flex align-items-center"
+                                                            onClick="change_tab('#profile-2')">Back</button>
+                                                </div>
+                                                <div class="col-6 text-end">
+                                                    <button class="btn btn-primary d-inline-flex align-items-center"
+                                                            onClick="change_tab('#profile-4')">Continue</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane"
+                                             id="profile-4"
+                                             role="tabpanel"
+                                             aria-labelledby="profile-tab-4">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">
+                                                            Current Password <span class="text-danger">*</span>
+                                                        </label>
+                                                        <input type="password"
+                                                               class="form-control"
+                                                               placeholder="Enter Your current password" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">
+                                                            New Password <span class="text-danger">*</span>
+                                                        </label>
+                                                        <input type="password" class="form-control" placeholder="Enter New password" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">
+                                                            Confirm Password <span class="text-danger">*</span>
+                                                        </label>
+                                                        <input type="password"
+                                                               class="form-control"
+                                                               placeholder="Enter your password again" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <button class="btn btn-outline-primary">Change Password</button>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-6">
+                                                    <button class="btn btn-outline-secondary d-inline-flex align-items-center"
+                                                            onClick="change_tab('#profile-3')">Back</button>
+                                                </div>
+                                                <div class="col-6 text-end">
+                                                    <button class="btn btn-primary d-inline-flex align-items-center">
+                                                        Submit<i class="ti ti-chevron-right ms-2"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ sample-page ] end -->
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+{% endblock content %}

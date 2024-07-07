@@ -1,0 +1,86 @@
+{% load i18n static admin_berry %}
+<li class="pc-item pc-caption">
+    <label>Dashboard</label>
+    <i class="ti ti-dashboard"></i>
+</li>
+{% admin_get_menu as app_list %}
+{% if app_list %}
+    {% for app in app_list %}
+        {% if app.has_perms and not app.pinned %}
+            <li class="pc-item pc-hasmenu">
+                <a href="#!" class="pc-link">
+                    <span class="pc-micon"><i class="ti {{ app.icon }}"></i></span>
+                    <span class="pc-mtext">{{ app.label|slice:15 }}
+                        {% if app.label|length > 15 %}..{% endif %}
+                    </span>
+                    <span class="pc-arrow"><i class="ti ti-chevron-right"></i></span>
+                </a>
+                {% if app.models %}
+                    <ul class="pc-submenu">
+                        {% for model in app.models %}
+                            {% if model.url %}
+                                <li class="pc-item">
+                                    <a class="pc-link" href="{{ model.url }}">{{ model.label }}</a>
+                                </li>
+                            {% else %}
+                                <li class="pc-item">{{ model.label }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% if request.user.is_authenticated and not request.user.is_superuser %}
+    <ul class="pc-navbar">
+        <li class="pc-item">
+            <a href="{% url 'dashboard' %}" class="pc-link">
+                <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
+                <span class="pc-mtext">Dashboard</span>
+            </a>
+        </li>
+        <li class="pc-item pc-hasmenu">
+            <a href="{% url 'add_booking' %}" class="pc-link">
+                <span class="pc-micon"><i class="ti ti-plus"></i></span>
+                <span class="pc-mtext">Add Booking</span>
+            </a>
+        </li>
+        <li class="pc-item pc-hasmenu">
+            <a href="{% url 'appointments' %}" class="pc-link">
+                <span class="pc-micon"><i class="ti ti-calendar-event"></i></span>
+                <span class="pc-mtext">Appointments</span>
+            </a>
+        </li>
+        <li class="pc-item pc-hasmenu">
+            <a href="{% url 'bookings' %}" class="pc-link">
+                <span class="pc-micon"><i class="ti ti-calendar"></i></span>
+                <span class="pc-mtext">Bookings</span>
+            </a>
+        </li>
+        <li class="pc-item">
+            <a href="{% url 'finances' %}" class="pc-link">
+                <span class="pc-micon"><i class="ti ti-report-money"></i></span>
+                <span class="pc-mtext">Finances</span>
+            </a>
+        </li>
+        <li class="pc-item">
+            <a href="{% url 'customer_search' %}" class="pc-link">
+                <span class="pc-micon"><i class="ti ti-search"></i></span>
+                <span class="pc-mtext">Find Customer</span>
+            </a>
+        </li>
+        <li class="pc-item">
+            <a href="{% url 'profile' %}" class="pc-link">
+                <span class="pc-micon"><i class="ti ti-user"></i></span>
+                <span class="pc-mtext">Profile</span>
+            </a>
+        </li>
+        <li class="pc-item">
+            <a href="{% url 'logout' %}" class="pc-link">
+                <span class="pc-micon"><i class="ti ti-logout"></i></span>
+                <span class="pc-mtext">Logout</span>
+            </a>
+        </li>
+    </ul>
+{% endif %}

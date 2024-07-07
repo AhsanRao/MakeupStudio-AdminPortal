@@ -1,0 +1,582 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    Order Details
+{% endblock title %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Order Details</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0)">Customer</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">Order Details</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- [ sample-page ] start -->
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <ul class="nav nav-tabs profile-tabs border-bottom mb-3 d-print-none"
+                                id="myTab"
+                                role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active"
+                                       id="profile-tab-1"
+                                       data-bs-toggle="tab"
+                                       href="#profile-1"
+                                       role="tab"
+                                       aria-controls="Profile-1"
+                                       aria-selected="true">
+                                        <i class="material-icons-two-tone me-2">description</i>Details
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                       id="profile-tab-2"
+                                       data-bs-toggle="tab"
+                                       href="#profile-2"
+                                       role="tab"
+                                       aria-controls="Profile-2"
+                                       aria-selected="true">
+                                        <i class="material-icons-two-tone me-2">receipt</i>Invoice
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                       id="profile-tab-3"
+                                       data-bs-toggle="tab"
+                                       href="#profile-3"
+                                       role="tab"
+                                       aria-controls="Profile-3"
+                                       aria-selected="true">
+                                        <i class="material-icons-two-tone me-2">local_shipping</i>Status
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane show active"
+                                     id="profile-1"
+                                     role="tabpanel"
+                                     aria-labelledby="profile-tab-1">
+                                    <div class="card border">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5 class="mb-0">Customer</h5>
+                                                </div>
+                                                <div class="col-sm-6 text-sm-end">
+                                                    <h5 class="mb-0">Placed on 12.07.2018 10:00</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item">
+                                                    <i class="material-icons-two-tone opacity-75 me-1 f-16">calendar_today</i> Sophia Hale
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <i class="material-icons-two-tone opacity-75 me-1 f-16">phone_android</i> 070 123 4567
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <i class="material-icons-two-tone opacity-75 me-1 f-16">email</i> example@mail.com
+                                                </li>
+                                            </ul>
+                                            <hr class="my-4" />
+                                            <div class="row align-items-center">
+                                                <div class="col-md-4">
+                                                    <h4 class="mb-2">Payment method</h4>
+                                                    <span class="badge text-success border border-success rounded-pill f-12 align-baseline mb-1">Credit Card</span>
+                                                    <span class="text-muted f-14"></span>
+                                                    <p class="mb-1 mt-2">
+                                                        <b>Transaction ID :</b> 000001-TXT
+                                                    </p>
+                                                    <p>
+                                                        <b>Transaction ID :</b> 000001-TXT
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <h4 class="mb-2">Shipping method</h4>
+                                                    <span class="badge text-secondary border border-secondary rounded-pill f-12 align-baseline mb-1">Carrier</span>
+                                                    <p class="mb-1 mt-2">
+                                                        <b>Tracking Code :</b> FX-012345-6
+                                                    </p>
+                                                    <p>
+                                                        <b>Date :</b> 12.15.2018
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p class="mb-1">
+                                                        <b>Fulfillment status :</b> Delivered
+                                                    </p>
+                                                    <p>
+                                                        <b>Payment status :</b>
+                                                        <span class="badge text-success border border-success rounded-pill f-12 align-baseline">Paid</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <hr class="my-4" />
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <h4 class="mb-3">Billing address</h4>
+                                                    <p class="mb-1">
+                                                        <b>First name :</b> Joseph
+                                                    </p>
+                                                    <p>
+                                                        <b>Last name :</b> William
+                                                    </p>
+                                                    <p class="mb-1">
+                                                        <b>Address :</b> 4898 Joanne Lane street
+                                                    </p>
+                                                    <p class="mb-1">
+                                                        <b>City :</b> Boston
+                                                    </p>
+                                                    <p class="mb-1">
+                                                        <b>Country :</b> United States
+                                                    </p>
+                                                    <p class="mb-1">
+                                                        <b>State :</b> Massachusetts
+                                                    </p>
+                                                    <p>
+                                                        <b>Zip code :</b> 02110
+                                                    </p>
+                                                    <p>
+                                                        <b>Phone :</b> +1 (070) 123-4567
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <h4 class="mb-3">Shipping address</h4>
+                                                    <p class="mb-1">
+                                                        <b>First name :</b> Sara
+                                                    </p>
+                                                    <p>
+                                                        <b>Last name :</b> Soudan
+                                                    </p>
+                                                    <p class="mb-1">
+                                                        <b>Address :</b> 4898 Joanne Lane street
+                                                    </p>
+                                                    <p class="mb-1">
+                                                        <b>City :</b> Boston
+                                                    </p>
+                                                    <p class="mb-1">
+                                                        <b>Country :</b> United States
+                                                    </p>
+                                                    <p class="mb-1">
+                                                        <b>State :</b> Massachusetts
+                                                    </p>
+                                                    <p>
+                                                        <b>Zip code :</b> 02110
+                                                    </p>
+                                                    <p>
+                                                        <b>Phone :</b> +1 (070) 123-4567
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card border table-card">
+                                        <div class="card-header">
+                                            <h5 class="mb-0">Products</h5>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="table-responsive">
+                                                <table class="table mb-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Description</th>
+                                                            <th class="text-end">Quantity</th>
+                                                            <th class="text-end">Amount</th>
+                                                            <th class="text-end">Total</th>
+                                                            <th class="text-end"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div>
+                                                                    <h5 class="mb-1">Logo Design</h5>
+                                                                    <p class="mb-0 text-muted">lorem ipsum dolor sit amat, connecter adieu siccing eliot</p>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">6</td>
+                                                            <td class="text-end">$200</td>
+                                                            <td class="text-end">$1200</td>
+                                                            <td class="text-end">
+                                                                <button type="button" class="btn btn-link-danger">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div>
+                                                                    <h5 class="mb-1">Logo Design</h5>
+                                                                    <p class="mb-0 text-muted">lorem ipsum dolor sit amat, connecter adieu siccing eliot</p>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">7</td>
+                                                            <td class="text-end">$100</td>
+                                                            <td class="text-end">$700</td>
+                                                            <td class="text-end">
+                                                                <button type="button" class="btn btn-link-danger">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div>
+                                                                    <h5 class="mb-1">Logo Design</h5>
+                                                                    <p class="mb-0 text-muted">lorem ipsum dolor sit amat, connecter adieu siccing eliot</p>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">5</td>
+                                                            <td class="text-end">$150</td>
+                                                            <td class="text-end">$750</td>
+                                                            <td class="text-end">
+                                                                <button type="button" class="btn btn-link-danger">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="card-body p-3">
+                                            <div class="rounded p-3 bg-light-primary">
+                                                <div class="row justify-content-end">
+                                                    <div class="col-auto">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-borderless text-end mb-0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th>Sub Total :</th>
+                                                                        <td>$4725.00</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Taxes (10%) :</th>
+                                                                        <td>$57.00</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Discount (5%) :</th>
+                                                                        <td>$45.00</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="pe-0 pt-0">
+                                                                            <hr class="mb-3 mt-0" />
+                                                                            <h5 class="text-primary m-r-10">Total :</h5>
+                                                                        </td>
+                                                                        <td class="ps-0 pt-0">
+                                                                            <hr class="mb-3 mt-0" />
+                                                                            <h5 class="text-primary">$ 4827.00</h5>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane"
+                                     id="profile-2"
+                                     role="tabpanel"
+                                     aria-labelledby="profile-tab-2">
+                                    <div class="card border invoice-card">
+                                        <div class="card-header">
+                                            <div class="row align-items-center">
+                                                <div class="col-sm-6">
+                                                    <h5 class="mb-0">Invoice #125863478945</h5>
+                                                </div>
+                                                <div class="col-sm-6 text-sm-end">
+                                                    <img src="{% static 'assets/images/logo-dark.svg' %}"
+                                                         alt="logo"
+                                                         class="img-fluid" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row mb-3">
+                                                <div class="col-md-4">
+                                                    <h4 class="mb-2">
+                                                        <b>Demo Company Inc.</b>
+                                                    </h4>
+                                                    <p class="text-muted mb-1">1065 Mandan Road, Columbia MO,</p>
+                                                    <p class="text-muted mb-1">Missouri. (123)-65202</p>
+                                                    <p class="text-muted mb-1">
+                                                        <a href="mailto:demo@company.com">demo@company.com</a>
+                                                    </p>
+                                                    <p class="text-muted">(+91) 9999 999 999</p>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <h4 class="mb-2">
+                                                        <b>Customer : John Doe</b>
+                                                    </h4>
+                                                    <p class="text-muted mb-1">1065 Mandan Road, Columbia MO,</p>
+                                                    <p class="text-muted mb-1">Missouri. (123)-65202</p>
+                                                    <p class="text-muted mb-1">(+61) 9999 567 891</p>
+                                                    <p class="text-muted mb-1">
+                                                        <a href="mailto:demo@company.com">demo@company.com</a>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4 class="mb-2">
+                                                        <b>Order Details :</b>
+                                                    </h4>
+                                                    <p class="text-muted mb-1">Date : November 14</p>
+                                                    <p class="text-muted mb-1">
+                                                        status:
+                                                        <span class="badge text-warning border border-warning rounded-pill f-12 align-baseline">Paid</span>
+                                                    </p>
+                                                    <p class="text-muted">Order Id : #146859</p>
+                                                </div>
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Description</th>
+                                                            <th class="text-end">Quantity</th>
+                                                            <th class="text-end">Amount</th>
+                                                            <th class="text-end">Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div>
+                                                                    <h5 class="mb-1">Logo Design</h5>
+                                                                    <p class="mb-0 text-muted">lorem ipsum dolor sit amat, connecter adieu siccing eliot</p>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">6</td>
+                                                            <td class="text-end">$200</td>
+                                                            <td class="text-end">$1200</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div>
+                                                                    <h5 class="mb-1">Logo Design</h5>
+                                                                    <p class="mb-0 text-muted">lorem ipsum dolor sit amat, connecter adieu siccing eliot</p>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">7</td>
+                                                            <td class="text-end">$100</td>
+                                                            <td class="text-end">$700</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div>
+                                                                    <h5 class="mb-1">Logo Design</h5>
+                                                                    <p class="mb-0 text-muted">lorem ipsum dolor sit amat, connecter adieu siccing eliot</p>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">5</td>
+                                                            <td class="text-end">$150</td>
+                                                            <td class="text-end">$750</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="rounded p-3 mb-3 bg-light-primary">
+                                                <div class="row justify-content-end">
+                                                    <div class="col-auto">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-borderless text-end mb-0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th>Sub Total :</th>
+                                                                        <td>$4725.00</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Taxes (10%) :</th>
+                                                                        <td>$57.00</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Discount (5%) :</th>
+                                                                        <td>$45.00</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="pe-0 pt-0">
+                                                                            <hr class="mb-3 mt-0" />
+                                                                            <h5 class="text-primary m-r-10">Total :</h5>
+                                                                        </td>
+                                                                        <td class="ps-0 pt-0">
+                                                                            <hr class="mb-3 mt-0" />
+                                                                            <h5 class="text-primary">$ 4827.00</h5>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h5>
+                                                <b>Terms and Condition :</b>
+                                            </h5>
+                                            <p class="text-muted">
+                                                lorem ipsum dolor sit connecter adieu siccing eliot, sed do elusion tempore incident ut laborer et dolors magna
+                                                aliquot.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="text-center d-print-none mt-5 mb-3">
+                                        <button type="button" class="btn btn-print-invoice btn-primary m-b-10 m-r-10">Print</button>
+                                        <button type="button" class="btn btn-secondary m-b-10">Cancel</button>
+                                    </div>
+                                </div>
+                                <div class="tab-pane"
+                                     id="profile-3"
+                                     role="tabpanel"
+                                     aria-labelledby="profile-tab-3">
+                                    <div class="card border">
+                                        <div class="card-header">
+                                            <h5>ORDER STATUS</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row mb-4 align-items-center justify-content-between">
+                                                <div class="col-auto">
+                                                    <p class="mb-1">
+                                                        <b>Order Place Date</b>
+                                                    </p>
+                                                    <p class="text-muted">10th Mar, 2021</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <p class="mb-1">
+                                                        <b>Order Status</b>
+                                                    </p>
+                                                    <p class="text-muted">Processing</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <p class="mb-1">
+                                                        <b>Delivery Option</b>
+                                                    </p>
+                                                    <p class="text-muted">Fedex Express Delivery</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <p class="mb-1">
+                                                        <b>Payment</b>
+                                                    </p>
+                                                    <p class="text-muted">Credit Card</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <p class="mb-1">
+                                                        <b>Order Amount</b>
+                                                    </p>
+                                                    <p class="text-muted">$90,020</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-9">
+                                                    <div class="row order-timeline">
+                                                        <div class="col-2 col-md-1 order-md-2">
+                                                            <div class="timeline-progress active"></div>
+                                                        </div>
+                                                        <div class="col-10 col-md-3 order-md-1 text-md-end">
+                                                            <h6>Order Placed</h6>
+                                                            <p>12 jun</p>
+                                                        </div>
+                                                        <div class="col-10 col-md-8 order-md-2 ms-auto">
+                                                            <ul class="list-group list-group-flush">
+                                                                <li class="list-group-item px-0 py-2">The order was validated.</li>
+                                                                <li class="list-group-item px-0 py-2">The order was placed.</li>
+                                                                <li class="list-group-item px-0 py-2">The order was placed.</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row order-timeline">
+                                                        <div class="col-2 col-md-1 order-md-2">
+                                                            <div class="timeline-progress half-active"></div>
+                                                        </div>
+                                                        <div class="col-10 col-md-3 order-md-1 text-md-end">
+                                                            <h6>Order Processing</h6>
+                                                            <p>14 jun</p>
+                                                        </div>
+                                                        <div class="col-10 col-md-8 order-md-2 ms-auto">
+                                                            <p>Payment transaction [ method: Credit Card, type: sale, amount: $90,020, status: Processing ]</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row order-timeline">
+                                                        <div class="col-2 col-md-1 order-md-2">
+                                                            <div class="timeline-progress"></div>
+                                                        </div>
+                                                        <div class="col-10 col-md-3 order-md-1 text-md-end">
+                                                            <h6>Order Shipping</h6>
+                                                            <p>16 jun</p>
+                                                        </div>
+                                                        <div class="col-10 col-md-8 order-md-2 ms-auto">
+                                                            <p>Sent a notification to the client by e-mail.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row order-timeline">
+                                                        <div class="col-2 col-md-1 order-md-2">
+                                                            <div class="timeline-progress"></div>
+                                                        </div>
+                                                        <div class="col-10 col-md-3 order-md-1 text-md-end">
+                                                            <h6>Order Delivered</h6>
+                                                            <p>17 jun</p>
+                                                        </div>
+                                                        <div class="col-10 col-md-8 order-md-2 ms-auto">
+                                                            <p>Order Delivered</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Write a Review</label>
+                                                        <textarea class="form-control" rows="6" placeholder="Enter your review"></textarea>
+                                                    </div>
+                                                    <button class="btn btn-primary">Post Review</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ sample-page ] end -->
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+{% endblock content %}
+{% block extra_js %}
+    <!-- [Page Specific JS] start -->
+    <script>
+    document.querySelector('.btn-print-invoice').addEventListener('click', function () {
+      var link2 = document.createElement('link');
+      link2.innerHTML =
+        '<style>@media print{*,::after,::before{text-shadow:none!important;box-shadow:none!important}a:not(.btn){text-decoration:none}abbr[title]::after{content:" (" attr(title) ")"}pre{white-space:pre-wrap!important}blockquote,pre{border:1px solid #adb5bd;page-break-inside:avoid}thead{display:table-header-group}img,tr{page-break-inside:avoid}h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}@page{size:a3}body{min-width:992px!important}.container{min-width:992px!important}.page-header,.pc-sidebar,.pc-mob-header,.pc-header,.pct-customizer,.modal,.navbar{display:none}.pc-container{top:0}.invoice-contact{padding-top:0}@page,.card-body,.card-header,body,.pc-content{padding:0;margin:0}.badge{border:1px solid #000}.table{border-collapse:collapse!important}.table td,.table th{background-color:transparent!important}.table-bordered td,.table-bordered th{border:1px solid #dee2e6!important}}</style>';
+      document.getElementsByTagName('head')[0].appendChild(link2);
+      window.print();
+    });
+    </script>
+    <!-- [Page Specific JS] end -->
+{% endblock extra_js %}

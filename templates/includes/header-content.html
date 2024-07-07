@@ -1,0 +1,118 @@
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
+<!-- [Mobile Media Block] start -->
+<div class="me-auto pc-mob-drp">
+    <ul class="list-unstyled">
+        <li class="pc-h-item header-mobile-collapse">
+            <a href="#"
+               class="pc-head-link head-link-secondary ms-0"
+               id="mobile-collapse">
+                <i class="ti ti-menu-2"></i>
+            </a>
+        </li>
+        <li class="dropdown pc-h-item d-inline-flex d-md-none">
+            <a class="pc-head-link head-link-secondary dropdown-toggle arrow-none m-0"
+               data-bs-toggle="dropdown"
+               href="#"
+               role="button"
+               aria-haspopup="false"
+               aria-expanded="false">
+                <i class="ti ti-search"></i>
+            </a>
+            <div class="dropdown-menu pc-h-dropdown drp-search">
+                <form class="px-3">
+                    <div class="form-group mb-0 d-flex align-items-center">
+                        <i data-feather="search"></i>
+                        <input type="search"
+                               class="form-control border-0 shadow-none"
+                               placeholder="Search here. . ." />
+                    </div>
+                </form>
+            </div>
+        </li>
+        <li class="pc-h-item d-none d-md-inline-flex">
+            <form class="header-search"
+                  action="{% url 'customer_search' %}"
+                  method="get">
+                <i data-feather="search" class="icon-search"></i>
+                <input type="search"
+                       class="form-control"
+                       name="q"
+                       placeholder="Search customer..." />
+                <button class="btn btn-light-secondary btn-search">
+                    <i class="ti ti-adjustments-horizontal"></i>
+                </button>
+            </form>
+        </li>
+    </ul>
+</div>
+<!-- [Mobile Media Block end] -->
+<div class="ms-auto">
+    <ul class="list-unstyled">
+        {% if 'i18n' in request.get_full_path %}
+            <li class="dropdown pc-h-item">
+                <a class="pc-head-link head-link-primary dropdown-toggle arrow-none me-0"
+                   data-bs-toggle="dropdown"
+                   href="#"
+                   role="button"
+                   aria-haspopup="false"
+                   aria-expanded="false">
+                    <i class="ti ti-language"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
+                    {% for language in languages %}
+                        <form class="mb-3" action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="language" value="{{ language.code }}">
+                            <button type="submit" class="dropdown-item">
+                                <i class="feather icon-flag me-2"></i>
+                                <span>{{ language.name }}</span>
+                            </button>
+                        </form>
+                    {% endfor %}
+                </div>
+            </li>
+        {% endif %}
+        <li class="dropdown pc-h-item header-user-profile">
+            <a class="pc-head-link head-link-primary dropdown-toggle arrow-none me-0"
+               data-bs-toggle="dropdown"
+               href="#"
+               role="button"
+               aria-haspopup="false"
+               aria-expanded="false">
+                <img src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                     alt="user-image"
+                     class="user-avtar" />
+                <span>
+                    <i class="ti ti-settings"></i>
+                </span>
+            </a>
+            <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
+                <div class="dropdown-header">
+                    <h4>
+                        Hey, <span class="small text-muted">Admin</span>
+                    </h4>
+                    <p class="text-muted">Amna's Makeup Studio</p>
+                    <hr />
+                    <a href="{% url 'profile' %}" class="dropdown-item">
+                        <i class="ti ti-settings"></i>
+                        <span>Account Settings</span>
+                    </a>
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.is_superuser %}
+                            <a href="{% url 'admin:logout' %}" class="dropdown-item">
+                            {% else %}
+                                <a href="{% url 'logout' %}" class="dropdown-item">
+                                {% endif %}
+                                <i class="ti ti-logout"></i>
+                                <span>Logout</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

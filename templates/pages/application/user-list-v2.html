@@ -1,0 +1,291 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    User List 2
+{% endblock title %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Style 2</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0)">Users</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">Style 2</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- [ sample-page ] start -->
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center g-2">
+                                <div class="col">
+                                    <h5>List</h5>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-search">
+                                        <i class="ti ti-search"></i>
+                                        <input type="search" class="form-control" placeholder="Search Followers" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row align-items-center">
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="media align-items-center">
+                                                <img class="img-radius img-fluid wid-60"
+                                                     src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                     alt="User image" />
+                                                <div class="media-body ms-3">
+                                                    <h5 class="mb-0">
+                                                        Elnora <i class="fas fa-check-circle text-success"></i>
+                                                    </h5>
+                                                    <p class="text-muted f-12 mb-2">Lead Marketing Facilitator</p>
+                                                    <p class="mb-0">We need to generate the virtual CSS hard drive!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-md-6">
+                                            <p class="mb-0 text-muted text-sm">Email</p>
+                                            <h6 class="mb-3">Reid_OConnell4@yahoo.com</h6>
+                                            <p class="mb-0 text-muted text-sm">Phone</p>
+                                            <h6 class="mb-0">506-654-1653</h6>
+                                        </div>
+                                        <div class="col-xl-2 col-md-6">
+                                            <p class="mb-0 text-muted text-sm">Location</p>
+                                            <h6 class="mb-3">Saucerize</h6>
+                                            <div class="user-group">
+                                                <img src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                     alt="image"
+                                                     data-bs-toggle="tooltip"
+                                                     title="Alexis" />
+                                                <img src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                                                     alt="image"
+                                                     data-bs-toggle="tooltip"
+                                                     title="Gruntt" />
+                                                <img src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                     alt="image"
+                                                     data-bs-toggle="tooltip"
+                                                     title="Cristina" />
+                                                <img src="{% static 'assets/images/user/avatar-4.jpg' %}"
+                                                     alt="image"
+                                                     data-bs-toggle="tooltip"
+                                                     title="Ryan" />
+                                                <img src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                     alt="image"
+                                                     data-bs-toggle="tooltip"
+                                                     title="Lloyd" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                    <h6 class="mb-0">Progress</h6>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="progress" style="height: 4px">
+                                                        <div class="progress-bar bg-primary" style="width: 70%"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <h6 class="mb-0">78%</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="d-grid mt-3">
+                                                        <button class="btn d-flex align-items-center justify-content-center btn-outline-primary">
+                                                            <i class="ti ti-message mx-1"></i> Message
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="d-grid mt-3">
+                                                        <button class="btn d-flex align-items-center justify-content-center btn-outline-danger">
+                                                            <i class="ti ti-ban mx-1"></i> Block
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row align-items-center">
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="media align-items-center">
+                                                <img class="img-radius img-fluid wid-60"
+                                                     src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                     alt="User image" />
+                                                <div class="media-body ms-3">
+                                                    <h5 class="mb-0">
+                                                        Hirohito <i class="fas fa-check-circle text-success"></i>
+                                                    </h5>
+                                                    <p class="text-muted f-12 mb-2">Investor Creative Liaison</p>
+                                                    <p class="mb-0">If we synthesize the protocol, we can get to the RSS circuit through.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-md-6">
+                                            <p class="mb-0 text-muted text-sm">Email</p>
+                                            <h6 class="mb-3">Conner22@hotmail.com</h6>
+                                            <p class="mb-0 text-muted text-sm">Phone</p>
+                                            <h6 class="mb-0">673-157-1670</h6>
+                                        </div>
+                                        <div class="col-xl-2 col-md-6">
+                                            <p class="mb-0 text-muted text-sm">Location</p>
+                                            <h6 class="mb-3">Port Narcos</h6>
+                                            <div class="user-group">
+                                                <img src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                     alt="image"
+                                                     data-bs-toggle="tooltip"
+                                                     title="Cristina" />
+                                                <img src="{% static 'assets/images/user/avatar-4.jpg' %}"
+                                                     alt="image"
+                                                     data-bs-toggle="tooltip"
+                                                     title="Ryan" />
+                                                <img src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                     alt="image"
+                                                     data-bs-toggle="tooltip"
+                                                     title="Alexis" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                    <h6 class="mb-0">Progress</h6>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="progress" style="height: 4px">
+                                                        <div class="progress-bar bg-primary" style="width: 70%"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <h6 class="mb-0">78%</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="d-grid mt-3">
+                                                        <button class="btn d-flex align-items-center justify-content-center btn-outline-primary">
+                                                            <i class="ti ti-message mx-1"></i> Message
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="d-grid mt-3">
+                                                        <button class="btn d-flex align-items-center justify-content-center btn-outline-danger">
+                                                            <i class="ti ti-ban mx-1"></i> Block
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row align-items-center">
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="media align-items-center">
+                                                <img class="img-radius img-fluid wid-60"
+                                                     src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                     alt="User image" />
+                                                <div class="media-body ms-3">
+                                                    <h5 class="mb-0">Kathie</h5>
+                                                    <p class="text-muted f-12 mb-2">Human Accountability Strategist</p>
+                                                    <p class="mb-0">We need to generate the virtual CSS hard drive!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-md-6">
+                                            <p class="mb-0 text-muted text-sm">Email</p>
+                                            <h6 class="mb-3">Dangelo40@company.com</h6>
+                                            <p class="mb-0 text-muted text-sm">Phone</p>
+                                            <h6 class="mb-0">506-654-1653</h6>
+                                        </div>
+                                        <div class="col-xl-2 col-md-6">
+                                            <p class="mb-0 text-muted text-sm">Location</p>
+                                            <h6 class="mb-3">Saucerize</h6>
+                                            <div class="user-group">
+                                                <img src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                                                     alt="image"
+                                                     data-bs-toggle="tooltip"
+                                                     title="Gruntt" />
+                                                <img src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                     alt="image"
+                                                     data-bs-toggle="tooltip"
+                                                     title="Alexis" />
+                                                <img src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                     alt="image"
+                                                     data-bs-toggle="tooltip"
+                                                     title="Cristina" />
+                                                <img src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                     alt="image"
+                                                     data-bs-toggle="tooltip"
+                                                     title="Lloyd" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                    <h6 class="mb-0">Progress</h6>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="progress" style="height: 4px">
+                                                        <div class="progress-bar bg-primary" style="width: 70%"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <h6 class="mb-0">78%</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="d-grid mt-3">
+                                                        <button class="btn d-flex align-items-center justify-content-center btn-outline-primary">
+                                                            <i class="ti ti-message mx-1"></i> Message
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="d-grid mt-3">
+                                                        <button class="btn d-flex align-items-center justify-content-center btn-outline-danger">
+                                                            <i class="ti ti-ban mx-1"></i> Block
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ sample-page ] end -->
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+{% endblock content %}

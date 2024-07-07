@@ -1,0 +1,96 @@
+{% extends 'layouts/auth_base.html' %}
+{% load static %}
+
+{% block title %} Login {% endblock title %}
+
+{% block content %}
+    <div class="auth-main">
+      <div class="auth-wrapper v2">
+        <div class="auth-form">
+          <div class="logo">
+            <img src="{% static 'assets/images/logo-dark.svg' %}" />
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="d-flex justify-content-center">
+                  <div class="auth-header">
+                    <h2 class="text-secondary"><b>Hi, Welcome Back</b></h2>
+                    <p class="f-16 mt-2">Enter your credentials to continue</p>
+                  </div>
+                </div>
+              </div>
+              
+              <form method="post">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                  {% for error in form.non_field_errors %}
+                    <span class="text-danger">{{ error }}</span>
+                  {% endfor %}
+                {% endif %}
+
+                {% for field in form %}
+                  <div class="form-floating mb-3">
+                    {{field}}
+                  <label for="floatingInput">{{ field.label }}</label>
+                  </div>
+                {% endfor %}
+                <div class="d-flex mt-1 justify-content-between">
+                  <div class="form-check">
+                    <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
+                    <label class="form-check-label text-muted" for="customCheckc1">Remember me</label>
+                  </div>
+                  <h5 class="text-secondary">
+                    <a href="{% url 'password_reset' %}">Forgot Password?</a>
+                  </h5>
+                </div>
+                <div class="d-grid mt-4">
+                  <button type="submit" class="btn btn-secondary p-2">Sign In</button>
+                </div>
+              </form>
+              <hr />
+              <h5 class="d-flex justify-content-center">Don't have an account?
+                <a href="{% url 'register' %}">Register</a>
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="auth-sidecontent">
+          <div class="p-3 px-lg-5 text-center">
+            <div id="carouselExampleIndicators" class="carousel slide carousel-dark" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <h1><b>Exclusive Makeup Services</b></h1>
+                  <p class="f-12 mt-4">Top-notch makeup for every occasion</p>
+                </div>
+                <div class="carousel-item">
+                  <h1><b>Professional Products</b></h1>
+                  <p class="f-12 mt-4">Using only the best in the industry</p>
+                </div>
+                <div class="carousel-item">
+                  <h1><b>Personalized Consultations</b></h1>
+                  <p class="f-12 mt-4">Tailored makeup advice and services</p>
+                </div>                
+              </div>
+              <div class="carousel-indicators position-relative">
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="0"
+                  class="active"
+                  aria-current="true"
+                  aria-label="Slide 1"
+                ></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+            </div>
+            <img src="{% static 'assets/images/authentication/login2.svg' %}" alt="images" class="img-fluid mt-3 w-75" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ Main Content ] end -->
+
+{% endblock %}

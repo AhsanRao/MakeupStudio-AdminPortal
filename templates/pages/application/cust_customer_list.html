@@ -1,0 +1,406 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    Customer List
+{% endblock title %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Customer List</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0)">Customer</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">Customer List</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- [ sample-page ] start -->
+                <div class="col-sm-12">
+                    <div class="card table-card">
+                        <div class="card-header">
+                            <h5>Customer List</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="pc-dt-simple">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </th>
+                                            <th>Customer Name</th>
+                                            <th>Location</th>
+                                            <th>Orders</th>
+                                            <th>Registered</th>
+                                            <th>Status</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <h5 class="mb-0">Aisha Handgun 6</h5>
+                                                    <p class="text-muted f-12 mb-0">Akshay@mail.com</p>
+                                                </div>
+                                            </td>
+                                            <td>New York, USA</td>
+                                            <td>750</td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-primary rounded-pill f-12">Confirm</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <h5 class="mb-0">Anshan Handgun 10</h5>
+                                                    <p class="text-muted f-12 mb-0">Akshay@mail.com</p>
+                                                </div>
+                                            </td>
+                                            <td>New York, USA</td>
+                                            <td>750</td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-success rounded-pill f-12">Complete</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <h5 class="mb-0">Ashy Handgun 14</h5>
+                                                    <p class="text-muted f-12 mb-0">Akshay@mail.com</p>
+                                                </div>
+                                            </td>
+                                            <td>New York, USA</td>
+                                            <td>750</td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-danger rounded-pill f-12">Processing</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <h5 class="mb-0">Ashy Handgun 2</h5>
+                                                    <p class="text-muted f-12 mb-0">Akshay@mail.com</p>
+                                                </div>
+                                            </td>
+                                            <td>New York, USA</td>
+                                            <td>750</td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-danger rounded-pill f-12">Processing</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <h5 class="mb-0">Aisha Handgun 6</h5>
+                                                    <p class="text-muted f-12 mb-0">Akshay@mail.com</p>
+                                                </div>
+                                            </td>
+                                            <td>New York, USA</td>
+                                            <td>750</td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-primary rounded-pill f-12">Confirm</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <h5 class="mb-0">Anshan Handgun 10</h5>
+                                                    <p class="text-muted f-12 mb-0">Akshay@mail.com</p>
+                                                </div>
+                                            </td>
+                                            <td>New York, USA</td>
+                                            <td>750</td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-success rounded-pill f-12">Complete</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <h5 class="mb-0">Ashy Handgun 14</h5>
+                                                    <p class="text-muted f-12 mb-0">Akshay@mail.com</p>
+                                                </div>
+                                            </td>
+                                            <td>New York, USA</td>
+                                            <td>750</td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-danger rounded-pill f-12">Processing</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <h5 class="mb-0">Ashy Handgun 2</h5>
+                                                    <p class="text-muted f-12 mb-0">Akshay@mail.com</p>
+                                                </div>
+                                            </td>
+                                            <td>New York, USA</td>
+                                            <td>750</td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-danger rounded-pill f-12">Processing</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <h5 class="mb-0">Aisha Handgun 6</h5>
+                                                    <p class="text-muted f-12 mb-0">Akshay@mail.com</p>
+                                                </div>
+                                            </td>
+                                            <td>New York, USA</td>
+                                            <td>750</td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-primary rounded-pill f-12">Confirm</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <h5 class="mb-0">Anshan Handgun 10</h5>
+                                                    <p class="text-muted f-12 mb-0">Akshay@mail.com</p>
+                                                </div>
+                                            </td>
+                                            <td>New York, USA</td>
+                                            <td>750</td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-success rounded-pill f-12">Complete</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <h5 class="mb-0">Ashy Handgun 14</h5>
+                                                    <p class="text-muted f-12 mb-0">Akshay@mail.com</p>
+                                                </div>
+                                            </td>
+                                            <td>New York, USA</td>
+                                            <td>750</td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-danger rounded-pill f-12">Processing</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <h5 class="mb-0">Ashy Handgun 2</h5>
+                                                    <p class="text-muted f-12 mb-0">Akshay@mail.com</p>
+                                                </div>
+                                            </td>
+                                            <td>New York, USA</td>
+                                            <td>750</td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-danger rounded-pill f-12">Processing</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-secondary">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ sample-page ] end -->
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+{% endblock content %}
+{% block extra_js %}
+    <!-- [Page Specific JS] start -->
+    <script src="{% static 'assets/js/plugins/simple-datatables.js' %}"></script>
+    <script>
+      const dataTable = new simpleDatatables.DataTable('#pc-dt-simple', {
+        sortable: false,
+        perPage: 5
+      });
+    </script>
+    <!-- [Page Specific JS] end -->
+{% endblock extra_js %}

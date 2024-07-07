@@ -1,0 +1,118 @@
+{% extends 'layouts/auth_base.html' %}
+{% load static %}
+
+{% block title %} FAQs {% endblock title %}
+
+{% block content %}
+
+  <!-- [ Main Content ] start -->
+  <nav class="navbar navbar-expand-lg navbar-light card rounded-0 fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'assets/images/logo-dark.svg' %}" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto f-w-600">
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="#"><i class="ti ti-home d-inline-block f-18 me-2 d-lg-none"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="#"><i
+                class="ti ti-dashboard d-inline-block f-18 me-2 d-lg-none"></i>Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="#"><i
+                class="ti ti-book d-inline-block f-18 me-2 d-lg-none"></i>Documentation</a>
+          </li>
+          <li class="nav-item align-items-center">
+            <i class="ti ti-credit-card d-inline-block f-18 me-2 d-lg-none"></i>
+            <a class="btn btn-secondary text-white" href="#">Purchase Now</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="front-header-image">
+    <div class="bg-img-overlay" style="background-image: url('{% static 'assets/images/pages/header-bg.jpg' %}')"> </div>
+    <div class="faq-details">
+      <h1 class="text-center text-white pt-5 f-46">FAQ</h1>
+      <p class="text-center text-white pt-3 f-16">Please refer the Frequently ask question for your quick help</p>
+      <img src="{% static 'assets/images/pages/contact-mail.svg' %}" class="faq-mail d-none d-lg-block" />
+    </div>s
+    <div class="container">
+      <div class="row justify-content-center">
+        <!-- [ sample-page ] start -->
+        <div class="col-sm-12">
+          <div class="card border faq-card">
+            <div class="card-body">
+              <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button text-muted" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#flush-collapseOne" aria-expanded="false">
+                      <b>when do I need Extended License?</b>
+                    </button>
+                  </h2>
+                  <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body text-muted">If your End Product which is sold - Then only your required
+                      Extended License. i.e. If you take subscription
+                      charges (monthly, yearly, etc...) from your end users in this case you required Extended License.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed text-muted" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                      <b>What Support Includes?</b>
+                    </button>
+                  </h2>
+                  <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body text-muted">6 Months of Support Includes with 1 year of free updates. We
+                      are happy to solve your bugs, issue.</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed text-muted" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                      <b>Is Berry Support Typescript?</b>
+                    </button>
+                  </h2>
+                  <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body text-muted">Yes, Berry Support the TypeScript and it is only available in
+                      Plus and Extended License.</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingfour">
+                    <button class="accordion-button collapsed text-muted" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#flush-collapse-four" aria-expanded="false" aria-controls="flush-collapseThree">
+                      <b>Is there any Road map for Berry?</b>
+                    </button>
+                  </h2>
+                  <div id="flush-collapse-four" class="accordion-collapse collapse" aria-labelledby="flush-headingfour"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body text-muted">Berry is our flagship React Dashboard Template and we always
+                      add the new features for the long run. You can check
+                      the Road map in Documentation.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- [ sample-page ] end -->
+      </div>
+    </div>
+  </div>
+  <!-- [ Main Content ] end -->
+
+{% endblock content %}

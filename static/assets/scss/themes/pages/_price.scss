@@ -1,0 +1,90 @@
+// ==========================
+//       Price css start
+// ==========================
+
+.price-card {
+  text-align: center;
+  &.active {
+    border: 2px solid $secondary;
+  }
+  .price-icon {
+    i {
+      font-size: 40px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      display: inline-flex;
+    }
+  }
+
+  h2 {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      width: 50px;
+      height: 4px;
+      background: $primary;
+      border-radius: 3px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .price-price {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+    margin: 10px 0;
+
+    span {
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+
+  .product-list {
+    text-align: left;
+
+    li {
+      padding: 8px 0 8px 25px;
+      position: relative;
+      opacity: 0.5;
+
+      &::before {
+        content: "\ea5e";
+        font-family: tabler-icons !important;
+        position: absolute;
+        left: 0;
+        top: 8px;
+        opacity: 0.5;
+      }
+
+      &.enable {
+        opacity: 1;
+
+        &::before {
+          opacity: 1;
+          color: $success;
+        }
+      }
+    }
+  }
+}
+.price-card2 {
+  position: relative;
+  min-width: 600px;
+
+  .icon {
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+    border-radius: 50%;
+  }
+}
+
+// Price css end

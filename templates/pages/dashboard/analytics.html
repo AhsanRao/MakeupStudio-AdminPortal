@@ -1,0 +1,139 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    Dashboard
+{% endblock title %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- Quick Action Buttons -->
+                <div class="col-xl-12 mb-4">
+                    <div class="card">
+                        <div class="card-body" style="padding: 2rem;">
+                            <!-- Welcome message -->
+                            <div class="text-center mb-4 pb-4 mt-4">
+                                <h2>Welcome back to Amna's Makeup Studio Dashboard</h2>
+                                <p>Here's an overview of your studio's performance</p>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-3 mb-3">
+                                    <a href="{% url 'add_booking' %}"
+                                       class="btn btn-primary btn-lg btn-block d-flex align-items-center justify-content-center">
+                                        <i class="material-icons-two-tone text-white me-2">add_circle</i>
+                                        <span>Add Booking</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <a href="{% url 'appointments' %}"
+                                       class="btn btn-secondary btn-lg btn-block d-flex align-items-center justify-content-center">
+                                        <i class="material-icons-two-tone text-white me-2">event</i>
+                                        <span>View Appointments</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <a href="{% url 'finances' %}"
+                                       class="btn btn-info btn-lg btn-block d-flex align-items-center justify-content-center">
+                                        <i class="material-icons-two-tone text-white me-1">attach_money</i>
+                                        <span>View Finances</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Statistics Cards -->
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-primary order-card">
+                        <div class="card-body">
+                            <h5 class="text-white">Total Bookings</h5>
+                            <h3 class="text-white">{{ total_bookings }}</h3>
+                            <p class="m-b-0">This Month</p>
+                            <i class="material-icons-two-tone d-block f-46 card-icon text-white">event</i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-success order-card">
+                        <div class="card-body">
+                            <h5 class="text-white">New Customers</h5>
+                            <h3 class="text-white">{{ new_customers }}</h3>
+                            <p class="m-b-0">This Month</p>
+                            <i class="material-icons-two-tone d-block f-46 card-icon text-white">person_add</i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-info order-card">
+                        <div class="card-body">
+                            <h5 class="text-white">Popular Package</h5>
+                            <h3 class="text-white">{{ popular_package }}</h3>
+                            <p class="m-b-0">Most Booked</p>
+                            <i class="material-icons-two-tone d-block f-46 card-icon text-white">star</i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Recent Bookings Table -->
+                <div class="col-xl-8 col-md-12">
+                    <div class="card table-card">
+                        <div class="card-header">
+                            <h5>Recent Bookings</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Customer</th>
+                                            <th>Date</th>
+                                            <th>Package</th>
+                                            <th>Artist</th>
+                                            <th>Total Payment</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for booking in recent_bookings %}
+                                            <tr>
+                                                <td>{{ booking.customer.name }}</td>
+                                                <td>{{ booking.appointment_datetime|date:"M d, Y" }}</td>
+                                                <td>{{ booking.package.name }}</td>
+                                                <td>{{ booking.artist.name }}</td>
+                                                <td>${{ booking.total_payment }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Top Artists -->
+                <div class="col-xl-4 col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Top Artists</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                {% for artist in top_artists %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        {{ artist.name }}
+                                        <span class="badge bg-primary rounded-pill">{{ artist.booking_count }}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+{% endblock content %}
+{% block extra_js %}
+    <!-- Any additional JavaScript can be added here -->
+{% endblock extra_js %}

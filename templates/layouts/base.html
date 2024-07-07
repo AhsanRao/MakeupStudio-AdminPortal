@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- [Head] start -->
+    <head>
+        <title>
+            {% block title %}
+            {% endblock title %}
+        | Amna's Makeup Studio</title>
+        {% include 'includes/head-page-meta.html' %}
+        {% include 'includes/head-css.html' %}
+        {% block extrahead %}{% endblock %}
+        {% block extrastyle %}
+        {% endblock extrastyle %}
+    </head>
+    <body>
+        {% block layout %}
+            {% include 'includes/layout-vertical.html' %}
+        {% endblock layout %}
+        {% block content %}
+        {% endblock content %}
+        {% block footer %}
+            {% include 'includes/footer.html' %}
+        {% endblock footer %}
+        {% include 'includes/scripts.html' %}
+        {% block customizer %}
+            {% include 'includes/customizer.html' %}
+        {% endblock customizer %}
+        {% block extra_js %}
+        {% endblock extra_js %}
+    </body>
+</html>

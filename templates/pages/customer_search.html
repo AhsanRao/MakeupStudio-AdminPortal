@@ -1,0 +1,142 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    Customer Search
+{% endblock title %}
+{% block content %}
+    <section class="pc-container">
+        <div class="pc-content">
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Customer Search</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">Customer Search</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Customer Bookings</h5>
+                            <form class="header-search mt-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i data-feather="search"></i></span>
+                                            <input type="search"
+                                                   class="form-control"
+                                                   name="q"
+                                                   placeholder="Search customer name or phone number..."
+                                                   value="{{ query }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i data-feather="calendar"></i></span>
+                                            <input type="date"
+                                                   class="form-control"
+                                                   name="date"
+                                                   value="{{ date_filter }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit" class="btn btn-primary btn-search w-100">Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-body table-border-style">
+                            {% if customer %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="customerName"
+                                                   name="customer_name"
+                                                   readonly
+                                                   placeholder="{{ customer.name }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="phoneNumber"
+                                                   name="phone_number"
+                                                   readonly
+                                                   placeholder="{{ customer.phone_number }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="table-responsive">
+                                <table class="table" id="customer-bookings-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Appointment Date</th>
+                                            <th>Package</th>
+                                            <th>Artist</th>
+                                            <th>Total Payment</th>
+                                            <th>Advance Payment</th>
+                                            <th>Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for booking in bookings %}
+                                            <tr>
+                                                <td>{{ booking.appointment_datetime|date:"Y-m-d H:i" }}</td>
+                                                <td>{{ booking.package.name }}</td>
+                                                <td>{{ booking.artist.name }}</td>
+                                                <td>{{ booking.total_payment }}</td>
+                                                <td>{{ booking.advance_payment }}</td>
+                                                <td>{{ booking.balance_amount }}</td>
+                                            </tr>
+                                        {% empty %}
+                                            <tr>
+                                                <td colspan="6">
+                                                    No bookings found for the searched customer
+                                                    {% if date_filter %}on the selected date{% endif %}
+                                                    .
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+{% block extra_js %}
+    <script src="{% static 'assets/js/plugins/simple-datatables.js' %}"></script>
+    <script>
+    var datatable = new simpleDatatables.DataTable('#customer-bookings-table', {
+        columns: [
+            {
+                select: 0,
+                type: 'date',
+                format: 'YYYY-MM-DD HH:mm'
+            },
+            {
+                select: [3, 4, 5],
+                type: 'number',
+                format: '###,###.##'
+            }
+        ]
+    });
+    </script>
+{% endblock extra_js %}

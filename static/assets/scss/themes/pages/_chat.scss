@@ -1,0 +1,114 @@
+/**  =====================
+      Chat css start
+==========================  **/
+.chat-wrapper {
+  display: flex;
+  .chat-user_list {
+    width: 300px;
+    margin-right: var(--bs-gutter-x);
+    .scroll-block {
+      height: calc(100vh - 415px);
+    }
+  }
+  .chat-content {
+    flex: 1 1 auto;
+  }
+  .chat-user_info {
+    width: 300px;
+    margin-left: var(--bs-gutter-x);
+    .scroll-block {
+      height: calc(100vh - 430px);
+    }
+    .chat-avtar {
+      img {
+        border: 1px solid var(--bs-primary);
+        padding: 3px;
+      }
+      .chat-badge {
+        bottom: 8px;
+        right: 8px;
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+  // .offcanvas {
+  // }
+  .chat-offcanvas {
+    --bs-offcanvas-width: 301px;
+    &.show {
+      .collapse:not(.show) {
+        display: block;
+      }
+      .chat-userlist {
+        margin-right: 0;
+        .scroll-block {
+          height: calc(100vh - 215px);
+        }
+      }
+      .chat-userinfo {
+        margin-left: 0;
+        .scroll-block {
+          height: calc(100vh - 245px);
+        }
+      }
+    }
+  }
+}
+.chat-badge {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.chat-avtar {
+  position: relative;
+  .chat-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+  }
+}
+.chat-input {
+  position: relative;
+  .chat-input-btn {
+    position: absolute;
+    right: 6.5px;
+    top: 6.5px;
+  }
+  .form-control {
+    padding-right: 80px;
+  }
+}
+.chat-message {
+  &.scroll-block {
+    height: calc(100vh - 500px);
+  }
+  .msg-content {
+    padding: 12px 16px;
+    border-radius: var(--bs-border-radius);
+    margin-bottom: 24px;
+    max-width: 60%;
+    p {
+      color: var(--bs-body-color);
+    }
+    p:last-child {
+      text-align: right;
+    }
+    @include media-breakpoint-down(md) {
+      max-width: 90%;
+    }
+  }
+  .message-out,
+  .message-in {
+    display: flex;
+  }
+  .message-out {
+    justify-content: flex-end;
+  }
+  .message-in {
+    justify-content: flex-start;
+  }
+}
+
+// Chat css end

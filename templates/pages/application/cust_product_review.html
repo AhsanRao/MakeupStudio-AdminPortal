@@ -1,0 +1,471 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    Product Review
+{% endblock title %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Product Review</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0)">Customer</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">Product Review</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- [ sample-page ] start -->
+                <div class="col-sm-12">
+                    <div class="card table-card">
+                        <div class="card-header">
+                            <h5>Product Review</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="pc-dt-simple">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </th>
+                                            <th>Product Name</th>
+                                            <th>Author</th>
+                                            <th>Review</th>
+                                            <th>Rating</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>Apple Watch Series 1</td>
+                                            <td>Joseph William</td>
+                                            <td>The Series 4 is a ...</td>
+                                            <td>
+                                                <div class="star">
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star-half-alt text-warning"></i>
+                                                    <i class="far fa-star text-muted"></i>
+                                                </div>
+                                            </td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-success rounded-pill f-12">Complete</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-link-secondary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#edit_review_Modal">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>Apple X2 2</td>
+                                            <td>Anshan Handgun</td>
+                                            <td>The Series 4 is a ...</td>
+                                            <td>
+                                                <div class="star">
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                </div>
+                                            </td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-danger rounded-pill f-12">Processing</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-link-secondary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#edit_review_Modal">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>Apple Watch Series 4</td>
+                                            <td>Larry Doe</td>
+                                            <td>The Series 4 is a ...</td>
+                                            <td>
+                                                <div class="star">
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="far fa-star text-muted"></i>
+                                                </div>
+                                            </td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-primary rounded-pill f-12">Confirm</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-link-secondary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#edit_review_Modal">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>Apple Watch Series 1</td>
+                                            <td>Joseph William</td>
+                                            <td>The Series 4 is a ...</td>
+                                            <td>
+                                                <div class="star">
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star-half-alt text-warning"></i>
+                                                    <i class="far fa-star text-muted"></i>
+                                                </div>
+                                            </td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-success rounded-pill f-12">Complete</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-link-secondary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#edit_review_Modal">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>Apple X2 2</td>
+                                            <td>Anshan Handgun</td>
+                                            <td>The Series 4 is a ...</td>
+                                            <td>
+                                                <div class="star">
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                </div>
+                                            </td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-danger rounded-pill f-12">Processing</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-link-secondary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#edit_review_Modal">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>Apple Watch Series 4</td>
+                                            <td>Larry Doe</td>
+                                            <td>The Series 4 is a ...</td>
+                                            <td>
+                                                <div class="star">
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="far fa-star text-muted"></i>
+                                                </div>
+                                            </td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-primary rounded-pill f-12">Confirm</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-link-secondary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#edit_review_Modal">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>Apple Watch Series 1</td>
+                                            <td>Joseph William</td>
+                                            <td>The Series 4 is a ...</td>
+                                            <td>
+                                                <div class="star">
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star-half-alt text-warning"></i>
+                                                    <i class="far fa-star text-muted"></i>
+                                                </div>
+                                            </td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-success rounded-pill f-12">Complete</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-link-secondary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#edit_review_Modal">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>Apple X2 2</td>
+                                            <td>Anshan Handgun</td>
+                                            <td>The Series 4 is a ...</td>
+                                            <td>
+                                                <div class="star">
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                </div>
+                                            </td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-danger rounded-pill f-12">Processing</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-link-secondary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#edit_review_Modal">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                            </td>
+                                            <td>Apple Watch Series 4</td>
+                                            <td>Larry Doe</td>
+                                            <td>The Series 4 is a ...</td>
+                                            <td>
+                                                <div class="star">
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <i class="far fa-star text-muted"></i>
+                                                </div>
+                                            </td>
+                                            <td>12.07.2018</td>
+                                            <td>
+                                                <span class="badge bg-light-primary rounded-pill f-12">Confirm</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-link-secondary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#edit_review_Modal">
+                                                    <i class="ti ti-pencil"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ sample-page ] end -->
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <div class="modal fade"
+         id="edit_review_Modal"
+         tabindex="-1"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Review</h5>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Product</label>
+                        <input type="text" class="form-control" value="Apple Watch Series 4" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Author</label>
+                        <input type="text" class="form-control" value="Joseph William" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label d-block">Rating</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   id="inlineCheckbox1"
+                                   name="rating" />
+                            <label class="form-check-label" for="inlineCheckbox1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   id="inlineCheckbox2"
+                                   name="rating" />
+                            <label class="form-check-label" for="inlineCheckbox2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   id="inlineCheckbox3"
+                                   name="rating" />
+                            <label class="form-check-label" for="inlineCheckbox3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   id="inlineCheckbox4"
+                                   name="rating"
+                                   checked />
+                            <label class="form-check-label" for="inlineCheckbox4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   id="inlineCheckbox5"
+                                   name="rating" />
+                            <label class="form-check-label" for="inlineCheckbox5">5</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Text of review</label>
+                        <textarea class="form-control" rows="3">If you're coming from a Series 3, the choice is more difficult.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Status</label>
+                        <select class="form-select">
+                            <option>Published</option>
+                            <option>Pending</option>
+                            <option>confirm</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Create</button>
+                    <button type="button" class="btn btn-link-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+{% endblock content %}
+{% block extra_js %}
+    <!-- [Page Specific JS] start -->
+    <!-- simple-datatables -->
+    <script src="{% static 'assets/js/plugins/simple-datatables.js' %}"></script>
+    <script>
+    const dataTable = new simpleDatatables.DataTable('#pc-dt-simple', {
+      sortable: false,
+      perPage: 5
+    });
+    </script>
+    <!-- [Page Specific JS] end -->
+{% endblock extra_js %}

@@ -1,0 +1,443 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    User List 1
+{% endblock title %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Style 1</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0)">Users</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">Style 1</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- [ sample-page ] start -->
+                <div class="col-sm-12">
+                    <div class="card table-card">
+                        <div class="card-header">
+                            <div class="row align-items-center g-2">
+                                <div class="col">
+                                    <h5>List</h5>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-search">
+                                        <i class="ti ti-search"></i>
+                                        <input type="search" class="form-control" placeholder="Search Followers" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>User Profile</th>
+                                            <th>Country</th>
+                                            <th>Friends</th>
+                                            <th>Followers</th>
+                                            <th>Status</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="flex-shrink-0 wid-40">
+                                                        <img class="img-radius img-fluid wid-40"
+                                                             src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                             alt="User image" />
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h5 class="mb-1">
+                                                            Curtis <i class="fas fa-check-circle text-success"></i>
+                                                        </h5>
+                                                        <p class="text-muted f-12 mb-0">wiegand@hotmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Saucerize</td>
+                                            <td>834</td>
+                                            <td>3645</td>
+                                            <td>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-message"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-ban"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>02</td>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="flex-shrink-0 wid-40">
+                                                        <img class="img-radius img-fluid wid-40"
+                                                             src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                                                             alt="User image" />
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h5 class="mb-1">Xavier</h5>
+                                                        <p class="text-muted f-12 mb-0">tyrell86@company.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>South Bradfordstad</td>
+                                            <td>634</td>
+                                            <td>2345</td>
+                                            <td>
+                                                <span class="badge bg-light-warning rounded-pill f-14">Pending</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-message"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-ban"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>03</td>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="flex-shrink-0 wid-40">
+                                                        <img class="img-radius img-fluid wid-40"
+                                                             src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                             alt="User image" />
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h5 class="mb-1">Lola</h5>
+                                                        <p class="text-muted f-12 mb-0">aufderhar56@yahoo.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>North Tannermouth</td>
+                                            <td>164</td>
+                                            <td>9345</td>
+                                            <td>
+                                                <span class="badge bg-light-danger rounded-pill f-14">Rejected</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-message"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-ban"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>04</td>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="flex-shrink-0 wid-40">
+                                                        <img class="img-radius img-fluid wid-40"
+                                                             src="{% static 'assets/images/user/avatar-4.jpg' %}"
+                                                             alt="User image" />
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h5 class="mb-1">Milton</h5>
+                                                        <p class="text-muted f-12 mb-0">dikinson49@hotmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>North Tannermouth</td>
+                                            <td>164</td>
+                                            <td>9345</td>
+                                            <td>
+                                                <span class="badge bg-light-warning rounded-pill f-14">Pending</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-message"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-ban"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>05</td>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="flex-shrink-0 wid-40">
+                                                        <img class="img-radius img-fluid wid-40"
+                                                             src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                             alt="User image" />
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h5 class="mb-1">
+                                                            Curtis <i class="fas fa-check-circle text-success"></i>
+                                                        </h5>
+                                                        <p class="text-muted f-12 mb-0">wiegand@hotmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Saucerize</td>
+                                            <td>834</td>
+                                            <td>3645</td>
+                                            <td>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-message"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-ban"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>06</td>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="flex-shrink-0 wid-40">
+                                                        <img class="img-radius img-fluid wid-40"
+                                                             src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                                                             alt="User image" />
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h5 class="mb-1">Xavier</h5>
+                                                        <p class="text-muted f-12 mb-0">tyrell86@company.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>South Bradfordstad</td>
+                                            <td>634</td>
+                                            <td>2345</td>
+                                            <td>
+                                                <span class="badge bg-light-warning rounded-pill f-14">Pending</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-message"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-ban"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>07</td>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="flex-shrink-0 wid-40">
+                                                        <img class="img-radius img-fluid wid-40"
+                                                             src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                             alt="User image" />
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h5 class="mb-1">Lola</h5>
+                                                        <p class="text-muted f-12 mb-0">aufderhar56@yahoo.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>North Tannermouth</td>
+                                            <td>164</td>
+                                            <td>9345</td>
+                                            <td>
+                                                <span class="badge bg-light-danger rounded-pill f-14">Rejected</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-message"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-ban"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>08</td>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="flex-shrink-0 wid-40">
+                                                        <img class="img-radius img-fluid wid-40"
+                                                             src="{% static 'assets/images/user/avatar-4.jpg' %}"
+                                                             alt="User image" />
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h5 class="mb-1">Milton</h5>
+                                                        <p class="text-muted f-12 mb-0">dikinson49@hotmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>North Tannermouth</td>
+                                            <td>164</td>
+                                            <td>9345</td>
+                                            <td>
+                                                <span class="badge bg-light-warning rounded-pill f-14">Pending</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-message"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-ban"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>09</td>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="flex-shrink-0 wid-40">
+                                                        <img class="img-radius img-fluid wid-40"
+                                                             src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                             alt="User image" />
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h5 class="mb-1">
+                                                            Curtis <i class="fas fa-check-circle text-success"></i>
+                                                        </h5>
+                                                        <p class="text-muted f-12 mb-0">wiegand@hotmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Saucerize</td>
+                                            <td>834</td>
+                                            <td>3645</td>
+                                            <td>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-message"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-ban"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="flex-shrink-0 wid-40">
+                                                        <img class="img-radius img-fluid wid-40"
+                                                             src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                                                             alt="User image" />
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h5 class="mb-1">Xavier</h5>
+                                                        <p class="text-muted f-12 mb-0">tyrell86@company.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>South Bradfordstad</td>
+                                            <td>634</td>
+                                            <td>2345</td>
+                                            <td>
+                                                <span class="badge bg-light-warning rounded-pill f-14">Pending</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-message"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-ban"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11</td>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="flex-shrink-0 wid-40">
+                                                        <img class="img-radius img-fluid wid-40"
+                                                             src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                             alt="User image" />
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h5 class="mb-1">Lola</h5>
+                                                        <p class="text-muted f-12 mb-0">aufderhar56@yahoo.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>North Tannermouth</td>
+                                            <td>164</td>
+                                            <td>9345</td>
+                                            <td>
+                                                <span class="badge bg-light-danger rounded-pill f-14">Rejected</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-message"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-ban"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>12</td>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="flex-shrink-0 wid-40">
+                                                        <img class="img-radius img-fluid wid-40"
+                                                             src="{% static 'assets/images/user/avatar-4.jpg' %}"
+                                                             alt="User image" />
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h5 class="mb-1">Milton</h5>
+                                                        <p class="text-muted f-12 mb-0">dikinson49@hotmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>North Tannermouth</td>
+                                            <td>164</td>
+                                            <td>9345</td>
+                                            <td>
+                                                <span class="badge bg-light-warning rounded-pill f-14">Pending</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-link-primary">
+                                                    <i class="ti ti-message"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link-danger">
+                                                    <i class="ti ti-ban"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ sample-page ] end -->
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+{% endblock content %}

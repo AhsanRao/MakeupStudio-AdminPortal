@@ -1,0 +1,1259 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    Kanban
+{% endblock title %}
+{% block extrastyle %}
+    <!-- [Page specific CSS] start -->
+    <!-- dragula css -->
+    <link rel="stylesheet"
+          href="{% static 'assets/css/plugins/dragula.min.css' %}" />
+    <!-- [Page specific CSS] end -->
+{% endblock extrastyle %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Kanban</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0)">Application</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">Kanban</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- [ sample-page ] start -->
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header pb-0">
+                            <ul class="nav nav-tabs kanban-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active"
+                                       id="kanban-tab-1"
+                                       data-bs-toggle="tab"
+                                       href="#kanban-1"
+                                       role="tab"
+                                       aria-controls="kanban-1"
+                                       aria-selected="true">Board</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                       id="kanban-tab-2"
+                                       data-bs-toggle="tab"
+                                       href="#kanban-2"
+                                       role="tab"
+                                       aria-controls="kanban-2"
+                                       aria-selected="true">View as Backlog</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="tab-pane show active"
+                                     id="kanban-1"
+                                     role="tabpanel"
+                                     aria-labelledby="kanban-tab-1">
+                                    <div class="pc-kanban-wrapper">
+                                        <div class="pc-kanban-column">
+                                            <div class="pc-kanban-header">
+                                                <input type="text" class="form-control flex-grow-1" value="New" />
+                                                <div class="ms-2">
+                                                    <a href="#" class="avtar avtar-s btn-link-danger">
+                                                        <i class="ti ti-trash f-18"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="pc-kanban-body">
+                                                <div class="pc-kanban-cards">
+                                                    <div class="card border">
+                                                        <div class="card-body">
+                                                            <div class="float-end">
+                                                                <div class="dropdown">
+                                                                    <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                                       type="button"
+                                                                       data-bs-toggle="dropdown"
+                                                                       aria-haspopup="true"
+                                                                       aria-expanded="false">
+                                                                        <i class="ti ti-dots f-18"></i>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#viewbacklog" data-bs-toggle="offcanvas">
+                                                                <h5 class="mb-1 text-truncate">Online fees payment</h5>
+                                                            </a>
+                                                            <a href="#" class="link-secondary text-sm"><i class="material-icons-two-tone text-secondary f-16 me-1">menu_book</i> User Story #9428</a>
+                                                            <img src="{% static 'assets/images/application/profile-back-1.png' %}"
+                                                                 class="img-fluid rounded mt-2"
+                                                                 alt="image" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="card border">
+                                                        <div class="card-body">
+                                                            <div class="float-end">
+                                                                <div class="dropdown">
+                                                                    <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                                       type="button"
+                                                                       data-bs-toggle="dropdown"
+                                                                       aria-haspopup="true"
+                                                                       aria-expanded="false">
+                                                                        <i class="ti ti-dots f-18"></i>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#viewbacklog" data-bs-toggle="offcanvas">
+                                                                <h5 class="mb-1 text-truncate">Attendance checking</h5>
+                                                            </a>
+                                                            <a href="#" class="link-secondary text-sm"><i class="material-icons-two-tone text-secondary f-16 me-1">menu_book</i> User Story #9426</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card border">
+                                                        <div class="card-body">
+                                                            <div class="float-end">
+                                                                <div class="dropdown">
+                                                                    <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                                       type="button"
+                                                                       data-bs-toggle="dropdown"
+                                                                       aria-haspopup="true"
+                                                                       aria-expanded="false">
+                                                                        <i class="ti ti-dots f-18"></i>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#viewbacklog" data-bs-toggle="offcanvas">
+                                                                <h5 class="mb-1 text-truncate">Admission, Staff & Schedule management</h5>
+                                                            </a>
+                                                            <a href="#" class="link-secondary text-sm"><i class="material-icons-two-tone text-secondary f-16 me-1">menu_book</i> User Story #9426</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pc-kanban-addnew">
+                                                    <div class="pc-add-task1 collapse show">
+                                                        <div class="d-grid">
+                                                            <button class="btn btn-link-primary"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target=".pc-add-task1">Add Task</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card border pc-add-task1 collapse">
+                                                        <div class="card-body p-3">
+                                                            <input type="text"
+                                                                   class="form-control bg-transparent border-0 shadow-none"
+                                                                   placeholder="Add Task" />
+                                                            <div class="row g-1 align-items-center">
+                                                                <div class="col-6">
+                                                                    <a href="#" class="avtar avtar-xs btn-link-primary">
+                                                                        <i class="ti ti-users f-18"></i>
+                                                                    </a>
+                                                                    <a href="#" class="avtar avtar-xs btn-link-primary">
+                                                                        <i class="ti ti-calendar-event f-18"></i>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-6 text-end d-flex align-items-center justify-content-end">
+                                                                    <a href="#"
+                                                                       class="avtar avtar-xs btn-link-danger"
+                                                                       data-bs-toggle="collapse"
+                                                                       data-bs-target=".pc-add-task1">
+                                                                        <i class="ti ti-x f-18"></i>
+                                                                    </a>
+                                                                    <a href="#"
+                                                                       class="btn btn-primary btn-sm ms-1"
+                                                                       data-bs-toggle="collapse"
+                                                                       data-bs-target=".pc-add-task1">Add</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pc-kanban-column">
+                                            <div class="pc-kanban-header">
+                                                <input type="text" class="form-control flex-grow-1" value="Active" />
+                                                <div class="ms-2">
+                                                    <a href="#" class="avtar avtar-s btn-link-danger">
+                                                        <i class="ti ti-trash f-18"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="pc-kanban-body">
+                                                <div class="pc-kanban-cards">
+                                                    <div class="card border">
+                                                        <div class="card-body">
+                                                            <div class="float-end">
+                                                                <div class="dropdown">
+                                                                    <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                                       type="button"
+                                                                       data-bs-toggle="dropdown"
+                                                                       aria-haspopup="true"
+                                                                       aria-expanded="false">
+                                                                        <i class="ti ti-dots f-18"></i>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#viewbacklog" data-bs-toggle="offcanvas">
+                                                                <h5 class="mb-1 text-truncate">Update React & TypeScript version</h5>
+                                                            </a>
+                                                            <a href="#" class="link-secondary text-sm"><i class="material-icons-two-tone text-secondary f-16 me-1">menu_book</i> User Story #9028</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card border">
+                                                        <div class="card-body">
+                                                            <div class="float-end">
+                                                                <div class="dropdown">
+                                                                    <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                                       type="button"
+                                                                       data-bs-toggle="dropdown"
+                                                                       aria-haspopup="true"
+                                                                       aria-expanded="false">
+                                                                        <i class="ti ti-dots f-18"></i>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#viewbacklog" data-bs-toggle="offcanvas">
+                                                                <h5 class="mb-1 text-truncate">Set allowing rules for trusted applications.</h5>
+                                                            </a>
+                                                            <a href="#" class="link-secondary text-sm"><i class="material-icons-two-tone text-secondary f-16 me-1">menu_book</i> User Story #7993</a>
+                                                            <img src="{% static 'assets/images/application/profile-back-2.png' %}"
+                                                                 class="img-fluid rounded mt-2"
+                                                                 alt="image" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="card border">
+                                                        <div class="card-body">
+                                                            <div class="float-end">
+                                                                <div class="dropdown">
+                                                                    <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                                       type="button"
+                                                                       data-bs-toggle="dropdown"
+                                                                       aria-haspopup="true"
+                                                                       aria-expanded="false">
+                                                                        <i class="ti ti-dots f-18"></i>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#viewbacklog" data-bs-toggle="offcanvas">
+                                                                <h5 class="mb-1 text-truncate">Managing Applications Launch Control</h5>
+                                                            </a>
+                                                            <a href="#" class="link-secondary text-sm"><i class="material-icons-two-tone text-secondary f-16 me-1">menu_book</i> User Story #9172</a>
+                                                            <img src="{% static 'assets/images/application/profile-back-3.png' %}"
+                                                                 class="img-fluid rounded mt-2"
+                                                                 alt="image" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pc-kanban-addnew">
+                                                    <div class="pc-add-task2 collapse show">
+                                                        <div class="d-grid">
+                                                            <button class="btn btn-link-primary"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target=".pc-add-task2">Add Task</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card border pc-add-task2 collapse">
+                                                        <div class="card-body p-3">
+                                                            <input type="text"
+                                                                   class="form-control bg-transparent border-0 shadow-none"
+                                                                   placeholder="Add Task" />
+                                                            <div class="row g-1 align-items-center">
+                                                                <div class="col-6">
+                                                                    <a href="#" class="avtar avtar-xs btn-link-primary">
+                                                                        <i class="ti ti-users f-18"></i>
+                                                                    </a>
+                                                                    <a href="#" class="avtar avtar-xs btn-link-primary">
+                                                                        <i class="ti ti-calendar-event f-18"></i>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-6 text-end d-flex align-items-center justify-content-end">
+                                                                    <a href="#"
+                                                                       class="avtar avtar-xs btn-link-danger"
+                                                                       data-bs-toggle="collapse"
+                                                                       data-bs-target=".pc-add-task2">
+                                                                        <i class="ti ti-x f-18"></i>
+                                                                    </a>
+                                                                    <a href="#"
+                                                                       class="btn btn-primary btn-sm ms-1"
+                                                                       data-bs-toggle="collapse"
+                                                                       data-bs-target=".pc-add-task2">Add</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pc-kanban-column">
+                                            <div class="pc-kanban-header">
+                                                <input type="text" class="form-control flex-grow-1" value="Resolved" />
+                                                <div class="ms-2">
+                                                    <a href="#" class="avtar avtar-s btn-link-danger">
+                                                        <i class="ti ti-trash f-18"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="pc-kanban-body">
+                                                <div class="pc-kanban-cards">
+                                                    <div class="card border">
+                                                        <div class="card-body">
+                                                            <div class="float-end">
+                                                                <div class="dropdown">
+                                                                    <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                                       type="button"
+                                                                       data-bs-toggle="dropdown"
+                                                                       aria-haspopup="true"
+                                                                       aria-expanded="false">
+                                                                        <i class="ti ti-dots f-18"></i>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#viewbacklog" data-bs-toggle="offcanvas">
+                                                                <h5 class="mb-1 text-truncate">Creation and Maintenance of Inventory Objects</h5>
+                                                            </a>
+                                                            <a href="#" class="link-secondary text-sm"><i class="material-icons-two-tone text-secondary f-16 me-1">menu_book</i> User Story #2434</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pc-kanban-addnew">
+                                                    <div class="pc-add-task3 collapse show">
+                                                        <div class="d-grid">
+                                                            <button class="btn btn-link-primary"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target=".pc-add-task3">Add Task</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card border pc-add-task3 collapse">
+                                                        <div class="card-body p-3">
+                                                            <input type="text"
+                                                                   class="form-control bg-transparent border-0 shadow-none"
+                                                                   placeholder="Add Task" />
+                                                            <div class="row g-1 align-items-center">
+                                                                <div class="col-6">
+                                                                    <a href="#" class="avtar avtar-xs btn-link-primary">
+                                                                        <i class="ti ti-users f-18"></i>
+                                                                    </a>
+                                                                    <a href="#" class="avtar avtar-xs btn-link-primary">
+                                                                        <i class="ti ti-calendar-event f-18"></i>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-6 text-end d-flex align-items-center justify-content-end">
+                                                                    <a href="#"
+                                                                       class="avtar avtar-xs btn-link-danger"
+                                                                       data-bs-toggle="collapse"
+                                                                       data-bs-target=".pc-add-task3">
+                                                                        <i class="ti ti-x f-18"></i>
+                                                                    </a>
+                                                                    <a href="#"
+                                                                       class="btn btn-primary btn-sm ms-1"
+                                                                       data-bs-toggle="collapse"
+                                                                       data-bs-target=".pc-add-task3">Add</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pc-kanban-column">
+                                            <div class="pc-kanban-header">
+                                                <input type="text" class="form-control flex-grow-1" value="Closed" />
+                                                <div class="ms-2">
+                                                    <a href="#" class="avtar avtar-s btn-link-danger">
+                                                        <i class="ti ti-trash f-18"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="pc-kanban-body">
+                                                <div class="pc-kanban-cards">
+                                                    <div class="card border">
+                                                        <div class="card-body">
+                                                            <div class="float-end">
+                                                                <div class="dropdown">
+                                                                    <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                                       type="button"
+                                                                       data-bs-toggle="dropdown"
+                                                                       aria-haspopup="true"
+                                                                       aria-expanded="false">
+                                                                        <i class="ti ti-dots f-18"></i>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#viewbacklog" data-bs-toggle="offcanvas">
+                                                                <h5 class="mb-1 text-truncate">Run code mods</h5>
+                                                            </a>
+                                                            <a href="#" class="link-secondary text-sm"><i class="material-icons-two-tone text-secondary f-16 me-1">menu_book</i> User Story #3568</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card border">
+                                                        <div class="card-body">
+                                                            <div class="float-end">
+                                                                <div class="dropdown">
+                                                                    <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                                       type="button"
+                                                                       data-bs-toggle="dropdown"
+                                                                       aria-haspopup="true"
+                                                                       aria-expanded="false">
+                                                                        <i class="ti ti-dots f-18"></i>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#viewbacklog" data-bs-toggle="offcanvas">
+                                                                <h5 class="mb-1 text-truncate">Purchase Requisitions, Adjustments, and Transfers.</h5>
+                                                            </a>
+                                                            <a href="#" class="link-secondary text-sm"><i class="material-icons-two-tone text-secondary f-16 me-1">menu_book</i> User Story #2534</a>
+                                                            <img src="{% static 'assets/images/application/profile-back-4.png' %}"
+                                                                 class="img-fluid rounded mt-2"
+                                                                 alt="image" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="card border">
+                                                        <div class="card-body">
+                                                            <div class="float-end">
+                                                                <div class="dropdown">
+                                                                    <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                                       type="button"
+                                                                       data-bs-toggle="dropdown"
+                                                                       aria-haspopup="true"
+                                                                       aria-expanded="false">
+                                                                        <i class="ti ti-dots f-18"></i>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#viewbacklog" data-bs-toggle="offcanvas">
+                                                                <h5 class="mb-1 text-truncate">Handling breaking changes</h5>
+                                                            </a>
+                                                            <a href="#" class="link-secondary text-sm"><i class="material-icons-two-tone text-secondary f-16 me-1">menu_book</i> User Story #3564</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pc-kanban-addnew">
+                                                    <div class="pc-add-task4 collapse show">
+                                                        <div class="d-grid">
+                                                            <button class="btn btn-link-primary"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target=".pc-add-task4">Add Task</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card border pc-add-task4 collapse">
+                                                        <div class="card-body p-3">
+                                                            <input type="text"
+                                                                   class="form-control bg-transparent border-0 shadow-none"
+                                                                   placeholder="Add Task" />
+                                                            <div class="row g-1 align-items-center">
+                                                                <div class="col-6">
+                                                                    <a href="#" class="avtar avtar-xs btn-link-primary">
+                                                                        <i class="ti ti-users f-18"></i>
+                                                                    </a>
+                                                                    <a href="#" class="avtar avtar-xs btn-link-primary">
+                                                                        <i class="ti ti-calendar-event f-18"></i>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-6 text-end d-flex align-items-center justify-content-end">
+                                                                    <a href="#"
+                                                                       class="avtar avtar-xs btn-link-danger"
+                                                                       data-bs-toggle="collapse"
+                                                                       data-bs-target=".pc-add-task4">
+                                                                        <i class="ti ti-x f-18"></i>
+                                                                    </a>
+                                                                    <a href="#"
+                                                                       class="btn btn-primary btn-sm ms-1"
+                                                                       data-bs-toggle="collapse"
+                                                                       data-bs-target=".pc-add-task4">Add</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pc-kanban-column">
+                                            <div class="pc-kanban-header">
+                                                <div class="pc-kanban-addnew w-100">
+                                                    <div class="pc-add-task5 collapse show">
+                                                        <div class="d-grid">
+                                                            <button class="btn btn-link-primary"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target=".pc-add-task5">Add Column</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card border pc-add-task5 collapse">
+                                                        <div class="card-body p-3">
+                                                            <input type="text"
+                                                                   class="form-control bg-transparent border-0 shadow-none"
+                                                                   placeholder="Add Column" />
+                                                            <div class="row g-1 align-items-center">
+                                                                <div class="col-12 text-end d-flex align-items-center justify-content-end">
+                                                                    <a href="#"
+                                                                       class="btn btn-link-danger btn-sm ms-1"
+                                                                       data-bs-toggle="collapse"
+                                                                       data-bs-target=".pc-add-task5">Cancel</a>
+                                                                    <a href="#"
+                                                                       class="btn btn-primary btn-sm ms-1"
+                                                                       data-bs-toggle="collapse"
+                                                                       data-bs-target=".pc-add-task5">Add</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane"
+                                     id="kanban-2"
+                                     role="tabpanel"
+                                     aria-labelledby="kanban-tab-2">
+                                    <div class="table-responsive">
+                                        <table class="table tbl-backlog">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <button class="btn btn-secondary btn-sm"
+                                                                data-bs-toggle="offcanvas"
+                                                                data-bs-target="#add_backlog">
+                                                            <i class="ti ti-plus"></i>Add
+                                                        </button>
+                                                    </th>
+                                                    <th>Id</th>
+                                                    <th>Title</th>
+                                                    <th></th>
+                                                    <th>State</th>
+                                                    <th>Assigned To</th>
+                                                    <th>Priority</th>
+                                                    <th>Due Date</th>
+                                                </tr>
+                                            </thead>
+                                            <thead>
+                                                <tr>
+                                                    <td>
+                                                        <a class="avtar avtar-xs btn-light-primary"
+                                                           href="#"
+                                                           data-bs-toggle="offcanvas"
+                                                           data-bs-target="#add_backlog">
+                                                            <i class="ti ti-circle-plus f-18"></i>
+                                                        </a>
+                                                        <a class="btn-collpsed avtar avtar-xs btn-link-secondary collapsed"
+                                                           data-bs-toggle="collapse"
+                                                           href=".collapsebacklog1">
+                                                            <i class="ti ti-chevron-right f-18"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <i class="material-icons-two-tone text-secondary f-18 me-1">menu_book</i>6918
+                                                    </td>
+                                                    <td>School Management Backend</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                               type="button"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ti ti-dots-vertical f-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Closed</td>
+                                                    <td>Maddison Wilber</td>
+                                                    <td>low</td>
+                                                    <td>23 Jul 2022</td>
+                                                </tr>
+                                                <tr class="collapsebacklog1 collapse">
+                                                    <td></td>
+                                                    <td>
+                                                        <i class="material-icons-two-tone text-primary f-18 me-1">assignment</i>6918
+                                                    </td>
+                                                    <td>Online fees payment & instant announcements</td>
+                                                    <td>
+                                                        <div class="dropdown drp-suboption">
+                                                            <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                               type="button"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ti ti-dots-vertical f-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Closed</td>
+                                                    <td>Maddison Wilber</td>
+                                                    <td>low</td>
+                                                    <td>23 Jul 2022</td>
+                                                </tr>
+                                                <tr class="collapsebacklog1 collapse">
+                                                    <td></td>
+                                                    <td>
+                                                        <i class="material-icons-two-tone text-primary f-18 me-1">assignment</i>6918
+                                                    </td>
+                                                    <td>Attendance checking & homework details</td>
+                                                    <td>
+                                                        <div class="dropdown drp-suboption">
+                                                            <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                               type="button"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ti ti-dots-vertical f-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Closed</td>
+                                                    <td>Maddison Wilber</td>
+                                                    <td>low</td>
+                                                    <td>23 Jul 2022</td>
+                                                </tr>
+                                                <tr class="collapsebacklog1 collapse">
+                                                    <td></td>
+                                                    <td>
+                                                        <i class="material-icons-two-tone text-primary f-18 me-1">assignment</i>6918
+                                                    </td>
+                                                    <td>Admission, Staff & Schedule management</td>
+                                                    <td>
+                                                        <div class="dropdown drp-suboption">
+                                                            <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                               type="button"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ti ti-dots-vertical f-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Closed</td>
+                                                    <td>Maddison Wilber</td>
+                                                    <td>low</td>
+                                                    <td>23 Jul 2022</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a class="avtar avtar-xs btn-light-primary"
+                                                           href="#"
+                                                           data-bs-toggle="offcanvas"
+                                                           data-bs-target="#add_backlog">
+                                                            <i class="ti ti-circle-plus f-18"></i>
+                                                        </a>
+                                                        <a class="btn-collpsed avtar avtar-xs btn-link-secondary collapsed"
+                                                           data-bs-toggle="collapse"
+                                                           href=".collapsebacklog2">
+                                                            <i class="ti ti-chevron-right f-18"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <i class="material-icons-two-tone text-secondary f-18 me-1">menu_book</i>6918
+                                                    </td>
+                                                    <td>Inventory Implementation & Design</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                               type="button"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ti ti-dots-vertical f-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>New</td>
+                                                    <td>Maddison Wilber</td>
+                                                    <td>low</td>
+                                                    <td>23 Jul 2022</td>
+                                                </tr>
+                                                <tr class="collapsebacklog2 collapse">
+                                                    <td></td>
+                                                    <td>
+                                                        <i class="material-icons-two-tone text-primary f-18 me-1">assignment</i>6918
+                                                    </td>
+                                                    <td>Creation and Maintenance of Inventory Objects</td>
+                                                    <td>
+                                                        <div class="dropdown drp-suboption">
+                                                            <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                               type="button"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ti ti-dots-vertical f-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Closed</td>
+                                                    <td>Maddison Wilber</td>
+                                                    <td>low</td>
+                                                    <td>23 Jul 2022</td>
+                                                </tr>
+                                                <tr class="collapsebacklog2 collapse">
+                                                    <td></td>
+                                                    <td>
+                                                        <i class="material-icons-two-tone text-primary f-18 me-1">assignment</i>6918
+                                                    </td>
+                                                    <td>Purchase Requisitions, Adjustments, and Transfers.</td>
+                                                    <td>
+                                                        <div class="dropdown drp-suboption">
+                                                            <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                               type="button"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ti ti-dots-vertical f-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Closed</td>
+                                                    <td>Maddison Wilber</td>
+                                                    <td>low</td>
+                                                    <td>23 Jul 2022</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a class="avtar avtar-xs btn-light-primary"
+                                                           href="#"
+                                                           data-bs-toggle="offcanvas"
+                                                           data-bs-target="#add_backlog">
+                                                            <i class="ti ti-circle-plus f-18"></i>
+                                                        </a>
+                                                        <a class="btn-collpsed avtar avtar-xs btn-link-secondary collapsed"
+                                                           data-bs-toggle="collapse"
+                                                           href=".collapsebacklog3">
+                                                            <i class="ti ti-chevron-right f-18"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <i class="material-icons-two-tone text-secondary f-18 me-1">menu_book</i>6918
+                                                    </td>
+                                                    <td>Theme migration from v4 to v5</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                               type="button"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ti ti-dots-vertical f-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>New</td>
+                                                    <td>Maddison Wilber</td>
+                                                    <td>low</td>
+                                                    <td>23 Jul 2022</td>
+                                                </tr>
+                                                <tr class="collapsebacklog3 collapse">
+                                                    <td></td>
+                                                    <td>
+                                                        <i class="material-icons-two-tone text-primary f-18 me-1">assignment</i>6918
+                                                    </td>
+                                                    <td>Update React & TypeScript version</td>
+                                                    <td>
+                                                        <div class="dropdown drp-suboption">
+                                                            <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                               type="button"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ti ti-dots-vertical f-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Closed</td>
+                                                    <td>Maddison Wilber</td>
+                                                    <td>low</td>
+                                                    <td>23 Jul 2022</td>
+                                                </tr>
+                                                <tr class="collapsebacklog3 collapse">
+                                                    <td></td>
+                                                    <td>
+                                                        <i class="material-icons-two-tone text-primary f-18 me-1">assignment</i>6918
+                                                    </td>
+                                                    <td>Run code mods</td>
+                                                    <td>
+                                                        <div class="dropdown drp-suboption">
+                                                            <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                               type="button"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ti ti-dots-vertical f-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Closed</td>
+                                                    <td>Maddison Wilber</td>
+                                                    <td>low</td>
+                                                    <td>23 Jul 2022</td>
+                                                </tr>
+                                                <tr class="collapsebacklog3 collapse">
+                                                    <td></td>
+                                                    <td>
+                                                        <i class="material-icons-two-tone text-primary f-18 me-1">assignment</i>6918
+                                                    </td>
+                                                    <td>Handling breaking changes</td>
+                                                    <td>
+                                                        <div class="dropdown drp-suboption">
+                                                            <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                               type="button"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ti ti-dots-vertical f-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Closed</td>
+                                                    <td>Maddison Wilber</td>
+                                                    <td>low</td>
+                                                    <td>23 Jul 2022</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a class="avtar avtar-xs btn-light-primary"
+                                                           href="#"
+                                                           data-bs-toggle="offcanvas"
+                                                           data-bs-target="#add_backlog">
+                                                            <i class="ti ti-circle-plus f-18"></i>
+                                                        </a>
+                                                        <a class="btn-collpsed avtar avtar-xs btn-link-secondary collapsed"
+                                                           data-bs-toggle="collapse"
+                                                           href=".collapsebacklog4">
+                                                            <i class="ti ti-chevron-right f-18"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <i class="material-icons-two-tone text-secondary f-18 me-1">menu_book</i>6918
+                                                    </td>
+                                                    <td>Lunch Beauty Application</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                               type="button"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ti ti-dots-vertical f-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>New</td>
+                                                    <td>Maddison Wilber</td>
+                                                    <td>low</td>
+                                                    <td>23 Jul 2022</td>
+                                                </tr>
+                                                <tr class="collapsebacklog4 collapse">
+                                                    <td></td>
+                                                    <td>
+                                                        <i class="material-icons-two-tone text-primary f-18 me-1">assignment</i>6918
+                                                    </td>
+                                                    <td>Set allowing rules for trusted applications.</td>
+                                                    <td>
+                                                        <div class="dropdown drp-suboption">
+                                                            <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                               type="button"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ti ti-dots-vertical f-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Closed</td>
+                                                    <td>Maddison Wilber</td>
+                                                    <td>low</td>
+                                                    <td>23 Jul 2022</td>
+                                                </tr>
+                                                <tr class="collapsebacklog4 collapse">
+                                                    <td></td>
+                                                    <td>
+                                                        <i class="material-icons-two-tone text-primary f-18 me-1">assignment</i>6918
+                                                    </td>
+                                                    <td>Managing Applications Launch Control</td>
+                                                    <td>
+                                                        <div class="dropdown drp-suboption">
+                                                            <a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                                               type="button"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ti ti-dots-vertical f-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Closed</td>
+                                                    <td>Maddison Wilber</td>
+                                                    <td>low</td>
+                                                    <td>23 Jul 2022</td>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ sample-page ] end -->
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end"
+         tabindex="-1"
+         id="add_backlog"
+         aria-labelledby="add_backlogLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="add_backlogLabel">Add Story</h5>
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="form-group">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" placeholder="Enter Title" />
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4 text-sm-end">Assign to:</label>
+                <div class="col-sm-8">
+                    <select class="form-select">
+                        <option>Barney Thea</option>
+                        <option>Maddison Wilber</option>
+                        <option>John Doe</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4 text-sm-end">Prioritize:</label>
+                <div class="col-sm-8">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                               type="radio"
+                               name="group5"
+                               value=""
+                               id="prioritizeeadio1" />
+                        <label class="form-check-label" for="prioritizeeadio1">Low</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                               type="radio"
+                               name="group5"
+                               value=""
+                               id="prioritizeeadio2" />
+                        <label class="form-check-label" for="prioritizeeadio2">Medium</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                               type="radio"
+                               name="group5"
+                               value=""
+                               id="prioritizeeadio3" />
+                        <label class="form-check-label" for="prioritizeeadio3">High</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4 text-sm-end">Due date:</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="date" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4 text-sm-end">Acceptance:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="3" placeholder="Enter Acceptance"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4 text-sm-end">Description:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="3" placeholder="Enter Description"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4 text-sm-end">State:</label>
+                <div class="col-sm-8">
+                    <select class="form-select">
+                        <option>New</option>
+                        <option>Active</option>
+                        <option>Resolved</option>
+                        <option>Closed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4 text-sm-end">Attachments:</label>
+                <div class="col-sm-8">
+                    <input class="form-control d-none" type="file" id="formFileMultiplesproduct" />
+                    <label class="avtar avtar-l btn-light-primary"
+                           for="formFileMultiplesproduct">
+                        <i class="ti ti-plus"></i>
+                    </label>
+                </div>
+            </div>
+            <div class="d-grid">
+                <button class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end"
+         tabindex="-1"
+         id="viewbacklog"
+         aria-labelledby="viewbacklogLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="viewbacklogLabel">Task Details</h5>
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="form-group">
+                <label class="form-label">Title</label>
+                <input type="text"
+                       class="form-control"
+                       value="Online fees payment & instant announcements" />
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4 text-sm-end">Assign to:</label>
+                <div class="col-sm-8">
+                    <select class="form-select">
+                        <option selected>Barney Thea</option>
+                        <option>Maddison Wilber</option>
+                        <option>John Doe</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4 text-sm-end">Prioritize:</label>
+                <div class="col-sm-8">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                               type="radio"
+                               name="group6"
+                               value=""
+                               id="prioritizeeadio1"
+                               checked />
+                        <label class="form-check-label" for="prioritizeeadio1">Low</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                               type="radio"
+                               name="group6"
+                               value=""
+                               id="prioritizeeadio2" />
+                        <label class="form-check-label" for="prioritizeeadio2">Medium</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                               type="radio"
+                               name="group6"
+                               value=""
+                               id="prioritizeeadio3" />
+                        <label class="form-check-label" for="prioritizeeadio3">High</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4 text-sm-end">Due date:</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="date" value="2022-12-16" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4 text-sm-end">Description:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="3">Content of item 1</textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4 text-sm-end">State:</label>
+                <div class="col-sm-8">
+                    <select class="form-select">
+                        <option>7654 - School Management Backend</option>
+                        <option selected>2534 - Inventory Implementation &amp; Design</option>
+                        <option>3568 - Theme migration from v4 to v5</option>
+                        <option>9172 - Lunch Beauty Application</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4 text-sm-end">State:</label>
+                <div class="col-sm-8">
+                    <select class="form-select">
+                        <option selected>New</option>
+                        <option>Active</option>
+                        <option>Resolved</option>
+                        <option>Closed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4 text-sm-end">Attachments:</label>
+                <div class="col-sm-8">
+                    <input class="form-control d-none" type="file" id="formFileMultiplesproduct" />
+                    <label class="avtar avtar-l btn-light-primary"
+                           for="formFileMultiplesproduct">
+                        <i class="ti ti-plus"></i>
+                    </label>
+                </div>
+            </div>
+            <div class="d-grid">
+                <button class="btn btn-primary">Save</button>
+            </div>
+            <div class="d-flex align-items-center mt-4 mb-2">
+                <img src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                     alt="user-image"
+                     class="user-avtar wid-25 rounded-circle" />
+                <h5 class="mb-0 mx-3">Barney Thea</h5>
+                <span class="text-muted text-sm"><i class="fas fa-circle f-8 align-middle me-1"></i> 2 min ago</span>
+            </div>
+            <p>Comment 1</p>
+            <div class="card border">
+                <div class="card-body p-3">
+                    <input type="text"
+                           class="form-control bg-transparent border-0 shadow-none mb-3"
+                           placeholder="Add Comment" />
+                    <div class="row g-1 align-items-center">
+                        <div class="col-6">
+                            <a href="#" class="avtar avtar-xs btn-link-primary">
+                                <i class="ti ti-photo f-18"></i>
+                            </a>
+                            <a href="#" class="avtar avtar-xs btn-link-secondary">
+                                <i class="ti ti-paperclip f-18"></i>
+                            </a>
+                            <a href="#" class="avtar avtar-xs btn-link-success">
+                                <i class="ti ti-brand-google-drive f-18"></i>
+                            </a>
+                        </div>
+                        <div class="col-6 text-end">
+                            <a href="#" class="btn btn-primary btn-sm">Comment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+{% endblock content %}
+{% block extra_js %}
+    <!-- [Page Specific JS] start -->
+    <!-- dragula Js -->
+    <script src="{% static 'assets/js/plugins/dragula.min.js' %}"></script>
+    <script>
+    dragula(Array.prototype.slice.call(document.querySelectorAll('.pc-kanban-cards')));
+    // scroll-block
+    var tc = document.querySelectorAll('.pc-kanban-body');
+    for (var t = 0; t < tc.length; t++) {
+      new SimpleBar(tc[t]);
+    }
+    </script>
+    <!-- [Page Specific JS] end -->
+{% endblock extra_js %}

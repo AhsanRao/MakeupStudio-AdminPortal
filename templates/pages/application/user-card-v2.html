@@ -1,0 +1,1142 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    User Cards 2
+{% endblock title %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Card 2</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0)">Users</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">Card 2</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- [ sample-page ] start -->
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center g-2">
+                                <div class="col">
+                                    <h5>Cards</h5>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-search">
+                                        <i class="ti ti-search"></i>
+                                        <input type="search" class="form-control" placeholder="Search Followers" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Kelli</h4>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-4.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Laurence</h4>
+                                                <span class="badge bg-light-danger rounded-pill f-14">Rejected</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Melissa</h4>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Montana</h4>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Johnathan</h4>
+                                                <span class="badge bg-light-danger rounded-pill f-14">Rejected</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Kelli</h4>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-4.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Laurence</h4>
+                                                <span class="badge bg-light-danger rounded-pill f-14">Rejected</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Melissa</h4>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Montana</h4>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Johnathan</h4>
+                                                <span class="badge bg-light-danger rounded-pill f-14">Rejected</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Kelli</h4>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-4.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Laurence</h4>
+                                                <span class="badge bg-light-danger rounded-pill f-14">Rejected</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Melissa</h4>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Montana</h4>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Johnathan</h4>
+                                                <span class="badge bg-light-danger rounded-pill f-14">Rejected</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-5.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Kelli</h4>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-4.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Laurence</h4>
+                                                <span class="badge bg-light-danger rounded-pill f-14">Rejected</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-3.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Melissa</h4>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-2.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Montana</h4>
+                                                <span class="badge bg-light-success rounded-pill f-14">Active</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card follower-card">
+                                        <div class="card-body p-3">
+                                            <div class="media align-items-start mb-3">
+                                                <div class="media-body mx-2">
+                                                    <img class="img-radius img-fluid wid-70"
+                                                         src="{% static 'assets/images/user/avatar-1.jpg' %}"
+                                                         alt="User image" />
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-primary opacity-50 arrow-none"
+                                                       type="button"
+                                                       data-bs-toggle="dropdown"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ti ti-dots f-16"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">favorite</i> Favorites</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">group</i> Edit Friend List</a>
+                                                        <a class="dropdown-item" href="#"><i class="material-icons-two-tone">delete</i> Removed</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <h4 class="mb-0 text-truncate">Johnathan</h4>
+                                                <span class="badge bg-light-danger rounded-pill f-14">Rejected</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-facebook">
+                                                            <i class="fab fa-facebook-square"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-twitter">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-light-linkedin">
+                                                            <i class="fab fa-linkedin"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ sample-page ] end -->
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+{% endblock content %}
