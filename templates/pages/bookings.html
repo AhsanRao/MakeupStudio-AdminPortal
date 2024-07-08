@@ -418,7 +418,7 @@
         document.querySelector('.pc-event-artist').textContent = event.extendedProps.artist;
         document.querySelector('.pc-event-package').textContent = event.extendedProps.package;
         document.querySelector('.pc-event-date').textContent = event.start.toLocaleString();
-        document.querySelector('.pc-event-payment').textContent = '$' + event.extendedProps.total_payment;
+        document.querySelector('.pc-event-payment').textContent = event.extendedProps.total_payment;
 
         // Set the booking ID for edit and delete operations
         document.getElementById('pc_event_edit').setAttribute('data-booking-id', event.id);

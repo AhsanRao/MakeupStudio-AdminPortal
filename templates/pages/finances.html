@@ -3,6 +3,24 @@
 {% block title %}
     Finances
 {% endblock title %}
+{% block extrastyle %}
+<style>
+  .tooltip-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 12px;
+    cursor: help;
+    margin-left: 5px;
+}
+</style>
+{% endblock extrastyle %}
+
 {% block content %}
     <section class="pc-container">
         <div class="pc-content">
@@ -42,8 +60,14 @@
                                     <thead>
                                         <tr>
                                             <th>Date</th>
-                                            <th>Total Amount</th>
-                                            <th>Net Amount</th>
+                                            <th>
+                                              Advance Amount
+                                              <span class="tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Advance Payments">?</span>
+                                          </th>
+                                          <th>
+                                              Net Amount
+                                              <span class="tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Payments after discount and advance">?</span>
+                                          </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -63,7 +87,7 @@
                                                             Invalid Date
                                                         {% endif %}
                                                     </td>
-                                                    <td>{{ booking.total_amount|floatformat:2 }}</td>
+                                                    <td>{{ booking.advance_amount|floatformat:2 }}</td>
                                                     <td>{{ booking.net_amount|floatformat:2 }}</td>
                                                 </tr>
                                             {% endfor %}

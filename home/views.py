@@ -576,7 +576,7 @@ def finances(request):
     )
 
     # Group and calculate in Python
-    grouped_bookings = defaultdict(lambda: {"total_amount": 0, "net_amount": 0})
+    grouped_bookings = defaultdict(lambda: {"total_amount": 0, "net_amount": 0, "advance_amount": 0})
 
     for booking in all_bookings:
         date = booking["appointment_datetime"]
@@ -592,6 +592,8 @@ def finances(request):
         grouped_bookings[key]["net_amount"] += (
             booking["total_payment"] - booking["advance_payment"]
         )
+        grouped_bookings[key]["advance_amount"] += booking["advance_payment"]
+
 
     # Convert to list and sort
     bookings = [
@@ -606,6 +608,8 @@ def finances(request):
             ),
             "total_amount": values["total_amount"],
             "net_amount": values["net_amount"],
+            "advance_amount": values["advance_amount"],
+
         }
         for key, values in grouped_bookings.items()
     ]
