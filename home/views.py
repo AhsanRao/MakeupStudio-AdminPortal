@@ -579,7 +579,9 @@ def finances(request):
     grouped_bookings = defaultdict(lambda: {"total_amount": 0, "net_amount": 0, "advance_amount": 0})
 
     for booking in all_bookings:
-        date = booking["appointment_datetime"]
+        date = timezone.localtime(
+            booking["appointment_datetime"]
+        )
         if view_type == "yearly":
             key = date.strftime("%Y")
         elif view_type == "daily":
