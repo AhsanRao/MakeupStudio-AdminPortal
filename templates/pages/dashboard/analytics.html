@@ -55,7 +55,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="col-xl-4 col-md-6">
                     <div class="card bg-success order-card">
                         <div class="card-body">
@@ -101,7 +100,7 @@
                                                 <td>{{ booking.appointment_datetime|date:"M d, Y" }}</td>
                                                 <td>{{ booking.package.name }}</td>
                                                 <td>{{ booking.artist.name }}</td>
-                                                <td>${{ booking.total_payment }}</td>
+                                                <td>{{ booking.total_payment }}</td>
                                             </tr>
                                         {% endfor %}
                                     </tbody>

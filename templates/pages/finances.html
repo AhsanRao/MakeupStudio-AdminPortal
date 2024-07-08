@@ -1,105 +1,103 @@
-{% extends 'layouts/base.html' %} {% load static %} {% block title %} Finances
-{% endblock title %} {% block content %}
-<section class="pc-container">
-  <div class="pc-content">
-    <div class="page-header">
-      <div class="page-block">
-        <div class="row align-items-center">
-          <div class="col-md-12">
-            <div class="page-header-title">
-              <h5 class="m-b-10">Finances</h5>
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    Finances
+{% endblock title %}
+{% block content %}
+    <section class="pc-container">
+        <div class="pc-content">
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Finances</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">Finances</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <ul class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="/">Home</a>
-              </li>
-              <li class="breadcrumb-item" aria-current="page">Finances</li>
-            </ul>
-          </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header" style="display: flex; justify-content: center;">
+                            <div class="btn-group" role="group" aria-label="View options">
+                                <a href="?view=yearly"
+                                   class="btn btn-primary {% if view_type == 'yearly' %}active{% endif %}">Yearly</a>
+                                <a href="?view=monthly"
+                                   class="btn btn-primary {% if view_type == 'monthly' %}active{% endif %}">Monthly</a>
+                                <a href="?view=daily"
+                                   class="btn btn-primary {% if view_type == 'daily' %}active{% endif %}">Daily</a>
+                            </div>
+                        </div>
+                        <div class="card-body table-border-style">
+                            <div class="table-responsive">
+                                <table class="table" id="finances-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Total Amount</th>
+                                            <th>Net Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if bookings %}
+                                            {% for booking in bookings %}
+                                                <tr>
+                                                    <td>
+                                                        {% if booking.date %}
+                                                            {% if view_type == 'yearly' %}
+                                                                {{ booking.date|date:"Y" }}
+                                                            {% elif view_type == 'monthly' %}
+                                                                {{ booking.date|date:"F Y" }}
+                                                            {% else %}
+                                                                {{ booking.date|date:"Y-m-d" }}
+                                                            {% endif %}
+                                                        {% else %}
+                                                            Invalid Date
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>{{ booking.total_amount|floatformat:2 }}</td>
+                                                    <td>{{ booking.net_amount|floatformat:2 }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="3">No bookings found for the selected period.</td>
+                                            </tr>
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xl-12">
-        <div class="card">
-          <div
-            class="card-header"
-            style="display: flex; justify-content: center"
-          >
-            <div class="btn-group" role="group" aria-label="View options">
-              <a
-                href="?view=yearly"
-                class="btn btn-primary {% if view_type == 'yearly' %}active{% endif %}"
-                >Yearly</a
-              >
-              <a
-                href="?view=monthly"
-                class="btn btn-primary {% if view_type == 'monthly' %}active{% endif %}"
-                >Monthly</a
-              >
-              <a
-                href="?view=daily"
-                class="btn btn-primary {% if view_type == 'daily' %}active{% endif %}"
-                >Daily</a
-              >
-            </div>
-          </div>
-          <div class="card-body table-border-style">
-            <div class="table-responsive">
-              <table class="table" id="finances-table">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Total Amount</th>
-                    <th>Net Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% if bookings %} {% for booking in bookings %}
-                  <tr>
-                    <td>
-                      {% if booking.date %} {% if view_type == 'yearly' %} {{
-                      booking.date|date:"Y" }} {% elif view_type == 'monthly' %}
-                      {{ booking.date|date:"F Y" }} {% else %} {{
-                      booking.date|date:"Y-m-d" }} {% endif %} {% else %}
-                      Invalid Date {% endif %}
-                    </td>
-                    <td>{{ booking.total_amount|floatformat:2 }}</td>
-                    <td>{{ booking.net_amount|floatformat:2 }}</td>
-                  </tr>
-                  {% endfor %} {% else %}
-                  <tr>
-                    <td colspan="3">
-                      No bookings found for the selected period.
-                    </td>
-                  </tr>
-                  {% endif %}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-{% endblock content %} {% block extra_js %}
-<script src="{% static 'assets/js/plugins/simple-datatables.js' %}"></script>
-<script>
-  var datatable = new simpleDatatables.DataTable("#finances-table", {
-    columns: [
-      {
-        select: 0,
-        type: "date",
-        format:
-          '{% if view_type == "yearly" %}YYYY{% elif view_type == "monthly" %}MMMM YYYY{% else %}YYYY-MM-DD{% endif %}',
-      },
-      {
-        select: [1, 2],
-        type: "number",
-        format: "###,###.##",
-      },
-    ],
-  });
-</script>
+    </section>
+{% endblock content %}
+{% block extra_js %}
+    <script src="{% static 'assets/js/plugins/simple-datatables.js' %}"></script>
+    <script>
+    var datatable = new simpleDatatables.DataTable('#finances-table', {
+        columns: [
+            {
+                select: 0,
+                type: 'date',
+                format: '{% if view_type == "yearly" %}YYYY{% elif view_type == "monthly" %}MMMM YYYY{% else %}YYYY-MM-DD{% endif %}'
+            },
+            {
+                select: [1, 2],
+                type: 'number',
+                format: '###,###.##'
+            }
+        ]
+    });
+    </script>
 {% endblock extra_js %}
