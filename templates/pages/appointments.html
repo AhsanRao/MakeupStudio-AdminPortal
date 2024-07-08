@@ -312,8 +312,8 @@
 {% block extra_js %}
     <!-- [Page Specific JS] start -->
     <!-- calender js -->
-    <script src="{% static 'assets/js/plugins/index.global.min.js' %}"></script>
     <script src="{% static 'assets/js/plugins/main.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/index.global.min.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -323,15 +323,24 @@
         headerToolbar: {
           left: 'prevYear,prev,next,nextYear today',
           center: 'title',
-          right: 'dayGridYear dayGridMonth timeGridWeek timeGridDay listMonth'
+          right: 'multiMonthYear dayGridMonth timeGridWeek listMonth'
         },
+      
         views: {
-          dayGridYear: {
-            type: 'dayGrid',
-            duration: { years: 1 },
+          multiMonthYear: {
             buttonText: 'Year'
+          },
+          dayGridMonth: {
+            buttonText: 'Month'
+          },
+          timeGridWeek: {
+            buttonText: 'Week'
+          },
+          listMonth: {
+            buttonText: 'List'
           }
         },
+        
         themeSystem: 'bootstrap',
         height: 'auto',
         navLinks: true,
@@ -358,7 +367,7 @@
         },
 
         datesSet: function(info) {
-          if (['dayGridMonth', 'dayGridYear'].includes(info.view.type)) {
+          if (['dayGridMonth', 'multiMonthYear'].includes(info.view.type)) {
             setTimeout(function() {
               updateEventCounts(info.start, info.end);
             }, 0);
@@ -366,7 +375,7 @@
         },
         
         dayCellDidMount: function(info) {
-          if (['dayGridMonth', 'dayGridYear'].includes(info.view.type)) {
+          if (['dayGridMonth', 'multiMonthYear'].includes(info.view.type)) {
             var cell = info.el;
             var badge = document.createElement('span');
             badge.className = 'event-count-badge';
@@ -380,7 +389,7 @@
       setTimeout(function() {
         var view = calendar.view;
         updateEventCounts(view.activeStart, view.activeEnd);
-      }, 100);
+      }, 1000);
       
       function updateEventCounts(start, end) {
         var events = calendar.getEvents();

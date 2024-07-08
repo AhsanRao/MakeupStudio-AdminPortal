@@ -62,7 +62,6 @@ def add_booking(request):
                     appointment_datetime_str = request.POST.get(
                         f"appointment_datetime_{i}"
                     )
-                    print("Received datetime string:", appointment_datetime_str)
 
                     # Parse the datetime string
                     naive_datetime = datetime.strptime(
@@ -72,11 +71,6 @@ def add_booking(request):
                     # Create a timezone-aware datetime in the local timezone
                     local_tz = ZoneInfo("Asia/Karachi")
                     appointment_datetime = naive_datetime.replace(tzinfo=local_tz)
-
-                    print("Local datetime:", appointment_datetime)
-                    print(
-                        "UTC datetime:", appointment_datetime.astimezone(timezone.utc)
-                    )
 
                     artist_id = request.POST.get(f"artist_{i}")
                     package_id = request.POST.get(f"package_{i}")
@@ -161,7 +155,7 @@ def get_artist_packages(request):
     packages = Package.objects.filter(artist_id=artist_id).values("id", "name", "price")
     return JsonResponse(list(packages), safe=False)
 
-
+@login_required
 def bookings_view(request):
     artists = Artist.objects.all()
     context = {
@@ -169,7 +163,7 @@ def bookings_view(request):
     }
     return render(request, "pages/bookings.html", context)
 
-
+@login_required
 def appointments_view(request):
     artists = Artist.objects.all()
     context = {
@@ -516,49 +510,112 @@ def dashboard(request):
 
     return render(request, "pages/dashboard/analytics.html", context)
 
+# For sqlite
+# from django.db.models.functions import TruncYear, TruncMonth, TruncDay
 
-from django.db.models.functions import TruncYear, TruncMonth, TruncDay
+# @login_required(login_url="/accounts/login/")
+# def finances(request):
+#     view_type = request.GET.get("view", "monthly")  # Default to monthly view
+
+#     if view_type == "yearly":
+#         bookings = (
+#             Booking.objects.annotate(date=TruncYear("appointment_datetime"))
+#             .values("date")
+#             .annotate(
+#                 total_amount=Sum("total_payment"),
+#                 net_amount=Sum("total_payment") - Sum("advance_payment"),
+#             )
+#             .order_by("-date")
+#         )
+#     elif view_type == "daily":
+#         bookings = (
+#             Booking.objects.annotate(date=TruncDay("appointment_datetime"))
+#             .values("date")
+#             .annotate(
+#                 total_amount=Sum("total_payment"),
+#                 net_amount=Sum("total_payment") - Sum("advance_payment"),
+#             )
+#             .order_by("-date")
+#         )
+#     else:  # Monthly view
+#         bookings = (
+#             Booking.objects.annotate(date=TruncMonth("appointment_datetime"))
+#             .values("date")
+#             .annotate(
+#                 total_amount=Sum("total_payment"),
+#                 net_amount=Sum("total_payment") - Sum("advance_payment"),
+#             )
+#             .order_by("-date")
+#         )
+
+#     context = {
+#         "bookings": bookings,
+#         "view_type": view_type,
+#     }
+#     return render(request, "pages/finances.html", context)
 
 
-@login_required(login_url="/accounts/login/")
+from collections import defaultdict
+from django.contrib.auth.decorators import user_passes_test
+from django.core.exceptions import PermissionDenied
+
+def is_not_manager(user):
+    return not user.groups.filter(name='manager').exists()
+
+def permission_denied(request):
+    return render(request, '403.html')
+
+@login_required
+@user_passes_test(is_not_manager, login_url='permission_denied')
 def finances(request):
-    view_type = request.GET.get("view", "monthly")  # Default to monthly view
+    view_type = request.GET.get("view", "monthly")
 
-    if view_type == "yearly":
-        bookings = (
-            Booking.objects.annotate(date=TruncYear("appointment_datetime"))
-            .values("date")
-            .annotate(
-                total_amount=Sum("total_payment"),
-                net_amount=Sum("total_payment") - Sum("advance_payment"),
-            )
-            .order_by("-date")
+    # Fetch all bookings
+    all_bookings = Booking.objects.all().values(
+        "appointment_datetime", "total_payment", "advance_payment"
+    )
+
+    # Group and calculate in Python
+    grouped_bookings = defaultdict(lambda: {"total_amount": 0, "net_amount": 0})
+
+    for booking in all_bookings:
+        date = booking["appointment_datetime"]
+        if view_type == "yearly":
+            key = date.strftime("%Y")
+        elif view_type == "daily":
+            key = date.strftime("%Y-%m-%d")
+        else:  # monthly
+            key = date.strftime("%Y-%m")
+            view_type = "monthly"
+
+        grouped_bookings[key]["total_amount"] += booking["total_payment"]
+        grouped_bookings[key]["net_amount"] += (
+            booking["total_payment"] - booking["advance_payment"]
         )
-    elif view_type == "daily":
-        bookings = (
-            Booking.objects.annotate(date=TruncDay("appointment_datetime"))
-            .values("date")
-            .annotate(
-                total_amount=Sum("total_payment"),
-                net_amount=Sum("total_payment") - Sum("advance_payment"),
-            )
-            .order_by("-date")
-        )
-    else:  # Monthly view
-        bookings = (
-            Booking.objects.annotate(date=TruncMonth("appointment_datetime"))
-            .values("date")
-            .annotate(
-                total_amount=Sum("total_payment"),
-                net_amount=Sum("total_payment") - Sum("advance_payment"),
-            )
-            .order_by("-date")
-        )
+
+    # Convert to list and sort
+    bookings = [
+        {
+            "date": datetime.strptime(
+                key,
+                (
+                    "%Y"
+                    if view_type == "yearly"
+                    else "%Y-%m" if view_type == "monthly" else "%Y-%m-%d"
+                ),
+            ),
+            "total_amount": values["total_amount"],
+            "net_amount": values["net_amount"],
+        }
+        for key, values in grouped_bookings.items()
+    ]
+    bookings.sort(key=lambda x: x["date"], reverse=True)
 
     context = {
         "bookings": bookings,
         "view_type": view_type,
     }
+
     return render(request, "pages/finances.html", context)
 
 

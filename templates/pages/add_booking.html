@@ -1,439 +1,490 @@
-{% extends 'layouts/base.html' %}
-{% load static %}
-{% block title %}
-    Add Booking
-{% endblock title %}
-{% block extrastyle %}
-    <!-- notification css -->
-    <link rel="stylesheet"
-          href="{% static 'assets/css/plugins/notifier.css' %}" />
-{% endblock extrastyle %}
-{% block content %}
-    <!-- [ Main Content ] start -->
-    <script>notifier.show('Default!', 'I am a default notification.', '', '', 4000);</script>
-    <div class="pc-container">
-        <div class="pc-content">
-            <div class="row">
-                <div class="col-md-12">
-                    {% if messages %}
-                        <script src="{% static 'assets/js/plugins/notifier.js' %}"></script>
-                        {% for message in messages %}
-                            {% if message.tags == 'alert-danger' %}
-                                <script>notifier.show('Error', '{{ message }}', 'danger', '', 4000);</script>
-                            {% else %}
-                                <script>notifier.show('Success', '{{ message }}', 'success', '', 4000);</script>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+{% extends 'layouts/base.html' %} {% load static %} {% block title %} Add
+Booking {% endblock title %} {% block extrastyle %}
+<!-- notification css -->
+<link rel="stylesheet" href="{% static 'assets/css/plugins/notifier.css' %}" />
+{% endblock extrastyle %} {% block content %}
+<!-- [ Main Content ] start -->
+<div class="pc-container">
+  <div class="pc-content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="page-header">
+          <div class="page-block">
+            <div class="row align-items-center">
+              <div class="col-md-12">
+                <div class="page-header-title">
+                  <h5 class="m-b-10">Add Booking</h5>
                 </div>
-            {% endif %}
-            <div class="page-header">
-                <div class="page-block">
-                    <div class="row align-items-center">
-                        <div class="col-md-12">
-                            <div class="page-header-title">
-                                <h5 class="m-b-10">Add Booking</h5>
-                            </div>
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="/">Home</a>
-                                </li>
-                                <!-- <li class="breadcrumb-item"><a href="javascript: void(0)">Bookings</a></li> -->
-                                <li class="breadcrumb-item" aria-current="page">Add Booking</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="/">Home</a>
+                  </li>
+                  <!-- <li class="breadcrumb-item"><a href="javascript: void(0)">Bookings</a></li> -->
+                  <li class="breadcrumb-item" aria-current="page">
+                    Add Booking
+                  </li>
+                </ul>
+              </div>
             </div>
-            <!-- [ Main Content ] start -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <form id="bookingForm" method="post">
-                        {% csrf_token %}
-                        <!-- Customer Information Card -->
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <h5>Customer Information</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Phone Number</label>
-                                            <input type="text"
-                                                   class="form-control"
-                                                   id="phoneNumber"
-                                                   name="phone_number"
-                                                   required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Customer Name</label>
-                                            <input type="text"
-                                                   class="form-control"
-                                                   id="customerName"
-                                                   name="customer_name"
-                                                   readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Appointment Details Card -->
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <h5>Appointment Details</h5>
-                            </div>
-                            <div class="card-body d-flex justify-content-center">
-                                <div class="col-md-4">
-                                    <div class="form-group mb-0">
-                                        <label class="form-label">Number of Appointments</label>
-                                        <input type="number"
-                                               class="form-control"
-                                               id="numberOfAppointments"
-                                               name="number_of_appointments"
-                                               required
-                                               min="1"
-                                               value="1">
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="appointmentFields">
-                                <!-- Appointment fields will be dynamically added here -->
-                            </div>
-                        </div>
-                        <!-- Payment Information Card -->
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <h5>Payment Information</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Advance Payment</label>
-                                            <input type="number"
-                                                   class="form-control"
-                                                   id="advancePayment"
-                                                   name="advance_payment"
-                                                   required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Payment Method</label>
-                                            <select class="form-select" name="payment_method" required>
-                                                <option value="bank">Bank Transfer</option>
-                                                <option value="cash">Cash</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Discount Percentage</label>
-                                            <input type="number"
-                                                   class="form-control"
-                                                   id="discountPercentage"
-                                                   name="discount_percentage"
-                                                   step="1"
-                                                   min="0"
-                                                   max="100"
-                                                   value="0">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Total Package Price</label>
-                                            <input type="number" class="form-control" id="totalPackagePrice" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Net Amount</label>
-                                            <input type="number"
-                                                   class="form-control"
-                                                   id="netAmount"
-                                                   name="net_amount"
-                                                   readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Total Amount</label>
-                                            <input type="number"
-                                                   class="form-control"
-                                                   id="totalAmount"
-                                                   name="total_amount"
-                                                   readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add Booking</button>
-                    </form>
-                </div>
-            </div>
-            <!-- [ Main Content ] end -->
+          </div>
         </div>
+        <!-- [ Main Content ] start -->
+        <div class="row">
+          <div class="col-sm-12">
+            <form id="bookingForm" method="post">
+              {% csrf_token %}
+              <!-- Customer Information Card -->
+              <div class="card mb-3">
+                <div class="card-header">
+                  <h5>Customer Information</h5>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="phoneNumber"
+                          name="phone_number"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-label">Customer Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="customerName"
+                          name="customer_name"
+                          readonly
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Appointment Details Card -->
+              <div class="card mb-3">
+                <div class="card-header">
+                  <h5>Appointment Details</h5>
+                </div>
+                <div class="card-body d-flex justify-content-center">
+                  <div class="col-md-4">
+                    <div class="form-group mb-0">
+                      <label class="form-label">Number of Appointments</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="numberOfAppointments"
+                        name="number_of_appointments"
+                        required
+                        min="1"
+                        value="1"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div id="appointmentFields">
+                  <!-- Appointment fields will be dynamically added here -->
+                </div>
+              </div>
+              <!-- Payment Information Card -->
+              <div class="card mb-3">
+                <div class="card-header">
+                  <h5>Payment Information</h5>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="form-label">Advance Payment</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="advancePayment"
+                          name="advance_payment"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="form-label">Payment Method</label>
+                        <select
+                          class="form-select"
+                          name="payment_method"
+                          required
+                        >
+                          <option value="bank">Bank Transfer</option>
+                          <option value="cash">Cash</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="form-label">Discount Percentage</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="discountPercentage"
+                          name="discount_percentage"
+                          step="1"
+                          min="0"
+                          max="100"
+                          value="0"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="form-label">Total Package Price</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="totalPackagePrice"
+                          readonly
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="form-label">Net Amount</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="netAmount"
+                          name="net_amount"
+                          readonly
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="form-label">Total Amount</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="totalAmount"
+                          name="total_amount"
+                          readonly
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Add Booking</button>
+            </form>
+          </div>
+        </div>
+        <!-- [ Main Content ] end -->
+      </div>
     </div>
     <!-- [ Main Content ] end -->
     <!-- New Customer Modal -->
-    <div class="modal fade"
-         id="newCustomerModal"
-         tabindex="-1"
-         aria-labelledby="newCustomerModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="newCustomerModalLabel">Add New Customer</h5>
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="newCustomerForm">
-                        <div class="mb-3">
-                            <label for="newCustomerName" class="form-label">Customer Name</label>
-                            <input type="text" class="form-control" id="newCustomerName" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="newCustomerPhone" class="form-label">Phone Number</label>
-                            <input type="text" class="form-control" id="newCustomerPhone" required>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="saveNewCustomer">Save Customer</button>
-                </div>
-            </div>
+    <div
+      class="modal fade"
+      id="newCustomerModal"
+      tabindex="-1"
+      aria-labelledby="newCustomerModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newCustomerModalLabel">
+              Add New Customer
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="newCustomerForm">
+              <div class="mb-3">
+                <label for="newCustomerName" class="form-label"
+                  >Customer Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="newCustomerName"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="newCustomerPhone" class="form-label"
+                  >Phone Number</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="newCustomerPhone"
+                  required
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="saveNewCustomer">
+              Save Customer
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-{% endblock content %}
-{% block extra_js %}
+    {% endblock content %} {% block extra_js %}
     <!-- notification Js -->
     <script src="{% static 'assets/js/plugins/notifier.js' %}"></script>
     <script>
-    notifier.show('Default!', 'I am a default notification.', '', '', 4000);
+        notifier.show('','','',1000);
 
-    document.addEventListener('DOMContentLoaded', function() {
-      // Notification handling
-      const messagesContainer = document.getElementById('messages-container');
-      if (messagesContainer && messagesContainer.children.length > 0) {
-        Array.from(messagesContainer.children).forEach(messageElement => {
-          const messageText = messageElement.textContent.trim();
-          const messageType = messageElement.classList.contains('alert-success') ? 'success' : 'error';
-          notifier.show('Notification', messageText, messageType, '', 4000);
-        });
-      }
+        document.addEventListener('DOMContentLoaded', function() {
+          // Notification queue system
+          let notificationQueue = [];
 
-      // Phone number input and customer lookup
-      const phoneInput = document.getElementById('phoneNumber');
-      const customerNameInput = document.getElementById('customerName');
-      const newCustomerModal = new bootstrap.Modal(document.getElementById('newCustomerModal'));
-      
-      phoneInput.addEventListener('blur', function() {
-        fetch(`/get-customer-info/?phone_number=${phoneInput.value}`)
-          .then(response => response.json())
-          .then(data => {
-            if (data.name) {
-              customerNameInput.value = data.name;
-              notifier.show('Found', 'Customer ' + data.name + ' found.', 'success', '', 4000);
-            } else {
-              document.getElementById('newCustomerPhone').value = phoneInput.value;
-              newCustomerModal.show();
-            }
-          });
-      });
-    
-      // New customer saving
-      document.getElementById('saveNewCustomer').addEventListener('click', function() {
-        const newName = document.getElementById('newCustomerName').value;
-        const newPhone = document.getElementById('newCustomerPhone').value;
-        
-        fetch('/save-new-customer/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-          },
-          body: JSON.stringify({ name: newName, phone_number: newPhone })
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            phoneInput.value = newPhone;
-            customerNameInput.value = newName;
-            newCustomerModal.hide();
-            notifier.show('Success', 'New customer added successfully.', 'success', '', 4000);
+          function showNextNotification() {
+              if (notificationQueue.length > 0) {
+                  let notification = notificationQueue.shift();
+                  notifier.show(notification.title, notification.message, notification.type, notification.icon, notification.timeout);
+                  setTimeout(showNextNotification, notification.timeout + 100);
+              }
           }
-        });
-      });
-    
-      // Dynamic appointment fields
-      const numberOfAppointmentsInput = document.getElementById('numberOfAppointments');
-      const appointmentFieldsContainer = document.getElementById('appointmentFields');
-    
-      function createAppointmentFields(number) {
-        const currentFields = appointmentFieldsContainer.children;
-        const currentFieldsData = Array.from(currentFields).map(field => ({
-          datetime: field.querySelector('input[type="datetime-local"]').value,
-          artist: field.querySelector('.artist-select').value,
-          package: field.querySelector('.package-select').value
-        }));
-    
-        appointmentFieldsContainer.innerHTML = '';
-        for (let i = 1; i <= number; i++) {
-          const fieldData = currentFieldsData[i - 1] || {};
-          appointmentFieldsContainer.innerHTML += `
-            <div class="card mb-2">
-              <div class="card-header">
-                <h6 class="mb-0">Appointment ${i}</h6>
-              </div>
-              <div class="card-body py-4">
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="form-label">Appointment Date & Time</label>
-                      <input type="datetime-local" class="form-control" name="appointment_datetime_${i}" value="${fieldData.datetime || ''}" required>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="form-label">Artist</label>
-                      <select class="form-select artist-select" name="artist_${i}" required>
-                        <option value="">Choose an artist</option>
-                        {% for artist in artists %}
-                          <option value="{{ artist.id }}" ${fieldData.artist == '{{ artist.id }}' ? 'selected' : ''}>{{ artist.name }}</option>
-                        {% endfor %}
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="form-label">Package</label>
-                      <select class="form-select package-select" name="package_${i}" required>
-                        <option value="">Select Package</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
+          function queueNotification(title, message, type, icon = '', timeout = 4000) {
+              notificationQueue.push({ title, message, type, icon, timeout });
+              if (notificationQueue.length === 1) {
+                  showNextNotification();
+              }
+          }
+
+          // Process any messages from the server
+          {% if messages %}
+              {% for message in messages %}
+                  queueNotification(
+                      '{% if message.tags == 'alert-danger' %}Error{% else %}Success{% endif %}',
+                      '{{ message }}',
+                      '{% if message.tags == 'alert-danger' %}danger{% else %}success{% endif %}'
+                  );
+              {% endfor %}
+          {% endif %}
+
+          // Phone number input and customer lookup
+          const phoneInput = document.getElementById('phoneNumber');
+          const customerNameInput = document.getElementById('customerName');
+          const newCustomerModal = new bootstrap.Modal(document.getElementById('newCustomerModal'));
+
+          phoneInput.addEventListener('blur', function() {
+              fetch(`/get-customer-info/?phone_number=${phoneInput.value}`)
+                  .then(response => response.json())
+                  .then(data => {
+                      if (data.name) {
+                          customerNameInput.value = data.name;
+                          queueNotification('Success', `Customer ${data.name} found.`, 'success');
+                      } else {
+                          document.getElementById('newCustomerPhone').value = phoneInput.value;
+                          newCustomerModal.show();
+                      }
+                  });
+          });
+
+          // New customer saving
+          document.getElementById('saveNewCustomer').addEventListener('click', function() {
+              const newName = document.getElementById('newCustomerName').value;
+              const newPhone = document.getElementById('newCustomerPhone').value;
+
+              fetch('/save-new-customer/', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                      'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                  },
+                  body: JSON.stringify({ name: newName, phone_number: newPhone })
+              })
+              .then(response => response.json())
+              .then(data => {
+                  if (data.success) {
+                      phoneInput.value = newPhone;
+                      customerNameInput.value = newName;
+                      newCustomerModal.hide();
+                      queueNotification('Success', 'New customer added successfully.', 'success');
+                  }
+              });
+          });
+
+          // Dynamic appointment fields
+          const appointmentFieldsContainer = document.getElementById('appointmentFields');
+
+          function createAppointmentFields(number) {
+              const currentFields = appointmentFieldsContainer.children;
+              const currentFieldsData = Array.from(currentFields).map(field => ({
+                  datetime: field.querySelector('input[type="datetime-local"]').value,
+                  artist: field.querySelector('.artist-select').value,
+                  package: field.querySelector('.package-select').value
+              }));
+
+              appointmentFieldsContainer.innerHTML = '';
+              for (let i = 1; i <= number; i++) {
+                  const fieldData = currentFieldsData[i - 1] || {};
+                  appointmentFieldsContainer.innerHTML += `
+                      <div class="card mb-2">
+                          <div class="card-header">
+                              <h6 class="mb-0">Appointment ${i}</h6>
+                          </div>
+                          <div class="card-body py-4">
+                              <div class="row">
+                                  <div class="col-md-4">
+                                      <div class="form-group">
+                                          <label class="form-label">Appointment Date & Time</label>
+                                          <input type="datetime-local" class="form-control" name="appointment_datetime_${i}" value="${fieldData.datetime || ''}" required>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                      <div class="form-group">
+                                          <label class="form-label">Artist</label>
+                                          <select class="form-select artist-select" name="artist_${i}" required>
+                                              <option value="">Choose an artist</option>
+                                              {% for artist in artists %}
+                                                  <option value="{{ artist.id }}" ${fieldData.artist == '{{ artist.id }}' ? 'selected' : ''}>{{ artist.name }}</option>
+                                              {% endfor %}
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                      <div class="form-group">
+                                          <label class="form-label">Package</label>
+                                          <select class="form-select package-select" name="package_${i}" required>
+                                              <option value="">Select Package</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  `;
+              }
+              attachEventListeners();
+              restorePackageSelections(currentFieldsData);
+          }
+
+          function restorePackageSelections(fieldsData) {
+              const artistSelects = document.querySelectorAll('.artist-select');
+              artistSelects.forEach((select, index) => {
+                  if (fieldsData[index] && fieldsData[index].artist) {
+                      fetchArtistPackages(fieldsData[index].artist, select.closest('.card-body').querySelector('.package-select'), fieldsData[index].package);
+                  }
+              });
+          }
+
+          // Add plus and minus buttons for appointment number
+          const appointmentNumberContainer = document.createElement('div');
+          appointmentNumberContainer.className = 'input-group';
+          appointmentNumberContainer.innerHTML = `
+              <button type="button" class="btn btn-outline-secondary" id="decrementAppointments">-</button>
+              <input type="number" class="form-control" id="numberOfAppointments" name="number_of_appointments" required min="1" value="1">
+              <button type="button" class="btn btn-outline-secondary" id="incrementAppointments">+</button>
           `;
-        }
-        attachEventListeners();
-        restorePackageSelections(currentFieldsData);
-      }
-    
-      function restorePackageSelections(fieldsData) {
-        const artistSelects = document.querySelectorAll('.artist-select');
-        artistSelects.forEach((select, index) => {
-          if (fieldsData[index] && fieldsData[index].artist) {
-            fetchArtistPackages(fieldsData[index].artist, select.closest('.card-body').querySelector('.package-select'), fieldsData[index].package);
-          }
-        });
-      }
-    
-      // Add plus and minus buttons for appointment number
-      const appointmentNumberContainer = document.createElement('div');
-      appointmentNumberContainer.className = 'input-group';
-      appointmentNumberContainer.innerHTML = `
-        <button type="button" class="btn btn-outline-secondary" id="decrementAppointments">-</button>
-        <input type="number" class="form-control" id="numberOfAppointments" name="number_of_appointments" required min="1" value="1">
-        <button type="button" class="btn btn-outline-secondary" id="incrementAppointments">+</button>
-      `;
-      numberOfAppointmentsInput.parentNode.replaceChild(appointmentNumberContainer, numberOfAppointmentsInput);
-    
-      const newNumberOfAppointmentsInput = document.getElementById('numberOfAppointments');
-      const decrementButton = document.getElementById('decrementAppointments');
-      const incrementButton = document.getElementById('incrementAppointments');
-    
-      decrementButton.addEventListener('click', function() {
-        if (newNumberOfAppointmentsInput.value > 1) {
-          newNumberOfAppointmentsInput.value = parseInt(newNumberOfAppointmentsInput.value) - 1;
-          createAppointmentFields(newNumberOfAppointmentsInput.value);
-        }
-      });
-    
-      incrementButton.addEventListener('click', function() {
-        newNumberOfAppointmentsInput.value = parseInt(newNumberOfAppointmentsInput.value) + 1;
-        createAppointmentFields(newNumberOfAppointmentsInput.value);
-      });
-    
-      newNumberOfAppointmentsInput.addEventListener('change', function() {
-        if (this.value < 1) this.value = 1;
-        createAppointmentFields(this.value);
-      });
-    
-      function attachEventListeners() {
-        const artistSelects = document.querySelectorAll('.artist-select');
-        artistSelects.forEach(select => {
-          select.addEventListener('change', function() {
-            const packageSelect = this.closest('.card-body').querySelector('.package-select');
-            fetchArtistPackages(this.value, packageSelect);
+          document.getElementById('numberOfAppointments').parentNode.replaceChild(appointmentNumberContainer, document.getElementById('numberOfAppointments'));
+
+          const newNumberOfAppointmentsInput = document.getElementById('numberOfAppointments');
+          const decrementButton = document.getElementById('decrementAppointments');
+          const incrementButton = document.getElementById('incrementAppointments');
+
+          decrementButton.addEventListener('click', function() {
+              if (newNumberOfAppointmentsInput.value > 1) {
+                  newNumberOfAppointmentsInput.value = parseInt(newNumberOfAppointmentsInput.value) - 1;
+                  createAppointmentFields(newNumberOfAppointmentsInput.value);
+              }
           });
-        });
-    
-        const packageSelects = document.querySelectorAll('.package-select');
-        packageSelects.forEach(select => {
-          select.addEventListener('change', updateTotalAmounts);
-        });
-      }
-    
-      function fetchArtistPackages(artistId, packageSelect, selectedPackage) {
-        fetch(`/get-artist-packages/?artist_id=${artistId}`)
-          .then(response => response.json())
-          .then(packages => {
-            packageSelect.innerHTML = '<option value="">Select Package</option>';
-            packages.forEach(pkg => {
-              const option = document.createElement('option');
-              option.value = pkg.id;
-              option.textContent = `${pkg.name} - ${pkg.price}`;
-              option.dataset.price = pkg.price;
-              if (pkg.id == selectedPackage) option.selected = true;
-              packageSelect.appendChild(option);
-            });
-            updateTotalAmounts();
+
+          incrementButton.addEventListener('click', function() {
+              newNumberOfAppointmentsInput.value = parseInt(newNumberOfAppointmentsInput.value) + 1;
+              createAppointmentFields(newNumberOfAppointmentsInput.value);
           });
-      }
-    
-      function updateTotalAmounts() {
-        const packageSelects = document.querySelectorAll('.package-select');
-        let totalPackagePrice = 0;
-    
-        packageSelects.forEach(select => {
-          const selectedOption = select.options[select.selectedIndex];
-          if (selectedOption.value) {
-            totalPackagePrice += parseFloat(selectedOption.dataset.price);
+
+          newNumberOfAppointmentsInput.addEventListener('change', function() {
+              if (this.value < 1) this.value = 1;
+              createAppointmentFields(this.value);
+          });
+
+          function attachEventListeners() {
+              const artistSelects = document.querySelectorAll('.artist-select');
+              artistSelects.forEach(select => {
+                  select.addEventListener('change', function() {
+                      const packageSelect = this.closest('.card-body').querySelector('.package-select');
+                      fetchArtistPackages(this.value, packageSelect);
+                  });
+              });
+
+              const packageSelects = document.querySelectorAll('.package-select');
+              packageSelects.forEach(select => {
+                  select.addEventListener('change', updateTotalAmounts);
+              });
           }
-        });
-    
-        const advancePayment = parseFloat(document.getElementById('advancePayment').value) || 0;
-        const discountPercentage = parseFloat(document.getElementById('discountPercentage').value) || 0;
-    
-        const discountAmount = totalPackagePrice * (discountPercentage / 100);
-        const netAmount = totalPackagePrice - discountAmount;
-        const totalAmount = netAmount - advancePayment;
-    
-        document.getElementById('totalPackagePrice').value = totalPackagePrice.toFixed(2);
-        document.getElementById('netAmount').value = netAmount.toFixed(2);
-        document.getElementById('totalAmount').value = totalAmount.toFixed(2);
-      }
-    
-      document.getElementById('advancePayment').addEventListener('input', updateTotalAmounts);
-      document.getElementById('discountPercentage').addEventListener('input', updateTotalAmounts);
-    
-      
-    
-      // Initial creation of appointment fields
-      createAppointmentFields(1);
-    });
+
+          function fetchArtistPackages(artistId, packageSelect, selectedPackage) {
+              fetch(`/get-artist-packages/?artist_id=${artistId}`)
+                  .then(response => response.json())
+                  .then(packages => {
+                      packageSelect.innerHTML = '<option value="">Select Package</option>';
+                      packages.forEach(pkg => {
+                          const option = document.createElement('option');
+                          option.value = pkg.id;
+                          option.textContent = `${pkg.name} - ${pkg.price}`;
+                          option.dataset.price = pkg.price;
+                          if (pkg.id == selectedPackage) option.selected = true;
+                          packageSelect.appendChild(option);
+                      });
+                      updateTotalAmounts();
+                  });
+          }
+
+          function updateTotalAmounts() {
+              const packageSelects = document.querySelectorAll('.package-select');
+              let totalPackagePrice = 0;
+
+              packageSelects.forEach(select => {
+                  const selectedOption = select.options[select.selectedIndex];
+                  if (selectedOption.value) {
+                      totalPackagePrice += parseFloat(selectedOption.dataset.price);
+                  }
+              });
+
+              const advancePayment = parseFloat(document.getElementById('advancePayment').value) || 0;
+              const discountPercentage = parseFloat(document.getElementById('discountPercentage').value) || 0;
+
+              const discountAmount = totalPackagePrice * (discountPercentage / 100);
+              const netAmount = totalPackagePrice - discountAmount;
+              const totalAmount = netAmount - advancePayment;
+
+              document.getElementById('totalPackagePrice').value = totalPackagePrice.toFixed(2);
+              document.getElementById('netAmount').value = netAmount.toFixed(2);
+              document.getElementById('totalAmount').value = totalAmount.toFixed(2);
+          }
+
+          document.getElementById('advancePayment').addEventListener('input', updateTotalAmounts);
+          document.getElementById('discountPercentage').addEventListener('input', updateTotalAmounts);
+
+          // Initial creation of appointment fields
+          createAppointmentFields(1);
+      });
     </script>
-{% endblock extra_js %}
+    {% endblock extra_js %}
+  </div>
+</div>
