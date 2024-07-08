@@ -36,7 +36,7 @@ DEBUG = str2bool(os.environ.get('DEBUG'))
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['159.89.171.24', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['amnasmakeupstudio.com', 'www.amnasmakeupstudio.com', '159.89.171.24', 'localhost', '127.0.0.1']
 
 # Used by DEBUG-Toolbar 
 INTERNAL_IPS = [
