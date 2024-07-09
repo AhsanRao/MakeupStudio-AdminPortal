@@ -30,6 +30,102 @@ from django.db.models import Count, Sum, Q
 
 
 # @login_required
+# @login_required(login_url="/accounts/login/")
+# def add_booking(request):
+#     if request.method == "POST":
+#         try:
+#             with transaction.atomic():
+#                 # Get customer info
+#                 phone_number = request.POST.get("phone_number")
+#                 customer_name = request.POST.get("customer_name")
+#                 customer, _ = Customer.objects.get_or_create(
+#                     phone_number=phone_number, defaults={"name": customer_name}
+#                 )
+
+#                 # Get general booking info
+#                 number_of_appointments = int(
+#                     request.POST.get("number_of_appointments", 1)
+#                 )
+#                 total_advance_payment = Decimal(request.POST.get("advance_payment", 0))
+#                 payment_method = request.POST.get("payment_method")
+#                 discount_percentage = Decimal(
+#                     request.POST.get("discount_percentage", 0)
+#                 )
+
+#                 # Calculate advance payment per appointment
+#                 advance_payment_per_appointment = (
+#                     total_advance_payment / number_of_appointments
+#                 )
+
+#                 bookings = []
+#                 for i in range(1, number_of_appointments + 1):
+#                     appointment_datetime_str = request.POST.get(
+#                         f"appointment_datetime_{i}"
+#                     )
+
+#                     # Parse the datetime string
+#                     naive_datetime = datetime.strptime(
+#                         appointment_datetime_str, "%Y-%m-%dT%H:%M"
+#                     )
+
+#                     # Create a timezone-aware datetime in the local timezone
+#                     local_tz = ZoneInfo("Asia/Karachi")
+#                     appointment_datetime = naive_datetime.replace(tzinfo=local_tz)
+
+#                     artist_id = request.POST.get(f"artist_{i}")
+#                     package_id = request.POST.get(f"package_{i}")
+
+#                     artist = Artist.objects.get(id=artist_id)
+#                     package = Package.objects.get(id=package_id)
+
+#                     # Calculate amounts
+#                     package_price = package.price
+#                     discount_amount = package_price * (
+#                         discount_percentage / Decimal("100")
+#                     )
+#                     net_amount = package_price - discount_amount
+#                     balance_amount = net_amount - advance_payment_per_appointment
+
+#                     booking = Booking(
+#                         customer=customer,
+#                         appointment_datetime=appointment_datetime,
+#                         artist=artist,
+#                         package=package,
+#                         advance_payment=advance_payment_per_appointment,
+#                         payment_method=payment_method,
+#                         balance_amount=balance_amount,
+#                         total_payment=net_amount,
+#                         discount_percentage=discount_percentage,
+#                     )
+#                     bookings.append(booking)
+
+#                 # Bulk create all bookings
+#                 Booking.objects.bulk_create(bookings)
+
+#             messages.success(
+#                 request, f"{number_of_appointments} booking(s) created successfully."
+#             )
+#             return redirect("add_booking")
+#         except Exception as e:
+#             messages.error(request, f"An error occurred: {str(e)}")
+
+#     artists = Artist.objects.all()
+#     context = {
+#         "artists": artists,
+#     }
+#     return render(request, "pages/add_booking.html", context)
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.db import transaction
+from django.utils import timezone
+from datetime import datetime
+from decimal import Decimal
+from zoneinfo import ZoneInfo
+from django.contrib.auth.decorators import login_required
+from .models import Customer, Artist, Package, Booking
+
+
 @login_required(login_url="/accounts/login/")
 def add_booking(request):
     if request.method == "POST":
@@ -52,50 +148,69 @@ def add_booking(request):
                     request.POST.get("discount_percentage", 0)
                 )
 
-                # Calculate advance payment per appointment
-                advance_payment_per_appointment = (
-                    total_advance_payment / number_of_appointments
+                # Calculate total package price
+                total_package_price = sum(
+                    Package.objects.get(id=request.POST.get(f"package_{i}")).price
+                    for i in range(1, number_of_appointments + 1)
                 )
 
-                bookings = []
+                # Calculate advance payments for each booking
+                advance_payments = []
                 for i in range(1, number_of_appointments + 1):
+                    package_price = Package.objects.get(
+                        id=request.POST.get(f"package_{i}")
+                    ).price
+                    percentage = package_price / total_package_price
+                    advance_payment = total_advance_payment * percentage
+                    advance_payments.append(advance_payment)
+
+                bookings = []
+                local_tz = ZoneInfo("Asia/Karachi")
+
+                for i, advance_payment in enumerate(advance_payments, start=1):
                     appointment_datetime_str = request.POST.get(
                         f"appointment_datetime_{i}"
                     )
-
-                    # Parse the datetime string
                     naive_datetime = datetime.strptime(
                         appointment_datetime_str, "%Y-%m-%dT%H:%M"
                     )
-
-                    # Create a timezone-aware datetime in the local timezone
-                    local_tz = ZoneInfo("Asia/Karachi")
                     appointment_datetime = naive_datetime.replace(tzinfo=local_tz)
 
                     artist_id = request.POST.get(f"artist_{i}")
                     package_id = request.POST.get(f"package_{i}")
+                    ready_time_str = request.POST.get(f"ready_time_{i}")
+                    ready_time = datetime.strptime(ready_time_str, "%H:%M").time()
 
                     artist = Artist.objects.get(id=artist_id)
                     package = Package.objects.get(id=package_id)
 
                     # Calculate amounts
                     package_price = package.price
+
+                    # Add 3000 if appointment time is before 1:30 PM
+                    if (
+                        appointment_datetime.time()
+                        < timezone.datetime.strptime("13:30", "%H:%M").time()
+                    ):
+                        package_price += Decimal("3000")
+
                     discount_amount = package_price * (
                         discount_percentage / Decimal("100")
                     )
                     net_amount = package_price - discount_amount
-                    balance_amount = net_amount - advance_payment_per_appointment
+                    balance_amount = net_amount - advance_payment
 
                     booking = Booking(
                         customer=customer,
                         appointment_datetime=appointment_datetime,
                         artist=artist,
                         package=package,
-                        advance_payment=advance_payment_per_appointment,
+                        advance_payment=advance_payment,
                         payment_method=payment_method,
                         balance_amount=balance_amount,
                         total_payment=net_amount,
                         discount_percentage=discount_percentage,
+                        ready_time=ready_time,
                     )
                     bookings.append(booking)
 
@@ -155,6 +270,7 @@ def get_artist_packages(request):
     packages = Package.objects.filter(artist_id=artist_id).values("id", "name", "price")
     return JsonResponse(list(packages), safe=False)
 
+
 @login_required
 def bookings_view(request):
     artists = Artist.objects.all()
@@ -162,6 +278,7 @@ def bookings_view(request):
         "artists": artists,
     }
     return render(request, "pages/bookings.html", context)
+
 
 @login_required
 def appointments_view(request):
@@ -214,6 +331,7 @@ def get_appointments(request):
                         booking.appointment_datetime + timedelta(hours=1)
                     ).strftime("%I:%M %p"),
                     "date": booking.appointment_datetime.strftime("%B %d, %Y"),
+                    "ready_time": booking.ready_time,
                 },
             }
         )
@@ -262,6 +380,7 @@ def get_bookings(request):
                     "start_time": start_time.strftime("%I:%M %p"),
                     "end_time": end_time.strftime("%I:%M %p"),
                     "date": start_time.strftime("%B %d, %Y"),
+                    "ready_time": booking.ready_time,
                 },
             }
         )
@@ -278,6 +397,7 @@ def get_booking_details(request, booking_id):
         "appointment_datetime": timezone.localtime(
             booking.appointment_datetime
         ).isoformat(),
+        "ready_time": booking.ready_time,
         "number_of_appointments": booking.number_of_appointments,
         "artist_id": booking.artist.id,
         "artist_name": booking.artist.name,
@@ -510,6 +630,7 @@ def dashboard(request):
 
     return render(request, "pages/dashboard/analytics.html", context)
 
+
 # For sqlite
 # from django.db.models.functions import TruncYear, TruncMonth, TruncDay
 
@@ -559,14 +680,17 @@ from collections import defaultdict
 from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import PermissionDenied
 
+
 def is_not_manager(user):
-    return not user.groups.filter(name='manager').exists()
+    return not user.groups.filter(name="manager").exists()
+
 
 def permission_denied(request):
-    return render(request, '403.html')
+    return render(request, "403.html")
+
 
 @login_required
-@user_passes_test(is_not_manager, login_url='permission_denied')
+@user_passes_test(is_not_manager, login_url="permission_denied")
 def finances(request):
     view_type = request.GET.get("view", "monthly")
 
@@ -576,12 +700,12 @@ def finances(request):
     )
 
     # Group and calculate in Python
-    grouped_bookings = defaultdict(lambda: {"total_amount": 0, "net_amount": 0, "advance_amount": 0})
+    grouped_bookings = defaultdict(
+        lambda: {"total_amount": 0, "net_amount": 0, "advance_amount": 0}
+    )
 
     for booking in all_bookings:
-        date = timezone.localtime(
-            booking["appointment_datetime"]
-        )
+        date = timezone.localtime(booking["appointment_datetime"])
         if view_type == "yearly":
             key = date.strftime("%Y")
         elif view_type == "daily":
@@ -595,7 +719,6 @@ def finances(request):
             booking["total_payment"] - booking["advance_payment"]
         )
         grouped_bookings[key]["advance_amount"] += booking["advance_payment"]
-
 
     # Convert to list and sort
     bookings = [
@@ -611,7 +734,6 @@ def finances(request):
             "total_amount": values["total_amount"],
             "net_amount": values["net_amount"],
             "advance_amount": values["advance_amount"],
-
         }
         for key, values in grouped_bookings.items()
     ]

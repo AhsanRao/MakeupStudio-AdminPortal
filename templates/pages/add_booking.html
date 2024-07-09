@@ -1,258 +1,213 @@
-{% extends 'layouts/base.html' %} {% load static %} {% block title %} Add
-Booking {% endblock title %} {% block extrastyle %}
-<!-- notification css -->
-<link rel="stylesheet" href="{% static 'assets/css/plugins/notifier.css' %}" />
-{% endblock extrastyle %} {% block content %}
-<!-- [ Main Content ] start -->
-<div class="pc-container">
-  <div class="pc-content">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="page-header">
-          <div class="page-block">
-            <div class="row align-items-center">
-              <div class="col-md-12">
-                <div class="page-header-title">
-                  <h5 class="m-b-10">Add Booking</h5>
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}
+    Add
+    Booking
+{% endblock title %}
+{% block extrastyle %}
+    <!-- notification css -->
+    <link rel="stylesheet"
+          href="{% static 'assets/css/plugins/notifier.css' %}" />
+{% endblock extrastyle %}
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header">
+                        <div class="page-block">
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="page-header-title">
+                                        <h5 class="m-b-10">Add Booking</h5>
+                                    </div>
+                                    <ul class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="/">Home</a>
+                                        </li>
+                                        <!-- <li class="breadcrumb-item"><a href="javascript: void(0)">Bookings</a></li> -->
+                                        <li class="breadcrumb-item" aria-current="page">Add Booking</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ Main Content ] start -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <form id="bookingForm" method="post">
+                                {% csrf_token %}
+                                <!-- Customer Information Card -->
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <h5>Customer Information</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Phone Number</label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="phoneNumber"
+                                                           name="phone_number"
+                                                           required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Customer Name</label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="customerName"
+                                                           name="customer_name"
+                                                           readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Appointment Details Card -->
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <h5>Appointment Details</h5>
+                                    </div>
+                                    <div class="card-body d-flex justify-content-center">
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-0">
+                                                <label class="form-label">Number of Appointments</label>
+                                                <input type="number"
+                                                       class="form-control"
+                                                       id="numberOfAppointments"
+                                                       name="number_of_appointments"
+                                                       required
+                                                       min="1"
+                                                       value="1" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="appointmentFields">
+                                        <!-- Appointment fields will be dynamically added here -->
+                                    </div>
+                                </div>
+                                <!-- Payment Information Card -->
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <h5>Payment Information</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Advance Payment</label>
+                                                    <input type="number"
+                                                           class="form-control"
+                                                           id="advancePayment"
+                                                           name="advance_payment"
+                                                           required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Payment Method</label>
+                                                    <select class="form-select" name="payment_method" required>
+                                                        <option value="bank">Bank Transfer</option>
+                                                        <option value="cash">Cash</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Discount Percentage</label>
+                                                    <input type="number"
+                                                           class="form-control"
+                                                           id="discountPercentage"
+                                                           name="discount_percentage"
+                                                           step="1"
+                                                           min="0"
+                                                           max="100"
+                                                           value="0" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Total Package Price</label>
+                                                    <input type="number" class="form-control" id="totalPackagePrice" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Net Amount</label>
+                                                    <input type="number"
+                                                           class="form-control"
+                                                           id="netAmount"
+                                                           name="net_amount"
+                                                           readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">Total Amount</label>
+                                                    <input type="number"
+                                                           class="form-control"
+                                                           id="totalAmount"
+                                                           name="total_amount"
+                                                           readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add Booking</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- [ Main Content ] end -->
                 </div>
-                <ul class="breadcrumb">
-                  <li class="breadcrumb-item">
-                    <a href="/">Home</a>
-                  </li>
-                  <!-- <li class="breadcrumb-item"><a href="javascript: void(0)">Bookings</a></li> -->
-                  <li class="breadcrumb-item" aria-current="page">
-                    Add Booking
-                  </li>
-                </ul>
-              </div>
             </div>
-          </div>
-        </div>
-        <!-- [ Main Content ] start -->
-        <div class="row">
-          <div class="col-sm-12">
-            <form id="bookingForm" method="post">
-              {% csrf_token %}
-              <!-- Customer Information Card -->
-              <div class="card mb-3">
-                <div class="card-header">
-                  <h5>Customer Information</h5>
+            <!-- [ Main Content ] end -->
+            <!-- New Customer Modal -->
+            <div class="modal fade"
+                 id="newCustomerModal"
+                 tabindex="-1"
+                 aria-labelledby="newCustomerModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="newCustomerModalLabel">Add New Customer</h5>
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="newCustomerForm">
+                                <div class="mb-3">
+                                    <label for="newCustomerName" class="form-label">Customer Name</label>
+                                    <input type="text" class="form-control" id="newCustomerName" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newCustomerPhone" class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control" id="newCustomerPhone" required />
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="saveNewCustomer">Save Customer</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label class="form-label">Phone Number</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="phoneNumber"
-                          name="phone_number"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label class="form-label">Customer Name</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="customerName"
-                          name="customer_name"
-                          readonly
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Appointment Details Card -->
-              <div class="card mb-3">
-                <div class="card-header">
-                  <h5>Appointment Details</h5>
-                </div>
-                <div class="card-body d-flex justify-content-center">
-                  <div class="col-md-4">
-                    <div class="form-group mb-0">
-                      <label class="form-label">Number of Appointments</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="numberOfAppointments"
-                        name="number_of_appointments"
-                        required
-                        min="1"
-                        value="1"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div id="appointmentFields">
-                  <!-- Appointment fields will be dynamically added here -->
-                </div>
-              </div>
-              <!-- Payment Information Card -->
-              <div class="card mb-3">
-                <div class="card-header">
-                  <h5>Payment Information</h5>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="form-label">Advance Payment</label>
-                        <input
-                          type="number"
-                          class="form-control"
-                          id="advancePayment"
-                          name="advance_payment"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="form-label">Payment Method</label>
-                        <select
-                          class="form-select"
-                          name="payment_method"
-                          required
-                        >
-                          <option value="bank">Bank Transfer</option>
-                          <option value="cash">Cash</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="form-label">Discount Percentage</label>
-                        <input
-                          type="number"
-                          class="form-control"
-                          id="discountPercentage"
-                          name="discount_percentage"
-                          step="1"
-                          min="0"
-                          max="100"
-                          value="0"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row mt-3">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="form-label">Total Package Price</label>
-                        <input
-                          type="number"
-                          class="form-control"
-                          id="totalPackagePrice"
-                          readonly
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="form-label">Net Amount</label>
-                        <input
-                          type="number"
-                          class="form-control"
-                          id="netAmount"
-                          name="net_amount"
-                          readonly
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="form-label">Total Amount</label>
-                        <input
-                          type="number"
-                          class="form-control"
-                          id="totalAmount"
-                          name="total_amount"
-                          readonly
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Add Booking</button>
-            </form>
-          </div>
-        </div>
-        <!-- [ Main Content ] end -->
-      </div>
-    </div>
-    <!-- [ Main Content ] end -->
-    <!-- New Customer Modal -->
-    <div
-      class="modal fade"
-      id="newCustomerModal"
-      tabindex="-1"
-      aria-labelledby="newCustomerModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="newCustomerModalLabel">
-              Add New Customer
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form id="newCustomerForm">
-              <div class="mb-3">
-                <label for="newCustomerName" class="form-label"
-                  >Customer Name</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="newCustomerName"
-                  required
-                />
-              </div>
-              <div class="mb-3">
-                <label for="newCustomerPhone" class="form-label"
-                  >Phone Number</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="newCustomerPhone"
-                  required
-                />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary" id="saveNewCustomer">
-              Save Customer
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endblock content %} {% block extra_js %}
-    <!-- notification Js -->
-    <script src="{% static 'assets/js/plugins/notifier.js' %}"></script>
-    <script>
+            </div>
+        {% endblock content %}
+        {% block extra_js %}
+            <!-- notification Js -->
+            <script src="{% static 'assets/js/plugins/notifier.js' %}"></script>
+            <script>
         notifier.show('','','',1000);
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -349,13 +304,19 @@ Booking {% endblock title %} {% block extrastyle %}
                           </div>
                           <div class="card-body py-4">
                               <div class="row">
-                                  <div class="col-md-4">
+                                  <div class="col-md-3">
                                       <div class="form-group">
                                           <label class="form-label">Appointment Date & Time</label>
                                           <input type="datetime-local" class="form-control" name="appointment_datetime_${i}" value="${fieldData.datetime || ''}" required>
                                       </div>
                                   </div>
-                                  <div class="col-md-4">
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="form-label">Ready Time</label>
+                                        <input type="time" class="form-control" name="ready_time_${i}" required>
+                                    </div>
+                                </div>
+                                  <div class="col-md-3">
                                       <div class="form-group">
                                           <label class="form-label">Artist</label>
                                           <select class="form-select artist-select" name="artist_${i}" required>
@@ -366,7 +327,7 @@ Booking {% endblock title %} {% block extrastyle %}
                                           </select>
                                       </div>
                                   </div>
-                                  <div class="col-md-4">
+                                  <div class="col-md-3">
                                       <div class="form-group">
                                           <label class="form-label">Package</label>
                                           <select class="form-select package-select" name="package_${i}" required>
@@ -484,7 +445,7 @@ Booking {% endblock title %} {% block extrastyle %}
           // Initial creation of appointment fields
           createAppointmentFields(1);
       });
-    </script>
-    {% endblock extra_js %}
-  </div>
+            </script>
+        {% endblock extra_js %}
+    </div>
 </div>

@@ -1,654 +1,816 @@
-{% extends 'layouts/base.html' %}
-{% load static %}
-{% block title %}
-    Appointments Calendar
-{% endblock title %}
-{% block extrastyle %}
-    <!-- calender css -->
-    <link rel="stylesheet" href="{% static 'assets/css/plugins/main.css' %}" />
-    <style>
-    .event-count-badge {
-      display: none;
-      background-color: #3788d8;
-      color: #ffffff;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      line-height: 18px;
-      text-align: center;
-      font-size: 11px;
-      position: absolute;
-      left: 5px;
-      top: 5px;
-    }
-    
-    </style>
-{% endblock extrastyle %}
-{% block content %}
-    <!-- [ Main Content ] start -->
-    <div class="pc-container">
-        <div class="pc-content">
-            <!-- [ breadcrumb ] start -->
-            <div class="page-header">
-                <div class="page-block">
-                    <div class="row align-items-center">
-                        <div class="col-md-12">
-                            <div class="page-header-title">
-                                <h5 class="m-b-10">Appointment Calendar</h5>
-                            </div>
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="/">Home</a>
-                                </li>
-                                <li class="breadcrumb-item" aria-current="page">Appointment Calendar</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+{% extends 'layouts/base.html' %} {% load static %} {% block title %}
+Appointments Calendar {% endblock title %} {% block extrastyle %}
+<!-- calender css -->
+<link rel="stylesheet" href="{% static 'assets/css/plugins/main.css' %}" />
+<style>
+  .event-count-badge {
+    display: none;
+    background-color: #3788d8;
+    color: #ffffff;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 11px;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+  }
+</style>
+{% endblock extrastyle %} {% block content %}
+<!-- [ Main Content ] start -->
+<div class="pc-container">
+  <div class="pc-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">Appointment Calendar</h5>
             </div>
-            <!-- [ breadcrumb ] end -->
-            <!-- Toggle button for switching between Bookings and Appointments -->
-            <div class="row mb-3">
-                <div class="col-md-12 d-flex justify-content-center">
-                    <ul class="nav nav-tabs nav-tabs-sm" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link {% if request.path == '/bookings/' %}active{% endif %}"
-                               href="{% url 'bookings' %}">Bookings</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link {% if request.path == '/appointments/' %}active{% endif %}"
-                               href="{% url 'appointments' %}">Appointments</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- [ Main Content ] start -->
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div id="calendar" class="calendar"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- [ Main Content ] end -->
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/">Home</a>
+              </li>
+              <li class="breadcrumb-item" aria-current="page">
+                Appointment Calendar
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+    <!-- Toggle button for switching between Bookings and Appointments -->
+    <div class="row mb-3">
+      <div class="col-md-12 d-flex justify-content-center">
+        <ul class="nav nav-tabs nav-tabs-sm" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link {% if request.path == '/bookings/' %}active{% endif %}"
+              href="{% url 'bookings' %}"
+              >Bookings</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link {% if request.path == '/appointments/' %}active{% endif %}"
+              href="{% url 'appointments' %}"
+              >Appointments</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- [ Main Content ] start -->
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="card">
+          <div class="card-body">
+            <div id="calendar" class="calendar"></div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- [ Main Content ] end -->
-    <!-- Event Modal -->
-    <div class="modal fade"
-         id="calendar-modal"
-         tabindex="-1"
-         aria-labelledby="calendarModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="calendar-modal-title f-w-600 text-truncate"
-                        id="calendarModalLabel">Appointment Details</h3>
-                    <a href="#"
-                       class="avtar avtar-s btn-link-danger"
-                       data-bs-dismiss="modal">
-                        <i class="ti ti-x f-20"></i>
-                    </a>
-                </div>
-                <div class="modal-body">
-                    <div class="d-flex">
-                        <div class="flex-shrink-0">
-                            <div class="avtar avtar-xs bg-light-secondary">
-                                <i class="ti ti-user f-20"></i>
-                            </div>
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h4 class="mb-1">
-                                <b>Customer</b>
-                            </h4>
-                            <p class="pc-event-customer text-muted"></p>
-                        </div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="flex-shrink-0">
-                            <div class="avtar avtar-xs bg-light-warning">
-                                <i class="ti ti-palette f-20"></i>
-                            </div>
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h4 class="mb-1">
-                                <b>Artist</b>
-                            </h4>
-                            <p class="pc-event-artist text-muted"></p>
-                        </div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="flex-shrink-0">
-                            <div class="avtar avtar-xs bg-light-danger">
-                                <i class="ti ti-package f-20"></i>
-                            </div>
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h4 class="mb-1">
-                                <b>Package</b>
-                            </h4>
-                            <p class="pc-event-package text-muted"></p>
-                        </div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="flex-shrink-0">
-                            <div class="avtar avtar-xs bg-light-primary">
-                                <i class="ti ti-calendar-event f-20"></i>
-                            </div>
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h4 class="mb-1">
-                                <b>Date and Time</b>
-                            </h4>
-                            <p class="pc-event-date text-muted"></p>
-                        </div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="flex-shrink-0">
-                            <div class="avtar avtar-xs bg-light-success">
-                                <i class="ti ti-cash f-20"></i>
-                            </div>
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h4 class="mb-1">
-                                <b>Total Payment</b>
-                            </h4>
-                            <p class="pc-event-payment text-muted"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <ul class="list-inline me-auto mb-0">
-                        <li class="list-inline-item align-bottom">
-                            <a href="#"
-                               id="pc_event_remove"
-                               class="avtar avtar-s btn-link-danger"
-                               data-bs-toggle="tooltip"
-                               title="Delete">
-                                <i class="ti ti-trash f-18"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item align-bottom">
-                            <a href="#"
-                               id="pc_event_edit"
-                               class="avtar avtar-s btn-link-success"
-                               data-bs-toggle="tooltip"
-                               title="Edit">
-                                <i class="ti ti-edit-circle f-18"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
+  </div>
+</div>
+<!-- [ Main Content ] end -->
+<!-- Event Modal -->
+<div
+  class="modal fade"
+  id="calendar-modal"
+  tabindex="-1"
+  aria-labelledby="calendarModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3
+          class="calendar-modal-title f-w-600 text-truncate"
+          id="calendarModalLabel"
+        >
+          Appointment Details
+        </h3>
+        <a
+          href="#"
+          class="avtar avtar-s btn-link-danger"
+          data-bs-dismiss="modal"
+        >
+          <i class="ti ti-x f-20"></i>
+        </a>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex">
+          <div class="flex-shrink-0">
+            <div class="avtar avtar-xs bg-light-secondary">
+              <i class="ti ti-user f-20"></i>
             </div>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h4 class="mb-1">
+              <b>Customer</b>
+            </h4>
+            <p class="pc-event-customer text-muted"></p>
+          </div>
         </div>
-    </div>
-    <!-- Add/Edit Event Offcanvas -->
-    <div class="offcanvas offcanvas-end"
-         tabindex="-1"
-         id="calendar-add_edit_event">
-        <div class="offcanvas-header">
-            <h3 class="offcanvas-title f-w-600">Edit Booking</h3>
-            <a href="#"
-               class="avtar avtar-s btn-link-danger"
-               data-bs-dismiss="offcanvas">
-                <i class="ti ti-x f-20"></i>
+        <div class="d-flex">
+          <div class="flex-shrink-0">
+            <div class="avtar avtar-xs bg-light-warning">
+              <i class="ti ti-palette f-20"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h4 class="mb-1">
+              <b>Artist</b>
+            </h4>
+            <p class="pc-event-artist text-muted"></p>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="flex-shrink-0">
+            <div class="avtar avtar-xs bg-light-danger">
+              <i class="ti ti-package f-20"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h4 class="mb-1">
+              <b>Package</b>
+            </h4>
+            <p class="pc-event-package text-muted"></p>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="flex-shrink-0">
+            <div class="avtar avtar-xs bg-light-primary">
+              <i class="ti ti-calendar-event f-20"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h4 class="mb-1">
+              <b>Date and Time</b>
+            </h4>
+            <p class="pc-event-date text-muted"></p>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="flex-shrink-0">
+            <div class="avtar avtar-xs bg-light-info">
+              <i class="ti ti-calendar-time f-20"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h4 class="mb-1">
+              <b>Ready Time</b>
+            </h4>
+            <p class="pc-ready-time text-muted"></p>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="flex-shrink-0">
+            <div class="avtar avtar-xs bg-light-success">
+              <i class="ti ti-cash f-20"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h4 class="mb-1">
+              <b>Total Payment</b>
+            </h4>
+            <p class="pc-event-payment text-muted"></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <ul class="list-inline me-auto mb-0">
+          <li class="list-inline-item align-bottom">
+            <a
+              href="#"
+              id="pc_event_remove"
+              class="avtar avtar-s btn-link-danger"
+              data-bs-toggle="tooltip"
+              title="Delete"
+            >
+              <i class="ti ti-trash f-18"></i>
             </a>
-        </div>
-        <div class="offcanvas-body">
-            <form id="bookingForm">
-                {% csrf_token %}
-                <input type="hidden" id="bookingId" name="id">
-                <div class="form-group">
-                    <label for="phoneNumber" class="form-label">Phone Number</label>
-                    <input type="text"
-                           class="form-control"
-                           id="phoneNumber"
-                           name="phone_number"
-                           required>
-                </div>
-                <div class="form-group">
-                    <label for="customerName" class="form-label">Customer Name</label>
-                    <input type="text"
-                           class="form-control"
-                           id="customerName"
-                           name="customer_name"
-                           required
-                           readonly>
-                </div>
-                <div class="form-group">
-                    <label for="bookingDate" class="form-label">Date and Time</label>
-                    <input type="datetime-local"
-                           class="form-control"
-                           id="bookingDate"
-                           name="appointment_datetime"
-                           required>
-                </div>
-                <div class="form-group">
-                    <label for="numberOfAppointments" class="form-label">Number of Appointments</label>
-                    <input type="number"
-                           class="form-control"
-                           id="numberOfAppointments"
-                           name="number_of_appointments"
-                           required>
-                </div>
-                <div class="form-group">
-                    <label for="artistSelect" class="form-label">Artist</label>
-                    <select class="form-select" id="artistSelect" name="artist" required>
-                        <option value="">Choose an artist</option>
-                        {% for artist in artists %}<option value="{{ artist.id }}">{{ artist.name }}</option>{% endfor %}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="packageSelect" class="form-label">Package</label>
-                    <select class="form-select" id="packageSelect" name="package" required>
-                        <option value="">Select Package</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="advancePayment" class="form-label">Advance Payment</label>
-                    <input type="number"
-                           class="form-control"
-                           id="advancePayment"
-                           name="advance_payment"
-                           step="1"
-                           required>
-                </div>
-                <div class="form-group">
-                    <label for="paymentMethod" class="form-label">Payment Method</label>
-                    <select class="form-select" id="paymentMethod" name="payment_method" required>
-                        <option value="bank">Bank Transfer</option>
-                        <option value="cash">Cash</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="discountPercentage" class="form-label">Discount Percentage</label>
-                    <input type="number"
-                           class="form-control"
-                           id="discountPercentage"
-                           name="discount_percentage"
-                           step="1"
-                           min="0"
-                           max="100"
-                           value="0">
-                </div>
-                <div class="form-group">
-                    <label for="totalAmount" class="form-label">Total Amount</label>
-                    <input type="number"
-                           class="form-control"
-                           id="totalAmount"
-                           name="total_payment"
-                           readonly>
-                </div>
-                <div class="form-group">
-                    <label for="balanceAmount" class="form-label">Balance Amount</label>
-                    <input type="number"
-                           class="form-control"
-                           id="balanceAmount"
-                           name="balance_amount"
-                           readonly>
-                </div>
-                <div class="row justify-content-between mt-4">
-                    <div class="col-auto">
-                        <button type="button"
-                                class="btn btn-light-danger"
-                                data-bs-dismiss="offcanvas">
-                            <i class="ti ti-x me-1"></i> Cancel
-                        </button>
-                    </div>
-                    <div class="col-auto">
-                        <button type="submit" id="saveBooking" class="btn btn-primary">
-                            <i class="ti ti-device-floppy me-1"></i> Save
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
+          </li>
+          <li class="list-inline-item align-bottom">
+            <a
+              href="#"
+              id="pc_event_edit"
+              class="avtar avtar-s btn-link-success"
+              data-bs-toggle="tooltip"
+              title="Edit"
+            >
+              <i class="ti ti-edit-circle f-18"></i>
+            </a>
+          </li>
+        </ul>
+        <button
+          type="button"
+          class="btn btn-light-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+      </div>
     </div>
-{% endblock content %}
-{% block extra_js %}
-    <!-- [Page Specific JS] start -->
-    <!-- calender js -->
-    <script src="{% static 'assets/js/plugins/main.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/index.global.min.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        headerToolbar: {
-          left: 'prevYear,prev,next,nextYear today',
-          center: 'title',
-          right: 'multiMonthYear dayGridMonth timeGridWeek listMonth'
-        },
-      
-        views: {
-          multiMonthYear: {
-            buttonText: 'Year'
-          },
-          dayGridMonth: {
-            buttonText: 'Month'
-          },
-          timeGridWeek: {
-            buttonText: 'Week'
-          },
-          listMonth: {
-            buttonText: 'List'
-          }
-        },
-        
-        themeSystem: 'bootstrap',
-        height: 'auto',
-        navLinks: true,
-        editable: true,
-        selectable: true,
-        selectMirror: true,
-        dayMaxEvents: true,
-        handleWindowResize: true,
-        dragScroll: true,
+  </div>
+</div>
+<!-- Add/Edit Event Offcanvas -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="calendar-add_edit_event">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title f-w-600">Edit Booking</h3>
+    <a
+      href="#"
+      class="avtar avtar-s btn-link-danger"
+      data-bs-dismiss="offcanvas"
+    >
+      <i class="ti ti-x f-20"></i>
+    </a>
+  </div>
+  <div class="offcanvas-body">
+    <form id="bookingForm">
+      {% csrf_token %}
+      <input type="hidden" id="bookingId" name="id" />
+      <div class="form-group">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="phoneNumber"
+          name="phone_number"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="customerName" class="form-label">Customer Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="customerName"
+          name="customer_name"
+          required
+          readonly
+        />
+      </div>
+      <div class="form-group">
+        <label for="bookingDate" class="form-label">Date and Time</label>
+        <input
+          type="datetime-local"
+          class="form-control"
+          id="bookingDate"
+          name="appointment_datetime"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="readyTime" class="form-label">Ready Time</label>
+        <input
+          type="time"
+          class="form-control"
+          id="readyTime"
+          name="ready_time"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="numberOfAppointments" class="form-label"
+          >Number of Appointments</label
+        >
+        <input
+          type="number"
+          class="form-control"
+          id="numberOfAppointments"
+          name="number_of_appointments"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="artistSelect" class="form-label">Artist</label>
+        <select class="form-select" id="artistSelect" name="artist" required>
+          <option value="">Choose an artist</option>
+          {% for artist in artists %}
+          <option value="{{ artist.id }}">{{ artist.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="packageSelect" class="form-label">Package</label>
+        <select class="form-select" id="packageSelect" name="package" required>
+          <option value="">Select Package</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="advancePayment" class="form-label">Advance Payment</label>
+        <input
+          type="number"
+          class="form-control"
+          id="advancePayment"
+          name="advance_payment"
+          step="1"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="paymentMethod" class="form-label">Payment Method</label>
+        <select
+          class="form-select"
+          id="paymentMethod"
+          name="payment_method"
+          required
+        >
+          <option value="bank">Bank Transfer</option>
+          <option value="cash">Cash</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="discountPercentage" class="form-label"
+          >Discount Percentage</label
+        >
+        <input
+          type="number"
+          class="form-control"
+          id="discountPercentage"
+          name="discount_percentage"
+          step="1"
+          min="0"
+          max="100"
+          value="0"
+        />
+      </div>
+      <div class="form-group">
+        <label for="totalAmount" class="form-label">Total Amount</label>
+        <input
+          type="number"
+          class="form-control"
+          id="totalAmount"
+          name="total_payment"
+          readonly
+        />
+      </div>
+      <div class="form-group">
+        <label for="balanceAmount" class="form-label">Balance Amount</label>
+        <input
+          type="number"
+          class="form-control"
+          id="balanceAmount"
+          name="balance_amount"
+          readonly
+        />
+      </div>
+      <div class="row justify-content-between mt-4">
+        <div class="col-auto">
+          <button
+            type="button"
+            class="btn btn-light-danger"
+            data-bs-dismiss="offcanvas"
+          >
+            <i class="ti ti-x me-1"></i> Cancel
+          </button>
+        </div>
+        <div class="col-auto">
+          <button type="submit" id="saveBooking" class="btn btn-primary">
+            <i class="ti ti-device-floppy me-1"></i> Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %} {% block extra_js %}
+<!-- [Page Specific JS] start -->
+<!-- calender js -->
+<script src="{% static 'assets/js/plugins/main.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/index.global.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var calendarEl = document.getElementById("calendar");
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: "dayGridMonth",
+      headerToolbar: {
+        left: "prevYear,prev,next,nextYear today",
+        center: "title",
+        right: "multiMonthYear dayGridMonth timeGridWeek listMonth",
+      },
 
+      views: {
+        multiMonthYear: {
+          buttonText: "Year",
+        },
+        dayGridMonth: {
+          buttonText: "Month",
+        },
+        timeGridWeek: {
+          buttonText: "Week",
+        },
+        listMonth: {
+          buttonText: "List",
+        },
+      },
 
-        //select: function(info) {
-          //showAddEditOffcanvas(info);
-        //},
-        eventClick: function(info) {
-          showEventModal(info.event);
-        },
-        events: '{% url "get_appointments" %}',
-        eventDrop: function(info) {
-          updateBooking(info.event);
-        },
-        eventResize: function(info) {
-          updateBooking(info.event);
-        },
+      themeSystem: "bootstrap",
+      height: "auto",
+      navLinks: true,
+      editable: true,
+      selectable: true,
+      selectMirror: true,
+      dayMaxEvents: true,
+      handleWindowResize: true,
+      dragScroll: true,
 
-        datesSet: function(info) {
-          if (['dayGridMonth', 'multiMonthYear'].includes(info.view.type)) {
-            setTimeout(function() {
-              updateEventCounts(info.start, info.end);
-            }, 0);
-          }
-        },
-        
-        dayCellDidMount: function(info) {
-          if (['dayGridMonth', 'multiMonthYear'].includes(info.view.type)) {
-            var cell = info.el;
-            var badge = document.createElement('span');
-            badge.className = 'event-count-badge';
-            cell.querySelector('.fc-daygrid-day-top').prepend(badge);
-          }
+      //select: function(info) {
+      //showAddEditOffcanvas(info);
+      //},
+      eventClick: function (info) {
+        showEventModal(info.event);
+      },
+      events: '{% url "get_appointments" %}',
+      eventDrop: function (info) {
+        updateBooking(info.event);
+      },
+      eventResize: function (info) {
+        updateBooking(info.event);
+      },
+
+      datesSet: function (info) {
+        if (["dayGridMonth", "multiMonthYear"].includes(info.view.type)) {
+          setTimeout(function () {
+            updateEventCounts(info.start, info.end);
+          }, 0);
         }
-        
-      });
-      calendar.render();
+      },
 
-      setTimeout(function() {
-        var view = calendar.view;
-        updateEventCounts(view.activeStart, view.activeEnd);
-      }, 1000);
-      
-      function updateEventCounts(start, end) {
-        var events = calendar.getEvents();
-        var eventCounts = {};
-      
-        events.forEach(function(event) {
-          var date = event.start.toLocaleDateString('en-CA'); // Use local timezone
-          if (!eventCounts[date]) {
-            eventCounts[date] = 0;
-          }
-          eventCounts[date]++;
-        });
-      
-        calendar.el.querySelectorAll('.fc-daygrid-day').forEach(function(dateCell) {
-          var date = dateCell.getAttribute('data-date');
-          var badge = dateCell.querySelector('.event-count-badge');
+      dayCellDidMount: function (info) {
+        if (["dayGridMonth", "multiMonthYear"].includes(info.view.type)) {
+          var cell = info.el;
+          var badge = document.createElement("span");
+          badge.className = "event-count-badge";
+          cell.querySelector(".fc-daygrid-day-top").prepend(badge);
+        }
+      },
+    });
+    calendar.render();
+
+    setTimeout(function () {
+      var view = calendar.view;
+      updateEventCounts(view.activeStart, view.activeEnd);
+    }, 1000);
+
+    function updateEventCounts(start, end) {
+      var events = calendar.getEvents();
+      var eventCounts = {};
+
+      events.forEach(function (event) {
+        var date = event.start.toLocaleDateString("en-CA"); // Use local timezone
+        if (!eventCounts[date]) {
+          eventCounts[date] = 0;
+        }
+        eventCounts[date]++;
+      });
+
+      calendar.el
+        .querySelectorAll(".fc-daygrid-day")
+        .forEach(function (dateCell) {
+          var date = dateCell.getAttribute("data-date");
+          var badge = dateCell.querySelector(".event-count-badge");
           if (badge) {
             if (eventCounts[date]) {
               badge.textContent = eventCounts[date];
-              badge.style.display = 'inline-block';
+              badge.style.display = "inline-block";
             } else {
-              badge.style.display = 'none';
+              badge.style.display = "none";
             }
           }
         });
-      }
-      
-      // Add this to handle view changes
-      calendar.on('viewDidMount', function() {
-        setTimeout(function() {
-          var view = calendar.view;
-          updateEventCounts(view.activeStart, view.activeEnd);
-        }, 100);
-      });
+    }
 
-      function showEventModal(event) {
-        document.querySelector('.calendar-modal-title').textContent = 'Booking Details';
-        document.querySelector('.pc-event-customer').textContent = event.extendedProps.customer;
-        document.querySelector('.pc-event-artist').textContent = event.extendedProps.artist;
-        document.querySelector('.pc-event-package').textContent = event.extendedProps.package;
-        document.querySelector('.pc-event-date').textContent = event.start.toLocaleString();
-        document.querySelector('.pc-event-payment').textContent = event.extendedProps.total_payment;
+    // Add this to handle view changes
+    calendar.on("viewDidMount", function () {
+      setTimeout(function () {
+        var view = calendar.view;
+        updateEventCounts(view.activeStart, view.activeEnd);
+      }, 100);
+    });
 
-        // Set the booking ID for edit and delete operations
-        document.getElementById('pc_event_edit').setAttribute('data-booking-id', event.id);
-        document.getElementById('pc_event_remove').setAttribute('data-booking-id', event.id);
+    function showEventModal(event) {
+      document.querySelector(".calendar-modal-title").textContent =
+        "Booking Details";
+      document.querySelector(".pc-event-customer").textContent =
+        event.extendedProps.customer;
+      document.querySelector(".pc-event-artist").textContent =
+        event.extendedProps.artist;
+      document.querySelector(".pc-event-package").textContent =
+        event.extendedProps.package;
+      document.querySelector(".pc-event-date").textContent =
+        event.start.toLocaleString();
+      document.querySelector(".pc-ready-time").textContent =
+        event.extendedProps.ready_time;
+      document.querySelector(".pc-event-payment").textContent =
+        event.extendedProps.total_payment;
 
-        var calendarModal = new bootstrap.Modal(document.getElementById('calendar-modal'));
-        calendarModal.show();
-      }
+      // Set the booking ID for edit and delete operations
+      document
+        .getElementById("pc_event_edit")
+        .setAttribute("data-booking-id", event.id);
+      document
+        .getElementById("pc_event_remove")
+        .setAttribute("data-booking-id", event.id);
 
-      function showAddEditOffcanvas(info, event = null) {
-        const form = document.getElementById('bookingForm');
-        form.reset();
-        const customerNameField = document.getElementById('customerName');
-      
-        if (event) {
-          // Editing existing booking
-          fetch(`/get-booking-details/${event.id}/`)
-            .then(response => response.json())
-            .then(data => {
-              document.getElementById('bookingId').value = data.id;
-              document.getElementById('phoneNumber').value = data.phone_number;
-              customerNameField.value = data.customer_name;
-              customerNameField.readOnly = true;  // Make customer name uneditable for existing bookings
-              document.getElementById('bookingDate').value = data.appointment_datetime.slice(0, 16).toLocaleString();
-              document.getElementById('numberOfAppointments').value = data.number_of_appointments;
-              document.getElementById('artistSelect').value = data.artist_id;
-              document.getElementById('advancePayment').value = data.advance_payment;
-              document.getElementById('paymentMethod').value = data.payment_method;
-              document.getElementById('discountPercentage').value = data.discount_percentage;
-              document.getElementById('totalAmount').value = data.total_payment;
-              document.getElementById('balanceAmount').value = data.balance_amount;
-      
-              // Update package dropdown
-              updatePackageDropdown(data.artist_id, data.package_id);
-            })
-            .catch(error => {
-              console.error('Error fetching booking details:', error);
-              Swal.fire('Error', 'Failed to load booking details', 'error');
-            });
-        }
-      
-        var offcanvas = new bootstrap.Offcanvas(document.getElementById('calendar-add_edit_event'));
-        offcanvas.show();
-      }
+      var calendarModal = new bootstrap.Modal(
+        document.getElementById("calendar-modal")
+      );
+      calendarModal.show();
+    }
 
-      function updateBooking(event) {
-        fetch('{% url "update_booking_time" %}', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-CSRFToken': '{{ csrf_token }}'
-          },
-          body: new URLSearchParams({
-            'id': event.id,
-            'start': event.start.toISOString()
+    function showAddEditOffcanvas(info, event = null) {
+      const form = document.getElementById("bookingForm");
+      form.reset();
+      const customerNameField = document.getElementById("customerName");
+
+      if (event) {
+        // Editing existing booking
+        fetch(`/get-booking-details/${event.id}/`)
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("bookingId").value = data.id;
+            document.getElementById("phoneNumber").value = data.phone_number;
+            customerNameField.value = data.customer_name;
+            customerNameField.readOnly = true; // Make customer name uneditable for existing bookings
+            document.getElementById("bookingDate").value =
+              data.appointment_datetime.slice(0, 16).toLocaleString();
+            document.getElementById("readyTime").value = data.ready_time
+              .slice(0, 16)
+              .toLocaleString();
+            document.getElementById("numberOfAppointments").value =
+              data.number_of_appointments;
+            document.getElementById("artistSelect").value = data.artist_id;
+            document.getElementById("advancePayment").value =
+              data.advance_payment;
+            document.getElementById("paymentMethod").value =
+              data.payment_method;
+            document.getElementById("discountPercentage").value =
+              data.discount_percentage;
+            document.getElementById("totalAmount").value = data.total_payment;
+            document.getElementById("balanceAmount").value =
+              data.balance_amount;
+
+            // Update package dropdown
+            updatePackageDropdown(data.artist_id, data.package_id);
           })
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.status === 'success') {
-            Swal.fire('Success', 'Booking updated successfully', 'success');
+          .catch((error) => {
+            console.error("Error fetching booking details:", error);
+            Swal.fire("Error", "Failed to load booking details", "error");
+          });
+      }
+
+      var offcanvas = new bootstrap.Offcanvas(
+        document.getElementById("calendar-add_edit_event")
+      );
+      offcanvas.show();
+    }
+
+    function updateBooking(event) {
+      fetch('{% url "update_booking_time" %}', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "X-CSRFToken": "{{ csrf_token }}",
+        },
+        body: new URLSearchParams({
+          id: event.id,
+          start: event.start.toISOString(),
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === "success") {
+            Swal.fire("Success", "Booking updated successfully", "success");
           } else {
-            Swal.fire('Error', data.message, 'error');
+            Swal.fire("Error", data.message, "error");
           }
         })
-        .catch(error => {
-          console.error('Error:', error);
-          Swal.fire('Error', 'An error occurred while updating the booking', 'error');
+        .catch((error) => {
+          console.error("Error:", error);
+          Swal.fire(
+            "Error",
+            "An error occurred while updating the booking",
+            "error"
+          );
         });
-      }
+    }
 
-      document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    document
+      .getElementById("bookingForm")
+      .addEventListener("submit", function (e) {
         e.preventDefault();
         const formData = new FormData(this);
         const url = '{% url "update_booking" %}';
 
         fetch(url, {
-          method: 'POST',
+          method: "POST",
           body: formData,
           headers: {
-            'X-CSRFToken': '{{ csrf_token }}'
-          }
+            "X-CSRFToken": "{{ csrf_token }}",
+          },
         })
-        .then(response => response.json())
-        .then(data => {
-          if (data.status === 'success') {
-            var offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('calendar-add_edit_event'));
-            offcanvas.hide();
-            Swal.fire('Success', 'Booking saved successfully', 'success');
-            calendar.refetchEvents();
-          } else {
-            Swal.fire('Error', data.message, 'error');
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          Swal.fire('Error', 'An error occurred while saving the booking', 'error');
-        });
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "success") {
+              var offcanvas = bootstrap.Offcanvas.getInstance(
+                document.getElementById("calendar-add_edit_event")
+              );
+              offcanvas.hide();
+              Swal.fire("Success", "Booking saved successfully", "success");
+              calendar.refetchEvents();
+            } else {
+              Swal.fire("Error", data.message, "error");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            Swal.fire(
+              "Error",
+              "An error occurred while saving the booking",
+              "error"
+            );
+          });
       });
 
-      document.getElementById('pc_event_remove').addEventListener('click', function() {
-        var bookingId = this.getAttribute('data-booking-id');
+    document
+      .getElementById("pc_event_remove")
+      .addEventListener("click", function () {
+        var bookingId = this.getAttribute("data-booking-id");
         Swal.fire({
-          title: 'Are you sure?',
+          title: "Are you sure?",
           text: "You won't be able to revert this!",
-          icon: 'warning',
+          icon: "warning",
           showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
         }).then((result) => {
           if (result.isConfirmed) {
             fetch('{% url "delete_booking" %}', {
-              method: 'POST',
+              method: "POST",
               headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-CSRFToken': '{{ csrf_token }}'
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRFToken": "{{ csrf_token }}",
               },
               body: new URLSearchParams({
-                'id': bookingId
+                id: bookingId,
+              }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.status === "success") {
+                  Swal.fire(
+                    "Deleted!",
+                    "The booking has been deleted.",
+                    "success"
+                  );
+                  calendar.refetchEvents();
+                  var calendarModal = bootstrap.Modal.getInstance(
+                    document.getElementById("calendar-modal")
+                  );
+                  calendarModal.hide();
+                } else {
+                  Swal.fire(
+                    "Error",
+                    "An error occurred while deleting the booking",
+                    "error"
+                  );
+                }
               })
-            })
-            .then(response => response.json())
-            .then(data => {
-              if (data.status === 'success') {
-                Swal.fire('Deleted!', 'The booking has been deleted.', 'success');
-                calendar.refetchEvents();
-                var calendarModal = bootstrap.Modal.getInstance(document.getElementById('calendar-modal'));
-                calendarModal.hide();
-              } else {
-                Swal.fire('Error', 'An error occurred while deleting the booking', 'error');
-              }
-            })
-            .catch(error => {
-              console.error('Error:', error);
-              Swal.fire('Error', 'An error occurred while deleting the booking', 'error');
-            });
+              .catch((error) => {
+                console.error("Error:", error);
+                Swal.fire(
+                  "Error",
+                  "An error occurred while deleting the booking",
+                  "error"
+                );
+              });
           }
         });
       });
 
-      document.getElementById('pc_event_edit').addEventListener('click', function() {
-        var bookingId = this.getAttribute('data-booking-id');
+    document
+      .getElementById("pc_event_edit")
+      .addEventListener("click", function () {
+        var bookingId = this.getAttribute("data-booking-id");
         var event = calendar.getEventById(bookingId);
         if (event) {
-          var calendarModal = bootstrap.Modal.getInstance(document.getElementById('calendar-modal'));
+          var calendarModal = bootstrap.Modal.getInstance(
+            document.getElementById("calendar-modal")
+          );
           calendarModal.hide();
           showAddEditOffcanvas(null, event);
         }
       });
 
-      // Add event listeners for phone number lookup and artist package selection
-      document.getElementById('phoneNumber').addEventListener('blur', lookupCustomer);
-      document.getElementById('artistSelect').addEventListener('change', updatePackageDropdown);
+    // Add event listeners for phone number lookup and artist package selection
+    document
+      .getElementById("phoneNumber")
+      .addEventListener("blur", lookupCustomer);
+    document
+      .getElementById("artistSelect")
+      .addEventListener("change", updatePackageDropdown);
 
-      function lookupCustomer() {
-        const phoneNumber = document.getElementById('phoneNumber').value;
-        const customerNameField = document.getElementById('customerName');
-        
-        fetch(`/get-customer-info/?phone_number=${phoneNumber}`)
-          .then(response => response.json())
-          .then(data => {
-            if (data.name) {
-              customerNameField.value = data.name;
-              customerNameField.readOnly = true;
-            } else {
-              customerNameField.value = '';
-              customerNameField.readOnly = false;
-            }
-          });
+    function lookupCustomer() {
+      const phoneNumber = document.getElementById("phoneNumber").value;
+      const customerNameField = document.getElementById("customerName");
+
+      fetch(`/get-customer-info/?phone_number=${phoneNumber}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.name) {
+            customerNameField.value = data.name;
+            customerNameField.readOnly = true;
+          } else {
+            customerNameField.value = "";
+            customerNameField.readOnly = false;
+          }
+        });
+    }
+
+    function updatePackageDropdown(artistId, selectedPackageId = null) {
+      const packageSelect = document.getElementById("packageSelect");
+      if (!artistId) {
+        packageSelect.innerHTML = '<option value="">Select Package</option>';
+        return;
       }
-
-      function updatePackageDropdown(artistId, selectedPackageId = null) {
-        const packageSelect = document.getElementById('packageSelect');
-        if (!artistId) {
+      // If artistId is an event object, get the value from the select element
+      if (typeof artistId === "object" && artistId.target) {
+        artistId = artistId.target.value;
+      }
+      fetch(`/get-artist-packages/?artist_id=${artistId}`)
+        .then((response) => response.json())
+        .then((packages) => {
           packageSelect.innerHTML = '<option value="">Select Package</option>';
-          return;
-        }
-        fetch(`/get-artist-packages/?artist_id=${artistId}`)
-          .then(response => response.json())
-          .then(packages => {
-            packageSelect.innerHTML = '<option value="">Select Package</option>';
-            packages.forEach(pkg => {
-              const option = new Option(`${pkg.name} - ${pkg.price}`, pkg.id, false, pkg.id == selectedPackageId);
-              packageSelect.add(option);
-            });
-          })
-          .then(() => calculateAmounts());  // Recalculate amounts after updating packages
-      }
-      function calculateAmounts() {
-        const packageSelect = document.getElementById('packageSelect');
-        const advancePayment = parseFloat(document.getElementById('advancePayment').value) || 0;
-        const discountPercentage = parseFloat(document.getElementById('discountPercentage').value) || 0;
-      
-        if (packageSelect.value) {
-          const packagePrice = parseFloat(packageSelect.options[packageSelect.selectedIndex].text.split('$')[1]);
-          const discountAmount = packagePrice * (discountPercentage / 100);
-          const totalAmount = packagePrice - discountAmount;
-          const balanceAmount = totalAmount - advancePayment;
-      
-          document.getElementById('totalAmount').value = totalAmount.toFixed(2);
-          document.getElementById('balanceAmount').value = balanceAmount.toFixed(2);
-        } else {
-          document.getElementById('totalAmount').value = '';
-          document.getElementById('balanceAmount').value = '';
-        }
-      }
-      const artistSelect = document.getElementById('artistSelect');
-  artistSelect.addEventListener('change', function() {
-    updatePackageDropdown(this.value);
-  });
+          packages.forEach((pkg) => {
+            const option = new Option(
+              `${pkg.name} - ${pkg.price}`,
+              pkg.id,
+              false,
+              pkg.id == selectedPackageId
+            );
+            packageSelect.add(option);
+          });
 
-      // Add event listeners for calculating total and balance amounts
-      document.getElementById('packageSelect').addEventListener('change', calculateAmounts);
-      document.getElementById('advancePayment').addEventListener('input', calculateAmounts);
-      document.getElementById('discountPercentage').addEventListener('input', calculateAmounts);
+          if (!selectedPackageId) {
+            calculateAmounts(); // Only calculate if it's a new selection
+          }
+        }); // Recalculate amounts after updating packages
+    }
+    function calculateAmounts() {
+      const packageSelect = document.getElementById("packageSelect");
+      const advancePayment =
+        parseFloat(document.getElementById("advancePayment").value) || 0;
+      const discountPercentage =
+        parseFloat(document.getElementById("discountPercentage").value) || 0;
+      const totalAmountField = document.getElementById("totalAmount");
+      const balanceAmountField = document.getElementById("balanceAmount");
+
+      if (packageSelect.value) {
+        const packagePrice = parseFloat(
+          packageSelect.options[packageSelect.selectedIndex].text
+            .split("-")[1]
+            .trim()
+            .replace("$", "")
+        );
+        const discountAmount = packagePrice * (discountPercentage / 100);
+        const totalAmount = packagePrice - discountAmount;
+        const balanceAmount = totalAmount - advancePayment;
+
+        totalAmountField.value = totalAmount.toFixed(2);
+        balanceAmountField.value = balanceAmount.toFixed(2);
+      } else {
+        totalAmountField.value = "";
+        balanceAmountField.value = "";
+      }
+    }
+
+    // Add event listeners for calculating total and balance amounts
+    document
+      .getElementById("packageSelect")
+      .addEventListener("change", calculateAmounts);
+    document
+      .getElementById("advancePayment")
+      .addEventListener("input", calculateAmounts);
+    document
+      .getElementById("discountPercentage")
+      .addEventListener("input", calculateAmounts);
+
+    // Update the artist select event listener
+    const artistSelect = document.getElementById("artistSelect");
+    artistSelect.addEventListener("change", function (event) {
+      updatePackageDropdown(event.target.value);
+      calculateAmounts(); // Recalculate when artist changes
     });
-    </script>
-    <!-- [Page Specific JS] end -->
+  });
+</script>
+<!-- [Page Specific JS] end -->
 {% endblock extra_js %}
