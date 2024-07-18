@@ -778,18 +778,18 @@ def customer_search(request):
 
             bookings = bookings.order_by("-appointment_datetime")
 
-        if bookings:
-            totals = bookings.aggregate(
-                total_payment_sum=Sum('total_payment'),
-                advance_payment_sum=Sum('advance_payment'),
-                balance_amount_sum=Sum('balance_amount')
-            )
-        else:
-            totals = {
-                'total_payment_sum': 0,
-                'advance_payment_sum': 0,
-                'balance_amount_sum': 0
-            }
+    if bookings:
+        totals = bookings.aggregate(
+            total_payment_sum=Sum('total_payment'),
+            advance_payment_sum=Sum('advance_payment'),
+            balance_amount_sum=Sum('balance_amount')
+        )
+    else:
+        totals = {
+            'total_payment_sum': 0,
+            'advance_payment_sum': 0,
+            'balance_amount_sum': 0
+        }
 
     context = {
         "query": query,
