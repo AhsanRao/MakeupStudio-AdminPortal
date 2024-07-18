@@ -48,7 +48,7 @@ urlpatterns = [
     ######## End Common #########
     ######## login #########
     path("accounts/login/", views.UserLoginView.as_view(), name="login"),
-    # path("accounts/register/", views.register, name="register"),
+    path("accounts/register/", views.register, name="register"),
     path(
         "accounts/password-reset/",
         views.UserPasswordResetView.as_view(),
@@ -93,5 +93,10 @@ urlpatterns = [
     path("finances/", views.finances, name="finances"),
     path("customer-search/", views.customer_search, name="customer_search"),
     path("update-booking-time/", views.update_booking_time, name="update_booking_time"),
-    path("permission-denied/", views.permission_denied, name="permission_denied"),
+
+    path('appointments-list/', views.appointments_list_view, name='appointments-list'),
+    path('get-appointments-list/', views.get_appointments_list, name='get_appointments-list'),
+    
+    path('permission-denied/', views.permission_denied, name='permission_denied'),
+
 ]

@@ -479,15 +479,16 @@
 
               // Check if any appointment is before 1:30 PM
               const appointmentTimes = document.querySelectorAll('input[type="datetime-local"]');
-              appointmentTimes.forEach(timeInput => {
+              for (let timeInput of appointmentTimes) {
                   if (timeInput.value) {
                       const appointmentTime = new Date(timeInput.value);
                       if (appointmentTime.getHours() < 13 || (appointmentTime.getHours() === 13 && appointmentTime.getMinutes() < 30)) {
-                          morningCharges += 3000;
+                          morningCharges = 3000;
                           hasMorningAppointment = true;
+                          break;  // Exit the loop after finding the first morning appointment
                       }
                   }
-              });
+              }
               const netAmount = totalPackagePrice - discountPrice + morningCharges;
               const totalAmount = netAmount - advancePayment;
 

@@ -741,16 +741,16 @@ Calendar {% endblock title %} {% block extrastyle %}
         );
         
         // Check if booking time is before 1:30 PM
-        let morningCharge = 0;
-        if (bookingDateField.value) {
-          const bookingTime = new Date(bookingDateField.value);
-          if (bookingTime.getHours() < 13 || (bookingTime.getHours() === 13 && bookingTime.getMinutes() < 30)) {
-            morningCharge = 3000;
-          }
-        }
+        //let morningCharge = 0;
+        //if (bookingDateField.value) {
+        //  const bookingTime = new Date(bookingDateField.value);
+        //  if (bookingTime.getHours() < 13 || (bookingTime.getHours() === 13 && bookingTime.getMinutes() < 30)) {
+        //    morningCharge = 3000;
+        //  }
+        //}
     
         // Calculate total amount
-        let totalAmount = packagePrice + morningCharge - discountPrice;
+        let totalAmount = packagePrice - discountPrice;
         
         // Ensure total amount doesn't go below zero
         totalAmount = Math.max(totalAmount, 0);

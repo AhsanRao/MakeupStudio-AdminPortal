@@ -170,7 +170,8 @@ def add_booking(request):
 
                 bookings = []
                 local_tz = ZoneInfo("Asia/Karachi")
-
+                
+                morning_charge_applied = False
                 for i, (advance_payment, discount) in enumerate(zip(advance_payments, discounts), start=1):
                     appointment_datetime_str = request.POST.get(
                         f"appointment_datetime_{i}"
@@ -191,12 +192,13 @@ def add_booking(request):
                     # Calculate amounts
                     package_price = package.price
 
-                    # Add 3000 if appointment time is before 1:30 PM
+                    # Add 3000 if appointment time is before 1:30 PM and it hasn't been applied yet
                     if (
-                        appointment_datetime.time()
-                        < timezone.datetime.strptime("13:30", "%H:%M").time()
+                        not morning_charge_applied
+                        and appointment_datetime.time() < timezone.datetime.strptime("13:30", "%H:%M").time()
                     ):
                         package_price += Decimal("3000")
+                        morning_charge_applied = True
 
                     # discount_amount = package_price * (
                     #     discount_percentage / Decimal("100")
@@ -776,14 +778,66 @@ def customer_search(request):
 
             bookings = bookings.order_by("-appointment_datetime")
 
+        if bookings:
+            totals = bookings.aggregate(
+                total_payment_sum=Sum('total_payment'),
+                advance_payment_sum=Sum('advance_payment'),
+                balance_amount_sum=Sum('balance_amount')
+            )
+        else:
+            totals = {
+                'total_payment_sum': 0,
+                'advance_payment_sum': 0,
+                'balance_amount_sum': 0
+            }
+
     context = {
         "query": query,
         "date_filter": date_filter,
         "customer": customer,
         "bookings": bookings,
+        'totals': totals,
     }
     return render(request, "pages/customer_search.html", context)
 
+@login_required(login_url="/accounts/login/")
+def appointments_list_view(request):
+    return render(request, "pages/list_appointments.html")
+
+@login_required(login_url="/accounts/login/")
+def get_appointments_list(request):
+    date_filter = request.GET.get("date")
+    
+    try:
+        filter_date = timezone.datetime.strptime(date_filter, "%Y-%m-%d").date()
+        
+        # Create start and end of day in the server's time zone
+        start_of_day = timezone.make_aware(timezone.datetime.combine(filter_date, timezone.datetime.min.time()))
+        end_of_day = timezone.make_aware(timezone.datetime.combine(filter_date, timezone.datetime.max.time()))
+        
+        bookings = Booking.objects.filter(
+            appointment_datetime__range=(start_of_day, end_of_day)
+        ).order_by('appointment_datetime')
+        
+    except ValueError:
+        return JsonResponse({"error": "Invalid date format"}, status=400)
+
+    appointments = []
+    for booking in bookings:
+        appointments.append({
+            "customer_name": booking.customer.name,
+            "customer_phone": booking.customer.phone_number,
+            "appointment_date": booking.appointment_datetime.strftime("%Y-%m-%d"),
+            "appointment_time": booking.appointment_datetime.strftime("%H:%M"),
+            "ready_time": booking.ready_time.strftime("%H:%M") if booking.ready_time else "",
+            "package": booking.package.name,
+            "artist": booking.artist.name,
+            "total_payment": float(booking.total_payment),
+            "advance_payment": float(booking.advance_payment),
+            "balance": float(booking.balance_amount),
+        })
+
+    return JsonResponse(appointments, safe=False)
 
 # Authentication
 
