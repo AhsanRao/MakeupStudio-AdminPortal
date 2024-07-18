@@ -8,6 +8,17 @@
     <!-- notification css -->
     <link rel="stylesheet"
           href="{% static 'assets/css/plugins/notifier.css' %}" />
+
+          <style>
+            .morning-charges {
+                background-color: #fffacd; /* Light yellow background */
+                border: 1px solid #ffd700; /* Gold border */
+            }
+            .morning-charges::after {
+                content: " ★"; /* Star symbol */
+                color: #ffd700; /* Gold color */
+            }
+        </style>
 {% endblock extrastyle %}
 {% block content %}
     <!-- [ Main Content ] start -->
@@ -118,18 +129,17 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label class="form-label">Discount Percentage</label>
-                                                    <input type="number"
-                                                           class="form-control"
-                                                           id="discountPercentage"
-                                                           name="discount_percentage"
-                                                           step="1"
-                                                           min="0"
-                                                           max="100"
-                                                           value="0" />
-                                                </div>
-                                            </div>
+                                              <div class="form-group">
+                                                  <label class="form-label">Discount Price</label>
+                                                  <input type="number"
+                                                         class="form-control"
+                                                         id="discountPrice"
+                                                         name="discount_price"
+                                                         step="1"
+                                                         min="0"
+                                                         value="0" />
+                                              </div>
+                                          </div>
                                         </div>
                                         <div class="row mt-3">
                                             <div class="col-md-4">
@@ -150,8 +160,9 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label class="form-label">Total Amount</label>
-                                                    <input type="number"
+                                                  <label class="form-label" for="totalAmount">
+                                                    Total Amount <span id="morningChargesLabel"></span>
+                                                </label>                                                    <input type="number"
                                                            class="form-control"
                                                            id="totalAmount"
                                                            name="total_amount"
@@ -284,141 +295,177 @@
           });
 
           // Dynamic appointment fields
-          const appointmentFieldsContainer = document.getElementById('appointmentFields');
+    const appointmentFieldsContainer = document.getElementById('appointmentFields');
 
-          function createAppointmentFields(number) {
-              const currentFields = appointmentFieldsContainer.children;
-              const currentFieldsData = Array.from(currentFields).map(field => ({
-                  datetime: field.querySelector('input[type="datetime-local"]').value,
-                  artist: field.querySelector('.artist-select').value,
-                  package: field.querySelector('.package-select').value
-              }));
+    function createAppointmentFields(number) {
+        appointmentFieldsContainer.innerHTML = '';
+        for (let i = 1; i <= number; i++) {
+            const appointmentCard = document.createElement('div');
+            appointmentCard.className = 'card mb-2';
+            appointmentCard.innerHTML = `
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0">Appointment ${i}</h6>
+                    <div>
+                        <button type="button" class="btn btn-sm btn-outline-secondary duplicate-appointment">+</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary remove-appointment">-</button>
+                    </div>
+                </div>
+                <div class="card-body py-4">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">Appointment Date & Time</label>
+                                <input type="datetime-local" class="form-control" name="appointment_datetime_${i}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">Ready Time</label>
+                                <input type="time" class="form-control" name="ready_time_${i}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">Artist</label>
+                                <select class="form-select artist-select" name="artist_${i}" required>
+                                    <option value="">Choose an artist</option>
+                                    {% for artist in artists %}
+                                        <option value="{{ artist.id }}">{{ artist.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">Package</label>
+                                <select class="form-select package-select" name="package_${i}" required>
+                                    <option value="">Select Package</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            appointmentFieldsContainer.appendChild(appointmentCard);
+        }
+        attachEventListeners();
+    }
 
-              appointmentFieldsContainer.innerHTML = '';
-              for (let i = 1; i <= number; i++) {
-                  const fieldData = currentFieldsData[i - 1] || {};
-                  appointmentFieldsContainer.innerHTML += `
-                      <div class="card mb-2">
-                          <div class="card-header">
-                              <h6 class="mb-0">Appointment ${i}</h6>
-                          </div>
-                          <div class="card-body py-4">
-                              <div class="row">
-                                  <div class="col-md-3">
-                                      <div class="form-group">
-                                          <label class="form-label">Appointment Date & Time</label>
-                                          <input type="datetime-local" class="form-control" name="appointment_datetime_${i}" value="${fieldData.datetime || ''}" required>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-label">Ready Time</label>
-                                        <input type="time" class="form-control" name="ready_time_${i}" required>
-                                    </div>
-                                </div>
-                                  <div class="col-md-3">
-                                      <div class="form-group">
-                                          <label class="form-label">Artist</label>
-                                          <select class="form-select artist-select" name="artist_${i}" required>
-                                              <option value="">Choose an artist</option>
-                                              {% for artist in artists %}
-                                                  <option value="{{ artist.id }}" ${fieldData.artist == '{{ artist.id }}' ? 'selected' : ''}>{{ artist.name }}</option>
-                                              {% endfor %}
-                                          </select>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-3">
-                                      <div class="form-group">
-                                          <label class="form-label">Package</label>
-                                          <select class="form-select package-select" name="package_${i}" required>
-                                              <option value="">Select Package</option>
-                                          </select>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  `;
-              }
-              attachEventListeners();
-              restorePackageSelections(currentFieldsData);
+    function attachEventListeners() {
+        const artistSelects = document.querySelectorAll('.artist-select');
+        artistSelects.forEach(select => {
+            select.addEventListener('change', function() {
+                const packageSelect = this.closest('.card-body').querySelector('.package-select');
+                fetchArtistPackages(this.value, packageSelect);
+            });
+        });
+
+        const packageSelects = document.querySelectorAll('.package-select');
+        packageSelects.forEach(select => {
+            select.addEventListener('change', updateTotalAmounts);
+        });
+
+        const duplicateButtons = document.querySelectorAll('.duplicate-appointment');
+        duplicateButtons.forEach(button => {
+            button.addEventListener('click', duplicateAppointment);
+        });
+
+        const removeButtons = document.querySelectorAll('.remove-appointment');
+        removeButtons.forEach(button => {
+            button.addEventListener('click', removeAppointment);
+        });
+    }
+
+          function duplicateAppointment(event) {
+            const appointmentCard = event.target.closest('.card');
+            const newAppointmentCard = appointmentCard.cloneNode(true);
+            
+            // Update the appointment number in the header
+            const headerTitle = newAppointmentCard.querySelector('.card-header h6');
+            const newNumber = appointmentFieldsContainer.children.length + 1;
+            headerTitle.textContent = `Appointment ${newNumber}`;
+            
+            // Copy input values from the original appointment
+            const originalInputs = appointmentCard.querySelectorAll('input, select');
+            const newInputs = newAppointmentCard.querySelectorAll('input, select');
+            
+            originalInputs.forEach((input, index) => {
+                if (input.type === 'datetime-local' || input.type === 'time') {
+                    newInputs[index].value = input.value;
+                } else if (input.tagName === 'SELECT') {
+                    if (input.classList.contains('artist-select')) {
+                        newInputs[index].value = input.value;
+                        // Fetch packages for the selected artist
+                        const packageSelect = newAppointmentCard.querySelector('.package-select');
+                        fetchArtistPackages(input.value, packageSelect, originalInputs[index + 1].value);
+                    } else if (input.classList.contains('package-select')) {
+                        // We'll handle this in fetchArtistPackages
+                    }
+                }
+            });
+            
+            // Update input names
+            newAppointmentCard.querySelectorAll('[name]').forEach(el => {
+                el.name = el.name.replace(/\d+/, newNumber);
+            });
+            
+            appointmentFieldsContainer.appendChild(newAppointmentCard);
+            attachEventListeners();
+            updateAppointmentCount();
+        }
+
+        function removeAppointment(event) {
+          if (appointmentFieldsContainer.children.length > 1) {
+              const appointmentCard = event.target.closest('.card');
+              appointmentCard.remove();
+              renumberAppointments();
+              updateAppointmentCount();
+          } else {
+              queueNotification('Error', 'Cannot remove the last appointment.', 'danger');
           }
-
-          function restorePackageSelections(fieldsData) {
-              const artistSelects = document.querySelectorAll('.artist-select');
-              artistSelects.forEach((select, index) => {
-                  if (fieldsData[index] && fieldsData[index].artist) {
-                      fetchArtistPackages(fieldsData[index].artist, select.closest('.card-body').querySelector('.package-select'), fieldsData[index].package);
-                  }
+      }
+  
+      function renumberAppointments() {
+          const appointments = appointmentFieldsContainer.children;
+          Array.from(appointments).forEach((card, index) => {
+              const headerTitle = card.querySelector('.card-header h6');
+              headerTitle.textContent = `Appointment ${index + 1}`;
+              
+              card.querySelectorAll('[name]').forEach(el => {
+                  el.name = el.name.replace(/\d+/, index + 1);
               });
-          }
-
-          // Add plus and minus buttons for appointment number
-          const appointmentNumberContainer = document.createElement('div');
-          appointmentNumberContainer.className = 'input-group';
-          appointmentNumberContainer.innerHTML = `
-              <button type="button" class="btn btn-outline-secondary" id="decrementAppointments">-</button>
-              <input type="number" class="form-control" id="numberOfAppointments" name="number_of_appointments" required min="1" value="1">
-              <button type="button" class="btn btn-outline-secondary" id="incrementAppointments">+</button>
-          `;
-          document.getElementById('numberOfAppointments').parentNode.replaceChild(appointmentNumberContainer, document.getElementById('numberOfAppointments'));
-
-          const newNumberOfAppointmentsInput = document.getElementById('numberOfAppointments');
-          const decrementButton = document.getElementById('decrementAppointments');
-          const incrementButton = document.getElementById('incrementAppointments');
-
-          decrementButton.addEventListener('click', function() {
-              if (newNumberOfAppointmentsInput.value > 1) {
-                  newNumberOfAppointmentsInput.value = parseInt(newNumberOfAppointmentsInput.value) - 1;
-                  createAppointmentFields(newNumberOfAppointmentsInput.value);
-              }
           });
-
-          incrementButton.addEventListener('click', function() {
-              newNumberOfAppointmentsInput.value = parseInt(newNumberOfAppointmentsInput.value) + 1;
-              createAppointmentFields(newNumberOfAppointmentsInput.value);
-          });
-
-          newNumberOfAppointmentsInput.addEventListener('change', function() {
-              if (this.value < 1) this.value = 1;
-              createAppointmentFields(this.value);
-          });
-
-          function attachEventListeners() {
-              const artistSelects = document.querySelectorAll('.artist-select');
-              artistSelects.forEach(select => {
-                  select.addEventListener('change', function() {
-                      const packageSelect = this.closest('.card-body').querySelector('.package-select');
-                      fetchArtistPackages(this.value, packageSelect);
-                  });
-              });
-
-              const packageSelects = document.querySelectorAll('.package-select');
-              packageSelects.forEach(select => {
-                  select.addEventListener('change', updateTotalAmounts);
-              });
-          }
-
-          function fetchArtistPackages(artistId, packageSelect, selectedPackage) {
-              fetch(`/get-artist-packages/?artist_id=${artistId}`)
-                  .then(response => response.json())
-                  .then(packages => {
-                      packageSelect.innerHTML = '<option value="">Select Package</option>';
-                      packages.forEach(pkg => {
-                          const option = document.createElement('option');
-                          option.value = pkg.id;
-                          option.textContent = `${pkg.name} - ${pkg.price}`;
-                          option.dataset.price = pkg.price;
-                          if (pkg.id == selectedPackage) option.selected = true;
-                          packageSelect.appendChild(option);
-                      });
-                      updateTotalAmounts();
-                  });
-          }
+      }
+      function updateAppointmentCount() {
+        const count = appointmentFieldsContainer.children.length;
+        document.getElementById('numberOfAppointments').value = count;
+        updateTotalAmounts();
+    }
+        
+        function fetchArtistPackages(artistId, packageSelect, selectedPackageId = null) {
+            fetch(`/get-artist-packages/?artist_id=${artistId}`)
+                .then(response => response.json())
+                .then(packages => {
+                    packageSelect.innerHTML = '<option value="">Select Package</option>';
+                    packages.forEach(pkg => {
+                        const option = document.createElement('option');
+                        option.value = pkg.id;
+                        option.textContent = `${pkg.name} - ${pkg.price}`;
+                        option.dataset.price = pkg.price;
+                        if (pkg.id == selectedPackageId) {
+                            option.selected = true;
+                        }
+                        packageSelect.appendChild(option);
+                    });
+                    updateTotalAmounts();
+                });
+        }
 
           function updateTotalAmounts() {
               const packageSelects = document.querySelectorAll('.package-select');
               let totalPackagePrice = 0;
+              let morningCharges = 0;
+              let hasMorningAppointment = false;
 
               packageSelects.forEach(select => {
                   const selectedOption = select.options[select.selectedIndex];
@@ -428,22 +475,87 @@
               });
 
               const advancePayment = parseFloat(document.getElementById('advancePayment').value) || 0;
-              const discountPercentage = parseFloat(document.getElementById('discountPercentage').value) || 0;
+              const discountPrice = parseFloat(document.getElementById('discountPrice').value) || 0;
 
-              const discountAmount = totalPackagePrice * (discountPercentage / 100);
-              const netAmount = totalPackagePrice - discountAmount;
+              // Check if any appointment is before 1:30 PM
+              const appointmentTimes = document.querySelectorAll('input[type="datetime-local"]');
+              appointmentTimes.forEach(timeInput => {
+                  if (timeInput.value) {
+                      const appointmentTime = new Date(timeInput.value);
+                      if (appointmentTime.getHours() < 13 || (appointmentTime.getHours() === 13 && appointmentTime.getMinutes() < 30)) {
+                          morningCharges += 3000;
+                          hasMorningAppointment = true;
+                      }
+                  }
+              });
+              const netAmount = totalPackagePrice - discountPrice + morningCharges;
               const totalAmount = netAmount - advancePayment;
 
               document.getElementById('totalPackagePrice').value = totalPackagePrice.toFixed(2);
               document.getElementById('netAmount').value = netAmount.toFixed(2);
-              document.getElementById('totalAmount').value = totalAmount.toFixed(2);
-          }
+              const totalAmountField = document.getElementById('totalAmount');
+              totalAmountField.value = totalAmount.toFixed(2);
+              
+              const morningChargesLabel = document.getElementById('morningChargesLabel');
 
-          document.getElementById('advancePayment').addEventListener('input', updateTotalAmounts);
-          document.getElementById('discountPercentage').addEventListener('input', updateTotalAmounts);
+              // Add visual indicator for morning charges
+              if (hasMorningAppointment) {
+                  morningChargesLabel.textContent = ' (+ 3000 morning charges)';
+                  totalAmountField.classList.add('morning-charges');
+                  totalAmountField.title = 'Includes 3000 morning charges';
+              } else {
+                morningChargesLabel.textContent = '';
+                  totalAmountField.classList.remove('morning-charges');
+                  totalAmountField.title = '';
+              }          
+            }
 
-          // Initial creation of appointment fields
-          createAppointmentFields(1);
+          // Add plus and minus buttons for appointment number
+    const appointmentNumberContainer = document.createElement('div');
+    appointmentNumberContainer.className = 'input-group';
+    appointmentNumberContainer.innerHTML = `
+        <button type="button" class="btn btn-outline-secondary" id="decrementAppointments">-</button>
+        <input type="number" class="form-control" id="numberOfAppointments" name="number_of_appointments" required min="1" value="1">
+        <button type="button" class="btn btn-outline-secondary" id="incrementAppointments">+</button>
+    `;
+    document.getElementById('numberOfAppointments').parentNode.replaceChild(appointmentNumberContainer, document.getElementById('numberOfAppointments'));
+
+    const newNumberOfAppointmentsInput = document.getElementById('numberOfAppointments');
+    const decrementButton = document.getElementById('decrementAppointments');
+    const incrementButton = document.getElementById('incrementAppointments');
+
+    decrementButton.addEventListener('click', function() {
+        if (appointmentFieldsContainer.children.length > 1) {
+            appointmentFieldsContainer.lastElementChild.remove();
+            updateAppointmentCount();
+        }
+    });
+
+    incrementButton.addEventListener('click', function() {
+        const newAppointmentCard = appointmentFieldsContainer.children[0].cloneNode(true);
+        const newNumber = appointmentFieldsContainer.children.length + 1;
+        newAppointmentCard.querySelector('.card-header h6').textContent = `Appointment ${newNumber}`;
+        newAppointmentCard.querySelectorAll('input').forEach(input => input.value = '');
+        newAppointmentCard.querySelector('.artist-select').value = '';
+        newAppointmentCard.querySelector('.package-select').innerHTML = '<option value="">Select Package</option>';
+        newAppointmentCard.querySelectorAll('[name]').forEach(el => {
+            el.name = el.name.replace(/\d+/, newNumber);
+        });
+        appointmentFieldsContainer.appendChild(newAppointmentCard);
+        attachEventListeners();
+        updateAppointmentCount();
+    });
+
+    newNumberOfAppointmentsInput.addEventListener('change', function() {
+        if (this.value < 1) this.value = 1;
+        createAppointmentFields(this.value);
+    });
+
+    document.getElementById('advancePayment').addEventListener('input', updateTotalAmounts);
+    document.getElementById('discountPrice').addEventListener('input', updateTotalAmounts);
+
+    // Initial creation of appointment fields
+    createAppointmentFields(1);
       });
             </script>
         {% endblock extra_js %}

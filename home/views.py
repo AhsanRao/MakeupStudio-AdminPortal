@@ -144,9 +144,8 @@ def add_booking(request):
                 )
                 total_advance_payment = Decimal(request.POST.get("advance_payment", 0))
                 payment_method = request.POST.get("payment_method")
-                discount_percentage = Decimal(
-                    request.POST.get("discount_percentage", 0)
-                )
+                discount_price = Decimal(request.POST.get("discount_price", 0))
+
 
                 # Calculate total package price
                 total_package_price = sum(
@@ -156,6 +155,8 @@ def add_booking(request):
 
                 # Calculate advance payments for each booking
                 advance_payments = []
+                discounts = []
+
                 for i in range(1, number_of_appointments + 1):
                     package_price = Package.objects.get(
                         id=request.POST.get(f"package_{i}")
@@ -163,11 +164,14 @@ def add_booking(request):
                     percentage = package_price / total_package_price
                     advance_payment = total_advance_payment * percentage
                     advance_payments.append(advance_payment)
+                    discount = discount_price * percentage
+                    discounts.append(discount)
+
 
                 bookings = []
                 local_tz = ZoneInfo("Asia/Karachi")
 
-                for i, advance_payment in enumerate(advance_payments, start=1):
+                for i, (advance_payment, discount) in enumerate(zip(advance_payments, discounts), start=1):
                     appointment_datetime_str = request.POST.get(
                         f"appointment_datetime_{i}"
                     )
@@ -194,10 +198,10 @@ def add_booking(request):
                     ):
                         package_price += Decimal("3000")
 
-                    discount_amount = package_price * (
-                        discount_percentage / Decimal("100")
-                    )
-                    net_amount = package_price - discount_amount
+                    # discount_amount = package_price * (
+                    #     discount_percentage / Decimal("100")
+                    # )
+                    net_amount = package_price - discount
                     balance_amount = net_amount - advance_payment
 
                     booking = Booking(
@@ -209,7 +213,7 @@ def add_booking(request):
                         payment_method=payment_method,
                         balance_amount=balance_amount,
                         total_payment=net_amount,
-                        discount_percentage=discount_percentage,
+                        discount_percentage=discount,
                         ready_time=ready_time,
                     )
                     bookings.append(booking)

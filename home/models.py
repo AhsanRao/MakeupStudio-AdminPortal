@@ -36,15 +36,16 @@ class Booking(models.Model):
 
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     appointment_datetime = models.DateTimeField()
+    ready_time = models.TimeField(null=True, blank=True)
     number_of_appointments = models.PositiveIntegerField(default=1)
     artist = models.ForeignKey(Artist, on_delete=models.SET_NULL, null=True)
     package = models.ForeignKey(Package, on_delete=models.SET_NULL, null=True)
-    advance_payment = models.DecimalField(max_digits=10, decimal_places=2)
+    advance_payment = models.DecimalField(max_digits=10, decimal_places=0)
     payment_method = models.CharField(max_length=4, choices=PAYMENT_METHODS)
     balance_amount = models.DecimalField(max_digits=10, decimal_places=0)
     total_payment = models.DecimalField(max_digits=10, decimal_places=0)
     discount_percentage = models.DecimalField(
-        max_digits=5, decimal_places=2, default=0, null=True
+        max_digits=10, decimal_places=0, default=0, null=True
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

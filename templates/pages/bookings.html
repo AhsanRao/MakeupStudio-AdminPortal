@@ -328,7 +328,7 @@ Calendar {% endblock title %} {% block extrastyle %}
       </div>
       <div class="form-group">
         <label for="discountPercentage" class="form-label"
-          >Discount Percentage</label
+          >Discount Price</label
         >
         <input
           type="number"
@@ -337,7 +337,6 @@ Calendar {% endblock title %} {% block extrastyle %}
           name="discount_percentage"
           step="1"
           min="0"
-          max="100"
           value="0"
         />
       </div>
@@ -727,13 +726,12 @@ Calendar {% endblock title %} {% block extrastyle %}
     }
     function calculateAmounts() {
       const packageSelect = document.getElementById("packageSelect");
-      const advancePayment =
-        parseFloat(document.getElementById("advancePayment").value) || 0;
-      const discountPercentage =
-        parseFloat(document.getElementById("discountPercentage").value) || 0;
+      const advancePayment = parseFloat(document.getElementById("advancePayment").value) || 0;
+      const discountPrice = parseFloat(document.getElementById("discountPercentage").value) || 0;
       const totalAmountField = document.getElementById("totalAmount");
       const balanceAmountField = document.getElementById("balanceAmount");
-
+      const bookingDateField = document.getElementById("bookingDate");
+    
       if (packageSelect.value) {
         const packagePrice = parseFloat(
           packageSelect.options[packageSelect.selectedIndex].text
@@ -741,10 +739,24 @@ Calendar {% endblock title %} {% block extrastyle %}
             .trim()
             .replace("$", "")
         );
-        const discountAmount = packagePrice * (discountPercentage / 100);
-        const totalAmount = packagePrice - discountAmount;
+        
+        // Check if booking time is before 1:30 PM
+        let morningCharge = 0;
+        if (bookingDateField.value) {
+          const bookingTime = new Date(bookingDateField.value);
+          if (bookingTime.getHours() < 13 || (bookingTime.getHours() === 13 && bookingTime.getMinutes() < 30)) {
+            morningCharge = 3000;
+          }
+        }
+    
+        // Calculate total amount
+        let totalAmount = packagePrice + morningCharge - discountPrice;
+        
+        // Ensure total amount doesn't go below zero
+        totalAmount = Math.max(totalAmount, 0);
+        
         const balanceAmount = totalAmount - advancePayment;
-
+    
         totalAmountField.value = totalAmount.toFixed(2);
         balanceAmountField.value = balanceAmount.toFixed(2);
       } else {
@@ -763,6 +775,8 @@ Calendar {% endblock title %} {% block extrastyle %}
     document
       .getElementById("discountPercentage")
       .addEventListener("input", calculateAmounts);
+      document.getElementById("bookingDate").addEventListener("change", calculateAmounts);
+
     // Update the artist select event listener
     const artistSelect = document.getElementById("artistSelect");
     artistSelect.addEventListener("change", function (event) {
