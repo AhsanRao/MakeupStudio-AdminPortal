@@ -195,7 +195,7 @@ def add_booking(request):
                     # Add 3000 if appointment time is before 1:30 PM and it hasn't been applied yet
                     if (
                         not morning_charge_applied
-                        and appointment_datetime.time() < timezone.datetime.strptime("13:30", "%H:%M").time()
+                        and ready_time < datetime.strptime("13:30", "%H:%M").time()
                     ):
                         package_price += Decimal("3000")
                         morning_charge_applied = True
@@ -318,7 +318,8 @@ def get_appointments(request):
     for booking in bookings:
         start_time = booking.appointment_datetime
         end_time = start_time + timedelta(hours=1)
-
+        print(booking.ready_time)
+        print(booking.appointment_datetime)
         events.append(
             {
                 "id": booking.id,
@@ -332,12 +333,10 @@ def get_appointments(request):
                     "artist_id": booking.artist.id,
                     "package": booking.package.name,
                     "total_payment": str(booking.total_payment),
-                    "start_time": booking.appointment_datetime.strftime("%I:%M %p"),
-                    "end_time": (
-                        booking.appointment_datetime + timedelta(hours=1)
-                    ).strftime("%I:%M %p"),
-                    "date": booking.appointment_datetime.strftime("%B %d, %Y"),
-                    "ready_time": booking.ready_time,
+                    "start_time": booking.appointment_datetime.strftime("%H:%M:%S"),
+                    "end_time": (booking.appointment_datetime + timedelta(hours=1)).strftime("%H:%M:%S"),
+                    "date": booking.appointment_datetime.strftime("%Y-%m-%d"),
+                    "ready_time": booking.ready_time.strftime("%H:%M:%S") if booking.ready_time else None,
                 },
             }
         )
@@ -383,10 +382,10 @@ def get_bookings(request):
                     "artist_id": booking.artist.id,
                     "package": booking.package.name,
                     "total_payment": str(booking.total_payment),
-                    "start_time": start_time.strftime("%I:%M %p"),
-                    "end_time": end_time.strftime("%I:%M %p"),
-                    "date": start_time.strftime("%B %d, %Y"),
-                    "ready_time": booking.ready_time,
+                    "start_time": booking.appointment_datetime.strftime("%H:%M:%S"),
+                    "end_time": (booking.appointment_datetime + timedelta(hours=1)).strftime("%H:%M:%S"),
+                    "date": booking.appointment_datetime.strftime("%Y-%m-%d"),
+                    "ready_time": booking.ready_time.strftime("%H:%M:%S") if booking.ready_time else None,
                 },
             }
         )
@@ -804,6 +803,7 @@ def customer_search(request):
 def appointments_list_view(request):
     return render(request, "pages/list_appointments.html")
 
+from django.db.models import F, Case, When, TimeField
 @login_required(login_url="/accounts/login/")
 def get_appointments_list(request):
     date_filter = request.GET.get("date")
@@ -817,7 +817,13 @@ def get_appointments_list(request):
         
         bookings = Booking.objects.filter(
             appointment_datetime__range=(start_of_day, end_of_day)
-        ).order_by('appointment_datetime')
+        ).annotate(
+            ready_time_order=Case(
+                When(ready_time__isnull=False, then=F('ready_time')),
+                default=F('appointment_datetime'),
+                output_field=TimeField()
+            )
+        ).order_by('ready_time_order')
         
     except ValueError:
         return JsonResponse({"error": "Invalid date format"}, status=400)

@@ -504,12 +504,32 @@ Appointments Calendar {% endblock title %} {% block extrastyle %}
         event.extendedProps.artist;
       document.querySelector(".pc-event-package").textContent =
         event.extendedProps.package;
-      document.querySelector(".pc-event-date").textContent =
-        event.start.toLocaleString();
-      document.querySelector(".pc-ready-time").textContent =
-        event.extendedProps.ready_time;
+
+
+      function convertTo12Hour(time, addHours = 0) {
+        if (!time) return '';
+        const [hours, minutes, seconds] = time.split(':');
+        let parsedHours = parseInt(hours, 10) + addHours;
+        parsedHours = parsedHours % 24;  // Ensure we wrap around to 0-23 range
+        const ampm = parsedHours >= 12 ? 'PM' : 'AM';
+        const formattedHours = parsedHours % 12 || 12;
+        return `${formattedHours}:${minutes} ${ampm}`;
+      }
+  
+      const startTime = convertTo12Hour(event.extendedProps.start_time, 5);  // Add 5 hours
+      const endTime = convertTo12Hour(event.extendedProps.end_time);
+      const readyTime = convertTo12Hour(event.extendedProps.ready_time);
+
+      const formattedDate = new Date(event.extendedProps.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      const formattedDateTime = `${formattedDate}, ${startTime}`;
+
+      document.querySelector(".pc-event-date").textContent = formattedDateTime;
+      document.querySelector(".pc-ready-time").textContent = readyTime || 'Not set';
+
       document.querySelector(".pc-event-payment").textContent =
         event.extendedProps.total_payment;
+
+     
 
       // Set the booking ID for edit and delete operations
       document

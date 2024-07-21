@@ -321,7 +321,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="form-label">Ready Time</label>
-                                <input type="time" class="form-control" name="ready_time_${i}" required>
+                                <input type="time" class="form-control ready-time-input" name="ready_time_${i}" required>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -358,6 +358,11 @@
                 const packageSelect = this.closest('.card-body').querySelector('.package-select');
                 fetchArtistPackages(this.value, packageSelect);
             });
+        });
+
+        const readyTimeInputs = document.querySelectorAll('.ready-time-input');
+        readyTimeInputs.forEach(input => {
+            input.addEventListener('change', updateTotalAmounts);
         });
 
         const packageSelects = document.querySelectorAll('.package-select');
@@ -399,7 +404,7 @@
                         const packageSelect = newAppointmentCard.querySelector('.package-select');
                         fetchArtistPackages(input.value, packageSelect, originalInputs[index + 1].value);
                     } else if (input.classList.contains('package-select')) {
-                        // We'll handle this in fetchArtistPackages
+                        // handling this in fetchArtistPackages
                     }
                 }
             });
@@ -478,17 +483,30 @@
               const discountPrice = parseFloat(document.getElementById('discountPrice').value) || 0;
 
               // Check if any appointment is before 1:30 PM
-              const appointmentTimes = document.querySelectorAll('input[type="datetime-local"]');
-              for (let timeInput of appointmentTimes) {
-                  if (timeInput.value) {
-                      const appointmentTime = new Date(timeInput.value);
-                      if (appointmentTime.getHours() < 13 || (appointmentTime.getHours() === 13 && appointmentTime.getMinutes() < 30)) {
-                          morningCharges = 3000;
-                          hasMorningAppointment = true;
-                          break;  // Exit the loop after finding the first morning appointment
-                      }
-                  }
-              }
+              //const appointmentTimes = document.querySelectorAll('input[type="datetime-local"]');
+              //for (let timeInput of appointmentTimes) {
+               //   if (timeInput.value) {
+                //      const appointmentTime = new Date(timeInput.value);
+                //      if (appointmentTime.getHours() < 13 || (appointmentTime.getHours() === 13 && appointmentTime.getMinutes() < 30)) {
+               //           morningCharges = 3000;
+               //           hasMorningAppointment = true;
+               //           break;  // Exit the loop after finding the first morning appointment
+               //       }
+              //    }
+              //}
+
+              // Check if any ready time is before 1:30 PM
+            const readyTimes = document.querySelectorAll('.ready-time-input');
+            for (let timeInput of readyTimes) {
+                if (timeInput.value) {
+                    const [hours, minutes] = timeInput.value.split(':').map(Number);
+                    if (hours < 13 || (hours === 13 && minutes < 30)) {
+                        morningCharges = 3000;
+                        hasMorningAppointment = true;
+                        break;  // Exit the loop after finding the first morning appointment
+                    }
+                }
+            }
               const netAmount = totalPackagePrice - discountPrice + morningCharges;
               const totalAmount = netAmount - advancePayment;
 

@@ -4,67 +4,77 @@
     Appointments List
 {% endblock title %}
 {% block content %}
-    <section class="pc-container">
-        <div class="pc-content">
-            <div class="page-header">
-                <div class="page-block">
-                    <div class="row align-items-center">
-                        <div class="col-md-12">
-                            <div class="page-header-title">
-                                <h5 class="m-b-10">Appointments</h5>
-                            </div>
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="/">Home</a>
-                                </li>
-                                <li class="breadcrumb-item" aria-current="page">Appointments List</li>
-                            </ul>
+<section class="pc-container">
+    <div class="pc-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Appointments</h5>
                         </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item" aria-current="page">Appointments List</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Appointments for <span id="currentDate"></span></h5>
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <div class="btn-group" role="group" aria-label="Date navigation">
-                                    <button type="button" class="btn btn-outline-secondary" id="prevMonth">&lt;&lt;</button>
-                                    <button type="button" class="btn btn-outline-secondary" id="prevDay">&lt;</button>
-                                    <button type="button" class="btn btn-outline-secondary" id="nextDay">&gt;</button>
-                                    <button type="button" class="btn btn-outline-secondary" id="nextMonth">&gt;&gt;</button>
+        </div>
+        
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Appointments for <span id="currentDate"></span></h5>
+                        <div class="d-flex align-items-center mt-4">
+                            <div class="btn-group me-3" role="group" aria-label="Date navigation">
+                                <button type="button" class="btn btn-outline-secondary" id="prevMonth">&lt;&lt;</button>
+                                <button type="button" class="btn btn-outline-secondary" id="prevDay">&lt;</button>
+                                <button type="button" class="btn btn-outline-secondary" id="nextDay">&gt;</button>
+                                <button type="button" class="btn btn-outline-secondary" id="nextMonth">&gt;&gt;</button>
+                            </div>
+                            <input type="date" id="datePicker" class="form-control me-3">
+                            <button type="button" class="btn btn-primary" id="today">Today</button>
+                        </div>
+                        <div class="mt-4">
+                            <div class="card mb-0">
+                                <div class="card-body" id="artistStats">
+                                    <div class="row">
+                                        <!-- Artist stats will be dynamically inserted here -->
+                                    </div>
                                 </div>
-                                <button type="button" class="btn btn-primary" id="today">Today</button>
                             </div>
                         </div>
-                        <div class="card-body table-border-style">
-                            <div class="table-responsive">
-                                <table class="table" id="appointments-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Customer Name</th>
-                                            <th>Phone Number</th>
-                                            <th>Appointment Time</th>
-                                            <th>Ready Time</th>
-                                            <th>Package</th>
-                                            <th>Artist</th>
-                                            <th>Total Payment</th>
-                                            <th>Advance Payment</th>
-                                            <th>Balance</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="appointmentsBody">
-                                        <!-- Appointments will be dynamically inserted here -->
-                                    </tbody>
-                                </table>
-                            </div>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table" id="appointments-table">
+                                <thead>
+                                    <tr>
+                                        <th>Sr. Num</th>
+                                        <th>Customer Name</th>
+                                        <th>Package</th>
+                                        <th>Artist</th>
+                                        <th>Appointment Time</th>
+                                        <th>Ready Time</th>
+                                        <th>Total Payment</th>
+                                        <th>Advance Payment</th>
+                                        <th>Balance</th>
+                                        <th>Phone Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="appointmentsBody">
+                                    <!-- Appointments will be dynamically inserted here -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 {% endblock content %}
 {% block extra_js %}
     <script src="{% static 'assets/js/plugins/simple-datatables.js' %}"></script>
@@ -74,30 +84,39 @@ let datatable;
 
 function updateTable() {
     const dateString = currentDate.toLocaleDateString('en-CA');  // 'en-CA' gives YYYY-MM-DD format
-    console.log('Requesting appointments for date:', dateString);
     fetch(`/get-appointments-list/?date=${dateString}`)
         .then(response => response.json())
-        .then(data => {
-            console.log('Raw appointment data:', data);
-            
-            const tableData = data.map(appointment => {
+        .then(data => {            
+            const tableData = data.map((appointment, index) => {
                 const appointmentTime = new Date(`${appointment.appointment_date}T${appointment.appointment_time}Z`);
-                const readyTime = appointment.ready_time ? new Date(`${appointment.appointment_date}T${appointment.ready_time}Z`) : null;
-                
+                let readyTime = '';
+    
+                if (appointment.ready_time) {
+                    // Parse the ready_time
+                    const [hours, minutes] = appointment.ready_time.split(':');
+                    const date = new Date();
+                    date.setHours(parseInt(hours, 10));
+                    date.setMinutes(parseInt(minutes, 10));
+                    
+                    // Format the ready_time in AM/PM format
+                    readyTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+                }                
                 return [
+                    index + 1,
                     appointment.customer_name,
-                    appointment.customer_phone,
-                    appointmentTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
-                    readyTime ? readyTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) : '',
                     appointment.package,
                     appointment.artist,
+                    appointmentTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
+                    readyTime,
                     appointment.total_payment,
                     appointment.advance_payment,
-                    appointment.balance
+                    appointment.balance,
+                    appointment.customer_phone,
                 ];
             });
 
             updateDateDisplay();
+            updateArtistStats(data);
 
             if (datatable) {
                 datatable.destroy();
@@ -109,14 +128,50 @@ function updateTable() {
 
 function updateDateDisplay() {
     document.getElementById('currentDate').textContent = currentDate.toDateString();
+    document.getElementById('datePicker').value = currentDate.toLocaleDateString('en-CA');
+}
+
+function updateArtistStats(data) {
+    const artistStats = {};
+    let maxCount = 0;
+    let totalCount = 0;
+
+    data.forEach(appointment => {
+        if (artistStats[appointment.artist]) {
+            artistStats[appointment.artist]++;
+        } else {
+            artistStats[appointment.artist] = 1;
+        }
+        maxCount = Math.max(maxCount, artistStats[appointment.artist]);
+        totalCount++;
+    });
+
+    const statsHtml = Object.entries(artistStats)
+        .map(([artist, count], index) => `
+            <div class="col-6 ${index % 2 === 1 ? 'border-start' : ''} ${index < 2 ? 'border-bottom' : ''} p-3">
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="artist-name">${artist}</span>
+                        <span class="text-muted small p-4 pr-0 pt-0 pb-0">${count}</span>
+                    </div>
+                    <div class="progress" style="height: 5px;">
+                        <div class="progress-bar" role="progressbar" style="width: ${(count / maxCount) * 100}%;" 
+                             aria-valuenow="${count}" aria-valuemin="0" aria-valuemax="${maxCount}"></div>
+                    </div>
+                </div>
+            </div>
+        `)
+        .join('');
+
+    document.querySelector('#artistStats .row').innerHTML = statsHtml;
 }
 
 function initDataTable(data) {
     datatable = new simpleDatatables.DataTable('#appointments-table', {
         data: {
             headings: [
-                "Customer Name", "Phone Number", "Appointment Time", "Ready Time",
-                "Package", "Artist", "Total Payment", "Advance Payment", "Balance"
+                "Sr. Num", "Customer Name", "Package", "Artist", "Arrival Time", "Ready Time",
+                 "Total Payment", "Advance Payment", "Balance", "Phone Number"
             ],
             data: data
         },
@@ -146,6 +201,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('nextMonth').addEventListener('click', () => changeMonth(1));
     document.getElementById('today').addEventListener('click', () => {
         currentDate = new Date();
+        updateTable();
+    });
+    document.getElementById('datePicker').addEventListener('change', function() {
+        currentDate = new Date(this.value);
         updateTable();
     });
 
