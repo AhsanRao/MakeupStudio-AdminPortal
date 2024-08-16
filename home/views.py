@@ -137,6 +137,8 @@ def add_booking(request):
                 customer, _ = Customer.objects.get_or_create(
                     phone_number=phone_number, defaults={"name": customer_name}
                 )
+                # Get notes
+                notes = request.POST.get("notes", "")
 
                 # Get general booking info
                 number_of_appointments = int(
@@ -217,6 +219,7 @@ def add_booking(request):
                         total_payment=net_amount,
                         discount_percentage=discount,
                         ready_time=ready_time,
+                        notes=notes  # Add notes to the booking
                     )
                     bookings.append(booking)
 
@@ -269,6 +272,27 @@ def save_new_customer(request):
         {"success": True, "name": customer.name, "phone_number": customer.phone_number}
     )
 
+@login_required
+@require_POST
+@csrf_exempt
+def update_customer_name(request):
+    data = json.loads(request.body)
+    phone_number = data.get("phone_number")
+    new_name = data.get("name")
+
+    if not phone_number or not new_name:
+        return JsonResponse(
+            {"success": False, "error": "Phone number and name are required"},
+            status=400,
+        )
+
+    try:
+        customer = Customer.objects.get(phone_number=phone_number)
+        customer.name = new_name
+        customer.save()
+        return JsonResponse({"success": True, "message": "Customer name updated successfully"})
+    except Customer.DoesNotExist:
+        return JsonResponse({"success": False, "error": "Customer not found"}, status=404)
 
 @login_required(login_url="/accounts/login/")
 def get_artist_packages(request):
@@ -318,8 +342,6 @@ def get_appointments(request):
     for booking in bookings:
         start_time = booking.appointment_datetime
         end_time = start_time + timedelta(hours=1)
-        print(booking.ready_time)
-        print(booking.appointment_datetime)
         events.append(
             {
                 "id": booking.id,
@@ -337,6 +359,7 @@ def get_appointments(request):
                     "end_time": (booking.appointment_datetime + timedelta(hours=1)).strftime("%H:%M:%S"),
                     "date": booking.appointment_datetime.strftime("%Y-%m-%d"),
                     "ready_time": booking.ready_time.strftime("%H:%M:%S") if booking.ready_time else None,
+                    "notes": booking.notes
                 },
             }
         )
@@ -386,6 +409,7 @@ def get_bookings(request):
                     "end_time": (booking.appointment_datetime + timedelta(hours=1)).strftime("%H:%M:%S"),
                     "date": booking.appointment_datetime.strftime("%Y-%m-%d"),
                     "ready_time": booking.ready_time.strftime("%H:%M:%S") if booking.ready_time else None,
+                    "notes": booking.notes,
                 },
             }
         )
@@ -414,6 +438,7 @@ def get_booking_details(request, booking_id):
         "discount_percentage": str(booking.discount_percentage),
         "total_payment": str(booking.total_payment),
         "balance_amount": str(booking.balance_amount),
+        "notes": str(booking.notes),
     }
     return JsonResponse(data)
 
@@ -435,6 +460,7 @@ def update_booking(request):
         booking.discount_percentage = request.POST.get("discount_percentage")
         booking.total_payment = request.POST.get("total_payment")
         booking.balance_amount = request.POST.get("balance_amount")
+        booking.notes = request.POST.get("edit_notes")
 
         # Update customer if phone number changed
         phone_number = request.POST.get("phone_number")
