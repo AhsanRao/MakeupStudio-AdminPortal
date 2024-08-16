@@ -74,6 +74,7 @@ urlpatterns = [
     path("add-booking/", views.add_booking, name="add_booking"),
     path("get-customer-info/", views.get_customer_info, name="get_customer_info"),
     path("save-new-customer/", views.save_new_customer, name="save_new_customer"),
+    path('update-customer-name/', views.update_customer_name, name='update_customer_name'),
     path("get-artist-packages/", views.get_artist_packages, name="get_artist_packages"),
     path("populate-database/", views.populate_database, name="populate_database"),
     path("appointments/", views.appointments_view, name="appointments"),
