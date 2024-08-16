@@ -62,6 +62,7 @@
                                         <th>Advance Payment</th>
                                         <th>Balance</th>
                                         <th>Phone Number</th>
+                                        <th>Notes</th>
                                     </tr>
                                 </thead>
                                 <tbody id="appointmentsBody">
@@ -112,6 +113,7 @@ function updateTable() {
                     appointment.advance_payment,
                     appointment.balance,
                     appointment.customer_phone,
+                    appointment.notes ? appointment.notes : "N/A",
                 ];
             });
 
@@ -171,7 +173,7 @@ function initDataTable(data) {
         data: {
             headings: [
                 "Sr. Num", "Customer Name", "Package", "Artist", "Arrival Time", "Ready Time",
-                 "Total Payment", "Advance Payment", "Balance", "Phone Number"
+                 "Total Payment", "Advance Payment", "Balance", "Phone Number", "Notes"
             ],
             data: data
         },

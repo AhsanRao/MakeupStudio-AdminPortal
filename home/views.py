@@ -867,6 +867,7 @@ def get_appointments_list(request):
             "total_payment": float(booking.total_payment),
             "advance_payment": float(booking.advance_payment),
             "balance": float(booking.balance_amount),
+            "notes": booking.notes,
         })
 
     return JsonResponse(appointments, safe=False)
