@@ -182,6 +182,19 @@ Appointments Calendar {% endblock title %} {% block extrastyle %}
             <p class="pc-event-payment text-muted"></p>
           </div>
         </div>
+        <div class="d-flex">
+          <div class="flex-shrink-0">
+            <div class="avtar avtar-xs bg-light-primary">
+              <i class="ti ti-note f-20"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h4 class="mb-1">
+              <b>Notes</b>
+            </h4>
+            <p class="pc-event-notes text-muted"></p>
+          </div>
+        </div>
       </div>
       <div class="modal-footer justify-content-between">
         <ul class="list-inline me-auto mb-0">
@@ -360,6 +373,15 @@ Appointments Calendar {% endblock title %} {% block extrastyle %}
           readonly
         />
       </div>
+      <div class="form-group">
+        <label for="balanceAmount" class="form-label">Notes</label>
+        <input
+          type="text"
+          class="form-control"
+          id="editNotes"
+          name="edit_notes"
+        />
+      </div>
       <div class="row justify-content-between mt-4">
         <div class="col-auto">
           <button
@@ -529,7 +551,7 @@ Appointments Calendar {% endblock title %} {% block extrastyle %}
       document.querySelector(".pc-event-payment").textContent =
         event.extendedProps.total_payment;
 
-     
+      document.querySelector(".pc-event-notes").textContent = event.extendedProps.notes;
 
       // Set the booking ID for edit and delete operations
       document
@@ -576,6 +598,7 @@ Appointments Calendar {% endblock title %} {% block extrastyle %}
             document.getElementById("totalAmount").value = data.total_payment;
             document.getElementById("balanceAmount").value =
               data.balance_amount;
+            document.getElementById("editNotes").value = data.notes;
 
             // Update package dropdown
             updatePackageDropdown(data.artist_id, data.package_id);

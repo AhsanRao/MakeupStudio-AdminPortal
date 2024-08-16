@@ -73,7 +73,7 @@
                                                            class="form-control"
                                                            id="customerName"
                                                            name="customer_name"
-                                                           readonly />
+                                                            />
                                                 </div>
                                             </div>
                                         </div>
@@ -169,6 +169,18 @@
                                                            readonly />
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Notes Section -->
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <h5>Notes</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="notes" class="form-label">Additional Notes</label>
+                                            <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -269,6 +281,34 @@
                       }
                   });
           });
+
+          customerNameInput.addEventListener('blur', function() {
+            const newName = this.value.trim();
+            const phoneNumber = phoneInput.value.trim();
+        
+            if (newName && phoneNumber) {
+                fetch('/update-customer-name/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: JSON.stringify({ name: newName, phone_number: phoneNumber })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        queueNotification('Success', 'Customer name updated successfully.', 'success');
+                    } else {
+                        queueNotification('Error', data.error || 'Failed to update customer name.', 'danger');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    queueNotification('Error', 'An error occurred while updating the customer name.', 'danger');
+                });
+            }
+        });
 
           // New customer saving
           document.getElementById('saveNewCustomer').addEventListener('click', function() {
